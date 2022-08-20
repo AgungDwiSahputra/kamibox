@@ -61,9 +61,9 @@ if ($_SESSION['login'] == true && $_SESSION['level_user'] == '1' || $_SESSION['l
 						<span>Masukkan kode yang kami kirim ke <span style="color:red;">Email </span> anda</span>
 						<?php
 						if (isset($_COOKIE['gagal'])) {
-							echo '<p class="subheading-error-otp">' . $_COOKIE['gagal'] . '</p>';
+							echo '<span class="subheading-error-otp">' . $_COOKIE['gagal'] . '</span>';
 						} elseif (isset($_COOKIE['sukses'])) {
-							echo '<p class="subheading-error-otp">' . $_COOKIE['sukses'] . '</p>';
+							echo '<span class="subheading-sukses-otp">' . $_COOKIE['sukses'] . '</span>';
 						}
 						?>
 					</div>

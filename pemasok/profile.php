@@ -34,7 +34,8 @@ if (isset($_POST['update'])) {
     $query = mysqli_query($conn, "UPDATE users SET nama_lengkap = '$namaProfile', email = '$emailProfile', notelp = '$no_telpProfile', alamat = '$alamatProfile', nomor_rekening = '$norekProfile' WHERE id_user = '$idProfile'");
 
     if ($query) {
-        header("Location:index.php");
+        setcookie('sukses', 'Berhasil Update Data Diri', time() + 3, '/');
+        header("Location:profile.php");
     }
 }
 /* ================================= */
@@ -56,40 +57,43 @@ if ($status_login === true and !empty($email) and $level == '3') {
         <!-- Custom CSS -->
         <link href="css/style.css" rel="stylesheet">
         <style type="text/css">
-           @media screen and (max-width: 750px) {
-            .navigation{
-                width: 70px;
+            @media screen and (max-width: 750px) {
+                .navigation {
+                    width: 70px;
+                }
             }
-           }
 
-           @media screen and (max-width: 550px) {
-                
-                .navigation{
+            @media screen and (max-width: 550px) {
+
+                .navigation {
                     width: 60px;
                     top: 10px;
                     left: 1px;
                     bottom: 10px;
                 }
 
-                .navigation-top ul{
+                .navigation-top ul {
                     padding: 0 8px;
                 }
 
-                .navigation-top ul li a .user{
+                .navigation-top ul li a .user {
                     width: 25px;
                 }
-                .navigation-top ul li a .bell{
+
+                .navigation-top ul li a .bell {
                     width: 18px;
                 }
 
-                .row{
+                .row {
                     margin: 0px auto;
                 }
-                .container .row{
+
+                .container .row {
                     margin-top: 40px;
                     margin-left: 85px;
                 }
-                .container .row:nth-child(2){
+
+                .container .row:nth-child(2) {
                     background-color: #fff;
                     border-radius: none;
                     box-shadow: none;
@@ -98,7 +102,8 @@ if ($status_login === true and !empty($email) and $level == '3') {
                     padding: 0px;
                     overflow: scroll;
                 }
-                .container .row.body li{
+
+                .container .row.body li {
                     padding: 15px 20px;
                     height: 50px;
                     border: 1px solid rgba(0, 0, 0, 0.2);
@@ -108,27 +113,27 @@ if ($status_login === true and !empty($email) and $level == '3') {
                 }
 
 
-        }
-
-        @media screen and (max-width: 450px) {
-            
-            .navigation ul li .icon img.putih,
-            .navigation ul li .icon img.hijau{
-                width: 25px;
             }
 
-            .navigation-top ul li.nav-left{
-                margin-left: 80px;
-                margin-top: 15px;
-                font-size: 12px;
-            }
+            @media screen and (max-width: 450px) {
 
-            .toggle img.close{
-                width: 25px;
-                margin-left: 5px;
-            }
+                .navigation ul li .icon img.putih,
+                .navigation ul li .icon img.hijau {
+                    width: 25px;
+                }
 
-            .container .row:nth-child(2){
+                .navigation-top ul li.nav-left {
+                    margin-left: 80px;
+                    margin-top: 15px;
+                    font-size: 12px;
+                }
+
+                .toggle img.close {
+                    width: 25px;
+                    margin-left: 5px;
+                }
+
+                .container .row:nth-child(2) {
                     background-color: #fff;
                     border-radius: none;
                     box-shadow: none;
@@ -137,7 +142,8 @@ if ($status_login === true and !empty($email) and $level == '3') {
                     padding: 0px;
                     overflow: scroll;
                 }
-            .container .row.body li{
+
+                .container .row.body li {
                     padding: 15px 20px;
                     height: 70px;
                     border: 1px solid rgba(0, 0, 0, 0.2);
@@ -146,11 +152,28 @@ if ($status_login === true and !empty($email) and $level == '3') {
                     display: block;
                 }
 
-        }
 
+            }
 
+            .subheading-error-otp {
+                display: block;
+                padding: 5px 20px;
+                margin-top: 10px;
+                background-color: rgba(255, 0, 0, 0.2);
+                color: red;
+                font-size: 0.85rem;
+                font-weight: 500;
+            }
 
-
+            .subheading-sukses-otp {
+                display: block;
+                padding: 5px 20px;
+                margin-top: 10px;
+                background-color: rgba(6, 155, 69, 0.2);
+                color: #069B45;
+                font-size: 0.85rem;
+                font-weight: 500;
+            }
         </style>
     </head>
 
@@ -214,6 +237,13 @@ if ($status_login === true and !empty($email) and $level == '3') {
                 </h5>
             </div>
             <div class="row body">
+                <?php
+                if (isset($_COOKIE['gagal'])) {
+                    echo '<span class="subheading-error-otp">' . $_COOKIE['gagal'] . '</span>';
+                } elseif (isset($_COOKIE['sukses'])) {
+                    echo '<span class="subheading-sukses-otp">' . $_COOKIE['sukses'] . '</span>';
+                }
+                ?>
                 <form action="" method="post">
                     <ul>
                         <?php

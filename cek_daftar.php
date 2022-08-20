@@ -169,7 +169,3 @@
 		$_SESSION['validasi'] = $validasi;
 		header('location:daftar.php?pesan=validasi');
 	}
-
-
-
-?>

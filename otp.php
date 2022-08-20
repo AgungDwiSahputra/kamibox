@@ -59,6 +59,13 @@ if ($_SESSION['login'] == true && $_SESSION['level_user'] == '1' || $_SESSION['l
 					</div>
 					<div class="heading-validasi-otp">
 						<span>Masukkan kode yang kami kirim ke <span style="color:red;">Email </span> anda</span>
+						<?php
+						if (isset($_COOKIE['gagal'])) {
+							echo '<p class="subheading-error-otp">' . $_COOKIE['gagal'] . '</p>';
+						} elseif (isset($_COOKIE['sukses'])) {
+							echo '<p class="subheading-error-otp">' . $_COOKIE['sukses'] . '</p>';
+						}
+						?>
 					</div>
 
 					<div class="heading-error-otp">
@@ -77,6 +84,13 @@ if ($_SESSION['login'] == true && $_SESSION['level_user'] == '1' || $_SESSION['l
 
 					<form action="cek_otp.php" method="post">
 						<div class="input-otp">
+							<?php
+							if (isset($_GET['akses'])) {
+							?>
+								<input type="text" name="akses" value="<?= $_GET['akses'] ?>" hidden>
+							<?php
+							}
+							?>
 							<input type="text" class="kodeotp <?php if (!empty($validasi['otp1'])) {
 																	echo "kodeotp-error";
 																} ?>" name="otp1" value="" maxlength="1" autofocus style="font-size:large;font-weight:bold;">

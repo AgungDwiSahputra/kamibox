@@ -12,10 +12,10 @@ $pass = "Decreativeart2019";
 $database = "decreat2_kami";
 */
 
- $server = "localhost";
- $user = "root";
- $pass = "";
- $database = "decreat2_kami2";
+$server = "localhost";
+$user = "root";
+$pass = "";
+$database = "decreat2_kami";
 
 $conn = mysqli_connect($server, $user, $pass, $database);
 

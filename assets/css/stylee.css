@@ -1,0 +1,921 @@
+height 100vh width 100%
+https://cssgradient.io/
+animate.css
+aos animates
+particle.css
+masonry js
+rellax js
+
+.card-produk{
+	margin:auto ;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	gap:10px ;	
+}
+
+.card-produk .produk{
+	margin-top: 250px;
+	margin-bottom: 180px;
+	text-align: center;
+	width: 200px;
+	height: 200px;
+	box-shadow: 0px 1px 8px 0px rgba(0,0,0,0.3);
+  	transition: 0.3s;
+  	border-radius: 30px;
+  	background-color: #FFF;
+}
+
+.tentang-kmb{
+	margin-top: 150px;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+}
+
+.tentang-kmb .kb-left,
+.tentang-kmb .kb-right{
+	flex: 0 0 50%;
+	text-align: center;
+}
+
+.img-kmb{
+	width: 480px;height:440px;
+}
+
+.headpro{
+	margin-top: 150px;
+	position: absolute;
+	margin-left: 380px;
+}
+
+
+.card-produk-wrapper{
+	margin:auto ;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	gap:10px ;	
+}
+
+.card-produk .produk{
+	margin-top: 250px;
+	margin-bottom: 180px;
+	text-align: center;
+	width: 200px;
+	height: 200px;
+	box-shadow: 0px 1px 8px 0px rgba(0,0,0,0.3);
+  	position: relative;
+  	border-radius: 30px;
+  	background-color: #FFF;
+  	z-index: 15;
+}
+
+
+.img-produk{
+	margin: 0;
+	line-height: 0;
+}
+
+.img-produk img{
+	max-width: 100%;
+}
+
+
+	<section class="card-produk">
+		<div class="container card-produk-wrapper">
+			<div class="row1">
+				<p class="heading-produk">Daur Ulang Apa yang kami layani?</p>
+				<p><img src="assets/images/gai.png"></p>
+			</div>
+			<div class="row2">
+				<a href="#" class="produk">
+				<div class="info-produk">
+					<div class="img-produk"><img src="assets/images/Arsip-Kantor.png"></div>
+					<div class="nama-produk"><p>Arsip Kantor</p></div>
+				</div>
+				<div class="side-produk">
+					<div class="harga-produk"><a href="#">cek harga</a></div>
+				</div>
+				</a>				
+			</div>
+
+
+			<a href="#" class="produk">
+				<img src="assets/images/pl.png">
+				<p>Plastik</p>
+			</a>
+			<a href="#" class="produk">
+				<img src="assets/images/lg.png">
+				<p>Logam</p>
+			</a>
+			<a href="#" class="produk">
+				<img src="assets/images/bt.png">
+				<p>Kaca</p>
+			</a>
+			<a href="#" class="produk">
+				<img src="assets/images/mje.png">
+				<p>Minyak Jelantah</p>
+			</a>			
+		</div>
+	</section>
+
+
+
+
+
+
+
+
+
+
+.img-kmb img{
+	width: 100%;
+}
+\	<section class="produk">
+		<div class="container produk-wrapper">
+			<div class="row1">
+				<p class="heading-produk">Jenis Daur Ulang yang Kami Layani</p>
+				<p><img src="assets/images/gai.png"></p>
+			</div>
+			<div class="row2">
+				<div class="card-produk">
+					<img src="assets/images/Arsip-Kantor.png">
+					<p>Arsip Kantor</p>
+				</div>
+				<div class="card-produk">
+					<img src="assets/images/pl.png">
+					<p>Plastik</p>
+				</div>
+				<div class="card-produk">
+					<img src="assets/images/lg.png">
+					<p>Logam</p>
+				</div>
+				<div class="card-produk">
+					<img src="assets/images/bt.png">
+					<p>Kaca</p>
+				</div>
+				<div class="card-produk">
+					<img src="assets/images/mje.png">
+					<p>Minyak Jelantah</p>
+				</div>
+			</div>
+
+		</div>		
+	</section>
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>kamibox	</title>
+	<meta charset="utf-8">
+	<meta name="description" contents="KAMIBOX.ID">
+	<link rel="shortcut icon" type="image/png" href="assets/icon.png">
+	<link rel="stylesheet" type="text/css" href="assets/css/style.css">
+	<link rel="stylesheet" type="text/css" href="https://unpkg.com/aos@next/dist/aos.css">
+	<link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/owl-carousel/1.3.3/owl.carousel.min.css">
+
+	<style type="text/css">
+		header{
+			background: url(assets/images/hgh2.png)no-repeat;
+		}
+
+		.home{
+			background: url(assets/images/bghome.png) no-repeat;
+		}
+
+
+		
+		@media screen and (max-width: 850px){
+			header, .home, .produk{
+				background: none;
+			}
+
+			.menu-wrapper .menu .menu-link{
+				color: #000;
+			}
+	    }
+
+	    @media screen and (max-width: 768px)
+		{
+			.menu-wrapper .menu .menu-link{
+				color: #000;
+			}
+		}	
+
+	</style>
+
+</head>
+
+<body >
+
+	<header>
+		<?php include "Navbar.php";?>
+	</header>
+
+	<section class="home">
+		<div class="container home-wrapper">
+			<div class="content-left" data-aos="fade-right">
+				<h2 class="heading">Daur Ulang Semua <p>Jenis <span style="color:#069B45">Sampah</span></p></h2>
+				<p class="subheading">Kemasan, Kertas, Botol, dan lain-lain</p><br/><br/><br/>
+				<a href="" class="btn-gabung">Gabung</a>
+			</div>
+			<div class="content-right" data-aos="fade-left">
+				<div class="img-wrapper ">
+					<img src="assets/images/design-1.png">	
+				</div>
+			</div>	
+		</div>
+	</section>
+
+	<section class="produk">
+		<div class="container produk-wrapper">
+				<p class="heading-produk">Jenis Daur Ulang yang Kami Layani</p>
+				<p><img src="assets/images/gai.png"></p>
+	
+				<div class="card-produk">
+					<img src="assets/images/Arsip-Kantor.png">
+					<p>Arsip Kantor</p>
+				</div>
+				<div class="card-produk">
+					<img src="assets/images/pl.png">
+					<p>Plastik</p>
+				</div>
+				<div class="card-produk">
+					<img src="assets/images/lg.png">
+					<p>Logam</p>
+				</div>
+				<div class="card-produk">
+					<img src="assets/images/bt.png">
+					<p>Kaca</p>
+				</div>
+				<div class="card-produk">
+					<img src="assets/images/mje.png">
+					<p>Minyak Jelantah</p>
+				</div>
+	
+		</div>		
+	</section>
+
+	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+	<script src="assets/js/main.js"></script>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/owl-carousel/1.3.3/owl.carousel.min.js"></script>
+	<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+  	<script>
+    	AOS.init();
+  	</script>
+
+</body>
+</html>
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+:root{
+	--main-color : #08AC4D;
+	
+	--body-color : #FFFF;
+
+	--main-font : 'Poppins', sans-serif;
+	
+}
+
+body{
+	font-family: var(--main-font);
+}
+
+*{
+	margin :0;
+	padding: 0;
+	box-sizing: border-box;
+	list-style: none;
+	text-decoration: none;
+}
+
+
+section{
+	margin: 0px;
+}
+
+.container{
+	max-width: 1100px;
+}
+
+.navbar{
+	margin: 0px;
+	background-image: url(assets/images/hgh2.png) no-repeat;
+	position: relative;
+}
+
+
+.navbar .nav-wrapper{
+	position: relative;
+	margin: auto;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	height: 80px;
+}
+
+.nav-wrapper .menu-toggle{
+	display: none;
+}
+
+
+.nav-wrapper .logo img{
+	height: 60px;
+	width: 230px;	
+}
+
+.nav-wrapper .menu-wrapper{
+	display: flex;
+	gap: 50px;
+}
+
+.nav-wrapper .menu-wrapper .menu{
+	display: flex;
+	align-items: center;
+	gap: 50px;
+	color: #FFF;
+}
+
+.menu-link{
+	color:#FFF;
+	font-weight:500;
+}
+
+.menu-link:hover{
+	color: #FFF;
+	font-weight: 650;
+}
+
+.menu-link:active{
+	color: #069B45;	
+	font-weight:500 ;
+}
+
+.menu-wrapper .btn-login{
+	font-family:var(--main-font) ;
+	font-weight: 500;
+	color : #FFF;
+	background-color: #058E3F;
+	padding: 10px 40px;
+	border-radius: 50px;
+}
+
+.menu-wrapper .btn-login:hover{
+	background-color: #059B45;
+	box-shadow: 0px 1px 5px 0px rgba(0,0,0,0.3);
+	font-weight: 650;
+}
+
+
+/*home section*/
+
+.home{
+	margin: 0px;
+
+}
+
+.home .home-wrapper{
+	margin-top: 150px;
+	margin-left:auto;
+	margin-right:auto;
+	margin-bottom:0px;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+}
+
+.home-wrapper .content-left,
+.home-wrapper .content-right{
+	flex: 0 0 50%;
+}
+
+.home-wrapper .heading{
+	font-size: 3rem;
+	margin-top: 100px;
+}
+
+.home-wrapper .subheading{
+	font-size: 1.5rem;
+	margin: 5px 0;
+}
+
+.btn-gabung{
+	font-weight: 500;
+	color : #FFF;
+	background: rgb(6,155,69);
+	background: linear-gradient(135deg, rgba(6,155,69,1) 0%, rgba(21,213,102,1) 65%, rgba(34,247,53,1) 100%);	margin: 40px 0;
+	padding: 8px 80px;
+	border-radius: 50px;	
+	box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.5);
+}
+
+.btn-gabung:hover{
+	font-weight: 500;
+	color : #FFF;
+	background: rgb(6,155,69);
+	background: linear-gradient(82deg, rgba(6,155,69,1) 0%, rgba(21,213,102,1) 50%, rgba(34,247,53,1) 100%);
+	box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.5);
+}
+
+.content-right .img-wrapper{
+	margin-top: 50px;
+	max-width: 600px;
+	margin-bottom: 0px;
+}
+
+.content-right .img-wrapper img{
+	width: 100%;
+}
+/*home end--------------------------------------------------------------------*/
+
+/*CARD Start-----------------------------------------------------------------*/
+.produk, .row1, .row2{
+		
+}
+
+
+
+
+
+
+
+
+/*card end-------------------------------------------------------------------*/
+
+/*KMB Start-----------------------------------------------------------------*/
+
+
+
+@media screen and (max-width: 997px)
+{
+	.navbar .nav-wrapper{
+		padding: 0 20px;
+	}
+
+	.nav-wrapper .menu-wrapper .menu{
+		gap: 20px;
+	}
+
+	.menu-wrapper .menu .menu-link{
+		font-size: 0.8rem;
+	}
+
+	.menu-wrapper .btn-login{
+		padding: 5px 20px;
+	}
+
+}
+
+@media screen and (max-width: 850px){	
+
+	.navbar .nav-wrapper{
+		padding: 0 15px;
+	}
+
+	.nav-wrapper .menu-wrapper .menu{
+		gap: 10px;		
+	}
+
+	.home-wrapper .heading{
+		font-size: 2rem;
+		margin-top: 50px;
+		margin-left: 30px;
+
+	}
+
+	.home-wrapper .subheading{
+		font-size: 0.8rem;
+		margin-left: 30px;
+	}
+
+	.content-right .img-wrapper{
+		margin-top: 25px;
+		max-width: 300px;
+	}
+
+	.btn-gabung{
+		margin: 10px 30px;
+		padding: 4px 40px;
+		border-radius: 30px;	
+		
+	}
+
+
+}
+
+@media screen and (max-width: 768px)
+{
+	.nav-wrapper .menu-wrapper{
+		position: absolute;
+		top : 100%;
+		left: 50%;
+		transform: translateX(-50%);
+		width: 85%;
+		display: block;
+		text-align: center;
+		height: 380px;
+		border-radius: 10px;
+		background-color: yellow;
+		clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+		transition: .5s ease-in-out;
+	}	
+
+	.nav-wrapper .menu-wrapper.active{
+		clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+		transition: .5s ease-in-out;
+	}
+
+	.menu-toggle.bx-x{
+		transform: rotate(360deg);
+		transition: .5s;
+	}
+
+	.nav-wrapper .menu-wrapper .menu{
+		display: block;
+	}
+
+	.menu-wrapper .menu .menu-item{
+		margin: 30px 0;
+	}
+
+
+	.nav-wrapper .menu-toggle{
+		display: initial;
+		font-size: 3rem;
+		color: yellowgreen;
+		transition: .5s;
+	}
+
+	.menu-wrapper .menu .menu-link{
+		font-size: 1rem;
+	}
+
+	.menu-link{
+		font-weight:500;
+	}
+
+	.menu-link:hover{
+		font-weight:650;
+	}
+}
+----------------------------------------------------------------------------------------
+
+	<section class="produksec">
+		<div class="container card-produk">
+			<h2 class="headpro">Jenis Sampah Yang Kami Daur Ulang
+				<p><img src="assets/images/gai.png"></p>
+			</h2>
+			<a href="#" class="produk">
+				<img src="assets/images/Arsip-Kantor.png">
+				<p>Arsip Kantor</p>
+			</a>
+			<a href="#" class="produk">
+				<img src="assets/images/pl.png">
+				<p>Plastik</p>
+			</a>
+			<a href="#" class="produk">
+				<img src="assets/images/lg.png">
+				<p>Logam</p>
+			</a>
+			<a href="#" class="produk">
+				<img src="assets/images/bt.png">
+				<p>Kaca</p>
+			</a>
+			<a href="#" class="produk">
+				<img src="assets/images/mje.png">
+				<p>Minyak Jelantah</p>
+			</a>			
+		</div>
+	</section>
+	@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+:root{
+	--main-color : #08AC4D;
+	
+	--body-color : #FFFF;
+
+	--main-font : 'Poppins', sans-serif;
+	
+}
+
+body{
+	font-family: var(--main-font);
+}
+
+*{
+	margin :0;
+	padding: 0;
+	box-sizing: border-box;
+	list-style: none;
+	text-decoration: none;
+}
+
+
+section{
+	margin-top: 150px;
+}
+
+.container{
+	max-width: 1100px;
+}
+
+.navbar{
+	margin: 0px;
+	background-image: url(assets/images/hgh2.png) no-repeat;
+	position: relative;
+}
+
+
+.navbar .nav-wrapper{
+	position: relative;
+	margin: auto;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	height: 80px;
+}
+
+.nav-wrapper .menu-toggle{
+	display: none;
+}
+
+
+.nav-wrapper .logo img{
+	height: 60px;
+	width: 230px;	
+}
+
+.nav-wrapper .menu-wrapper{
+	display: flex;
+	gap: 50px;
+}
+
+.nav-wrapper .menu-wrapper .menu{
+	display: flex;
+	align-items: center;
+	gap: 50px;
+	color: #FFF;
+}
+
+.menu-link{
+	color:#FFF;
+	font-weight:500;
+}
+
+.menu-link:hover{
+	color: #FFF;
+	font-weight: 650;
+}
+
+.menu-link:active{
+	color: #069B45;	
+	font-weight:500 ;
+}
+
+.menu-wrapper .btn-login{
+	font-family:var(--main-font) ;
+	font-weight: 500;
+	color : #FFF;
+	background-color: #058E3F;
+	padding: 10px 40px;
+	border-radius: 50px;
+}
+
+.menu-wrapper .btn-login:hover{
+	background-color: #059B45;
+	box-shadow: 0px 1px 5px 0px rgba(0,0,0,0.3);
+	font-weight: 650;
+}
+
+
+/*home section*/
+
+.home{
+	margin: 0px;
+}
+
+.home .home-wrapper{
+	margin:auto;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+
+}
+
+.home-wrapper .content-left,
+.home-wrapper .content-right{
+	flex: 0 0 50%;
+}
+
+.home-wrapper .heading{
+	font-size: 3rem;
+	margin-top: 100px;
+}
+
+.home-wrapper .subheading{
+	font-size: 1.5rem;
+	margin: 5px 0;
+}
+
+.btn-gabung{
+	font-weight: 500;
+	color : #FFF;
+	background: rgb(6,155,69);
+background: linear-gradient(135deg, rgba(6,155,69,1) 0%, rgba(21,213,102,1) 65%, rgba(34,247,53,1) 100%);	margin: 40px 0;
+	padding: 8px 80px;
+	border-radius: 50px;	
+	box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.5);
+}
+
+.btn-gabung:hover{
+	font-weight: 500;
+	color : #FFF;
+	background: rgb(6,155,69);
+background: linear-gradient(82deg, rgba(6,155,69,1) 0%, rgba(21,213,102,1) 50%, rgba(34,247,53,1) 100%);
+	box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.5);
+}
+
+.content-right .img-wrapper{
+	margin-top: 50px;
+	max-width: 600px;
+}
+
+.content-right .img-wrapper img{
+	width: 100%;
+}
+/*home end--------------------------------------------------------------------*/
+
+/*CARD Start-----------------------------------------------------------------*/
+.produksec{
+	margin: 0%;
+}
+
+.headpro{
+	margin-top: 150px;
+	position: absolute;
+	margin-left: 250px;
+
+}
+.card-produk{
+	margin:auto ;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	gap:10px ;	
+}
+
+.card-produk .produk{
+	margin-top: 250px;
+	margin-bottom: 180px;
+	text-align: center;
+	width: 200px;
+	height: 200px;
+	box-shadow: 0px 1px 8px 0px rgba(0,0,0,0.3);
+  	transition: 0.3s;
+  	border-radius: 30px;
+  	background-color: #FFF;
+}
+/*card end-------------------------------------------------------------------*/
+
+/*KMB Start-----------------------------------------------------------------*/
+.tentang-kmb{
+	margin-top: 150px;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+}
+
+.tentang-kmb .kb-left,
+.tentang-kmb .kb-right{
+	flex: 0 0 50%;
+	text-align: center;
+}
+
+.img-kmb{
+	width: 480px;height:440px;
+}
+
+.img-kmb img{
+	width: 100%;
+}
+
+
+
+@media screen and (max-width: 997px)
+{
+	.navbar .nav-wrapper{
+		padding: 0 20px;
+	}
+
+	.nav-wrapper .menu-wrapper .menu{
+		gap: 20px;
+	}
+
+	.menu-wrapper .menu .menu-link{
+		font-size: 0.8rem;
+	}
+
+	.menu-wrapper .btn-login{
+		padding: 5px 20px;
+	}
+
+}
+
+@media screen and (max-width: 850px){	
+
+	.navbar .nav-wrapper{
+		padding: 0 15px;
+	}
+
+	.nav-wrapper .menu-wrapper .menu{
+		gap: 10px;		
+	}
+
+	.home-wrapper .heading{
+		font-size: 2rem;
+		margin-top: 50px;
+		margin-left: 30px;
+
+	}
+
+	.home-wrapper .subheading{
+		font-size: 0.8rem;
+		margin-left: 30px;
+	}
+
+	.content-right .img-wrapper{
+		margin-top: 25px;
+		max-width: 300px;
+	}
+
+	.btn-gabung{
+		margin: 10px 30px;
+		padding: 4px 40px;
+		border-radius: 30px;	
+		
+	}
+
+
+}
+
+@media screen and (max-width: 768px)
+{
+	.nav-wrapper .menu-wrapper{
+		position: absolute;
+		top : 100%;
+		left: 50%;
+		transform: translateX(-50%);
+		width: 85%;
+		display: block;
+		text-align: center;
+		height: 380px;
+		border-radius: 10px;
+		background-color: yellow;
+		clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+		transition: .5s ease-in-out;
+	}	
+
+	.nav-wrapper .menu-wrapper.active{
+		clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+		transition: .5s ease-in-out;
+	}
+
+	.menu-toggle.bx-x{
+		transform: rotate(360deg);
+		transition: .5s;
+	}
+
+	.nav-wrapper .menu-wrapper .menu{
+		display: block;
+	}
+
+	.menu-wrapper .menu .menu-item{
+		margin: 30px 0;
+	}
+
+
+	.nav-wrapper .menu-toggle{
+		display: initial;
+		font-size: 3rem;
+		color: yellowgreen;
+		transition: .5s;
+	}
+
+	.menu-wrapper .menu .menu-link{
+		font-size: 1rem;
+	}
+
+	.menu-link{
+		font-weight:500;
+	}
+
+	.menu-link:hover{
+		font-weight:650;
+	}
+}
+---------------------------------------------------------------

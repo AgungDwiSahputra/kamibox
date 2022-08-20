@@ -1,0 +1,19 @@
+<?php
+session_start();
+	$_SESSION['set_email']='';
+	unset($_SESSION['set_email']);
+	$_SESSION['set_nama']='';
+    unset($_SESSION['set_nama']);
+    $_SESSION['set_notelp']='';
+    unset($_SESSION['set_notelp']);
+    $_SESSION['set_otp1']='';
+    unset($_SESSION['set_otp1']);
+    $_SESSION['set_otp2']='';
+    unset($_SESSION['set_otp2']);
+    $_SESSION['set_otp3']='';
+    unset($_SESSION['set_otp3']);
+    $_SESSION['set_otp4']='';
+    unset($_SESSION['set_otp4']);
+    $_GET['ke']='';
+    unset($_GET['ke']);
+?>

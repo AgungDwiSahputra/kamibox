@@ -1,0 +1,31 @@
+[14-Aug-2022 19:37:08 Asia/Jakarta] PHP Notice:  Undefined variable: no in /home/decreat2/kamibox.decreativeart.com/mitra/input_data.php on line 153
+[14-Aug-2022 20:01:36 Asia/Jakarta] PHP Notice:  Undefined variable: no in /home/decreat2/kamibox.decreativeart.com/mitra/input_data.php on line 153
+[14-Aug-2022 20:02:02 Asia/Jakarta] PHP Notice:  Undefined variable: no in /home/decreat2/kamibox.decreativeart.com/mitra/input_data.php on line 153
+[14-Aug-2022 20:02:12 Asia/Jakarta] PHP Notice:  Undefined variable: no in /home/decreat2/kamibox.decreativeart.com/mitra/input_data.php on line 153
+[14-Aug-2022 20:02:26 Asia/Jakarta] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, bool given in /home/decreat2/kamibox.decreativeart.com/mitra/input_data.php on line 147
+[14-Aug-2022 20:05:34 Asia/Jakarta] PHP Notice:  Undefined variable: no in /home/decreat2/kamibox.decreativeart.com/mitra/input_data.php on line 153
+[16-Aug-2022 16:22:25 Asia/Jakarta] PHP Notice:  Undefined variable: no in /home/decreat2/kamibox.decreativeart.com/mitra/input_data.php on line 153
+[16-Aug-2022 16:22:30 Asia/Jakarta] PHP Notice:  Undefined variable: no in /home/decreat2/kamibox.decreativeart.com/mitra/input_data.php on line 153
+[16-Aug-2022 16:22:40 Asia/Jakarta] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, bool given in /home/decreat2/kamibox.decreativeart.com/mitra/input_data.php on line 147
+[16-Aug-2022 16:23:36 Asia/Jakarta] PHP Notice:  Undefined index: no_invoice in /home/decreat2/kamibox.decreativeart.com/mitra/input_data_2.php on line 11
+[16-Aug-2022 16:23:36 Asia/Jakarta] PHP Notice:  Trying to get property 'pemasok_id' of non-object in /home/decreat2/kamibox.decreativeart.com/mitra/input_data_2.php on line 118
+[16-Aug-2022 16:25:05 Asia/Jakarta] PHP Notice:  Undefined variable: no in /home/decreat2/kamibox.decreativeart.com/mitra/input_data.php on line 153
+[16-Aug-2022 16:45:46 Asia/Jakarta] PHP Notice:  Undefined variable: no in /home/decreat2/kamibox.decreativeart.com/mitra/input_data.php on line 153
+[16-Aug-2022 16:45:50 Asia/Jakarta] PHP Notice:  Undefined variable: no in /home/decreat2/kamibox.decreativeart.com/mitra/input_data.php on line 153
+[16-Aug-2022 16:46:03 Asia/Jakarta] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, bool given in /home/decreat2/kamibox.decreativeart.com/mitra/input_data.php on line 147
+[16-Aug-2022 17:19:15 Asia/Jakarta] PHP Notice:  Undefined variable: no in /home/decreat2/kamibox.decreativeart.com/mitra/input_data.php on line 153
+[16-Aug-2022 17:19:19 Asia/Jakarta] PHP Notice:  Undefined variable: no in /home/decreat2/kamibox.decreativeart.com/mitra/input_data.php on line 153
+[16-Aug-2022 17:19:24 Asia/Jakarta] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, bool given in /home/decreat2/kamibox.decreativeart.com/mitra/input_data.php on line 147
+[16-Aug-2022 17:51:41 Asia/Jakarta] PHP Notice:  Undefined variable: no in /home/decreat2/kamibox.decreativeart.com/mitra/input_data.php on line 153
+[16-Aug-2022 18:08:14 Asia/Jakarta] PHP Notice:  Undefined variable: no in /home/decreat2/kamibox.decreativeart.com/mitra/input_data.php on line 153
+[16-Aug-2022 18:08:34 Asia/Jakarta] PHP Notice:  Undefined variable: no in /home/decreat2/kamibox.decreativeart.com/mitra/input_data.php on line 153
+[16-Aug-2022 18:08:56 Asia/Jakarta] PHP Notice:  Undefined variable: no in /home/decreat2/kamibox.decreativeart.com/mitra/input_data.php on line 153
+[16-Aug-2022 18:09:01 Asia/Jakarta] PHP Notice:  Undefined variable: no in /home/decreat2/kamibox.decreativeart.com/mitra/input_data.php on line 153
+[16-Aug-2022 18:16:29 Asia/Jakarta] PHP Notice:  Undefined variable: no in /home/decreat2/kamibox.decreativeart.com/mitra/input_data.php on line 153
+[16-Aug-2022 18:16:35 Asia/Jakarta] PHP Notice:  Undefined variable: no in /home/decreat2/kamibox.decreativeart.com/mitra/input_data.php on line 153
+[16-Aug-2022 18:16:41 Asia/Jakarta] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, bool given in /home/decreat2/kamibox.decreativeart.com/mitra/input_data.php on line 147
+[16-Aug-2022 18:44:57 Asia/Jakarta] PHP Notice:  Undefined index: no_invoice in /home/decreat2/kamibox.decreativeart.com/mitra/input_data_2.php on line 11
+[16-Aug-2022 18:45:57 Asia/Jakarta] PHP Notice:  Undefined index: no_invoice in /home/decreat2/kamibox.decreativeart.com/mitra/input_data_2.php on line 11
+[16-Aug-2022 18:46:01 Asia/Jakarta] PHP Notice:  Undefined variable: no in /home/decreat2/kamibox.decreativeart.com/mitra/input_data.php on line 153
+[16-Aug-2022 18:46:09 Asia/Jakarta] PHP Notice:  Undefined variable: no in /home/decreat2/kamibox.decreativeart.com/mitra/input_data.php on line 153
+[16-Aug-2022 19:16:43 Asia/Jakarta] PHP Notice:  Undefined variable: no in /home/decreat2/kamibox.decreativeart.com/mitra/input_data.php on line 153

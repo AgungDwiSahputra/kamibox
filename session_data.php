@@ -27,7 +27,7 @@ switch ($hari) {
         $hari_ini = "Tidak di ketahui";
         break;
 }
-$datetime = $hari_ini . ", " . date("m-d-Y"); //Untuk Transaksi
+// $datetime = $hari_ini . ", " . date("m-d-Y"); //Untuk Transaksi
 $datetime_accurate = date("d/m/Y"); //Untuk Transaksi
 
 /* ===================================================== */

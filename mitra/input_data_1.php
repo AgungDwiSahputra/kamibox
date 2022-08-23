@@ -167,7 +167,7 @@ if (isset($_POST['daur_ulang'])) {
                                 while ($data = mysqli_fetch_array($query_barang)) {
                                     $id_barang = $data['id_barang'];
                                 ?>
-                                    <li onclick="pilih('<?= $id_barang ?>')">
+                                    <li onclick="pilih('<?= $id_barang ?>')" style="cursor: pointer;">
                                         <span class="panah"><img src="../assets/Icon/arrow-point-to-right.png" alt="panah"></span>
                                         <span class="daur_ulang"><?= $data['nama_barang'] ?></span>
                                     </li>

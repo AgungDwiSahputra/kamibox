@@ -115,7 +115,7 @@ if (isset($_POST['input_data'])) {
         CURLOPT_TIMEOUT => 30,
         CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
         CURLOPT_CUSTOMREQUEST => "POST",
-        CURLOPT_POSTFIELDS => "transDate=$datetime_accurate&vendorNo=$Data_TrxPembelian->pemasok_id&number=$invoice_session&currencyCode=IDR&$fieldsApi",
+        CURLOPT_POSTFIELDS => "transDate=$datetime_accurate&vendorNo=$Data_TrxPembelian->pemasok_id&number=$invoice_session&billStreet=$Data_TrxPembelian->nama_jalan&billCity=$Data_TrxPembelian->kota&billProvince=$Data_TrxPembelian->provinsi&billCountry=$Data_TrxPembelian->negara&billZipCode=$Data_TrxPembelian->kd_pos&notes=$Data_TrxPembelian->nomor_rekening&currencyCode=IDR&$fieldsApi",
         CURLOPT_HTTPHEADER => array(
             "content-type: application/x-www-form-urlencoded",
             "Authorization: Bearer $access_token",
@@ -139,7 +139,7 @@ if (isset($_POST['input_data'])) {
         unset($_SESSION['no_invoice']);
         unset($_SESSION['input_barang']);
         unset($_SESSION['id_pemasok']);
-        header("Location: index.php");
+        header("Location: invoice.php?no_invoice=$invoice_session");
     } else {
         header("Location: input_data_2.php");
     }

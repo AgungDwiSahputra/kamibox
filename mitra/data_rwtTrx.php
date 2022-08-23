@@ -10,7 +10,7 @@
     }
     $search_keyword = '%' . $s_keyword . '%';
     /* Riwayat Transaksi */
-    $query_transaksi = mysqli_query($conn, "SELECT * FROM transaksi_pembelian WHERE mitra_id = '$id_user' AND no_invoice LIKE '$search_keyword' OR pemasok_id LIKE '$search_keyword' OR tgl_transaksi LIKE '$search_keyword'");
+    $query_transaksi = mysqli_query($conn, "SELECT * FROM transaksi_pembelian INNER JOIN users ON users.id_user = transaksi_pembelian.pemasok_id WHERE mitra_id = '$id_user' AND no_invoice LIKE '$search_keyword' OR nama_lengkap LIKE '$search_keyword' OR pemasok_id LIKE '$search_keyword' OR tgl_transaksi LIKE '$search_keyword'");
     $total_transaksi = @mysqli_num_rows($query_transaksi);
     // Tabel Transaksi Pembelian
     if ($total_transaksi != 0) {

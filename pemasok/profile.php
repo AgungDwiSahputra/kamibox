@@ -28,10 +28,14 @@ if (isset($_POST['update'])) {
     $namaProfile = $_POST['nama'];
     $emailProfile = $_POST['email'];
     $no_telpProfile = $_POST['no_telp'];
-    $alamatProfile = $_POST['alamat'];
+    $nama_jalanProfile = $_POST['nama_jalan'];
+    $kotaProfile = $_POST['kota'];
+    $provinsiProfile = $_POST['provinsi'];
+    $negaraProfile = $_POST['negara'];
+    $kd_posProfile = $_POST['kd_pos'];
     $norekProfile = $_POST['norek'];
 
-    $query = mysqli_query($conn, "UPDATE users SET nama_lengkap = '$namaProfile', email = '$emailProfile', notelp = '$no_telpProfile', alamat = '$alamatProfile', nomor_rekening = '$norekProfile' WHERE id_user = '$idProfile'");
+    $query = mysqli_query($conn, "UPDATE users SET nama_lengkap = '$namaProfile', email = '$emailProfile', notelp = '$no_telpProfile', nama_jalan = '$nama_jalanProfile', kota = '$kotaProfile', provinsi = '$provinsiProfile', negara = '$negaraProfile', kd_pos = '$kd_posProfile',  nomor_rekening = '$norekProfile' WHERE id_user = '$idProfile'");
 
     if ($query) {
         setcookie('sukses', 'Berhasil Update Data Diri', time() + 3, '/');
@@ -237,14 +241,14 @@ if ($status_login === true and !empty($email) and $level == '3') {
                 </h5>
             </div>
             <div class="row body">
-                <?php
-                if (isset($_COOKIE['gagal'])) {
-                    echo '<span class="subheading-error-otp">' . $_COOKIE['gagal'] . '</span>';
-                } elseif (isset($_COOKIE['sukses'])) {
-                    echo '<span class="subheading-sukses-otp">' . $_COOKIE['sukses'] . '</span>';
-                }
-                ?>
                 <form action="" method="post">
+                    <?php
+                    if (isset($_COOKIE['gagal'])) {
+                        echo '<span class="subheading-error-otp">' . $_COOKIE['gagal'] . '</span>';
+                    } elseif (isset($_COOKIE['sukses'])) {
+                        echo '<span class="subheading-sukses-otp">' . $_COOKIE['sukses'] . '</span>';
+                    }
+                    ?>
                     <ul>
                         <?php
                         include '../connect_db.php';
@@ -284,8 +288,24 @@ if ($status_login === true and !empty($email) and $level == '3') {
                                 <input class="harga" id="no_telp" name="no_telp" value="<?= $row['notelp'] ?>">
                             </li>
                             <li>
-                                <span class="jenis" for="alamat">Alamat </span>
-                                <textarea class="harga" id="alamat" name="alamat" value="<?= $row['alamat'] ?>"><?= $row['alamat'] ?></textarea>
+                                <span class="jenis" for="nama_jalan">Nama Jalan </span>
+                                <input class="harga" type="text" id="nama_jalan" name="nama_jalan" value="<?= $row['nama_jalan'] ?>" placeholder="Masukan Nama Jalan">
+                            </li>
+                            <li>
+                                <span class="jenis" for="kota">Kota </span>
+                                <input class="harga" type="text" id="kota" name="kota" value="<?= $row['kota'] ?>" placeholder="Masukan Kota">
+                            </li>
+                            <li>
+                                <span class="jenis" for="provinsi">Provinsi </span>
+                                <input class="harga" type="text" id="provinsi" name="provinsi" value="<?= $row['provinsi'] ?>" placeholder="Masukan Provinsi">
+                            </li>
+                            <li>
+                                <span class="jenis" for="negara">Negara </span>
+                                <input class="harga" type="text" id="negara" name="negara" value="<?= $row['negara'] ?>" placeholder="Masukan Negara">
+                            </li>
+                            <li>
+                                <span class="jenis" for="kd_pos">Kode Pos </span>
+                                <input class="harga" type="number" id="kd_pos" name="kd_pos" value="<?= $row['kd_pos'] ?>" placeholder="Masukan Kode Pos">
                             </li>
                             <li>
                                 <span class="jenis" for="norek">Nomor Rekening </span>

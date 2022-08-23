@@ -1,6 +1,8 @@
 <?php
 require '../connect_db.php';
 require '../session_data.php';
+include 'hari_indo.php';
+
 /* =========================================================== */
 //pastikan hanya pemasok yg boleh akses halaman ini
 if ($level !== '2') {
@@ -21,13 +23,34 @@ $data_user_id = mysqli_fetch_array($query_user);
 /* Setelah klik button next */
 if (isset($_POST['next'])) {
     $id_userPemasok = $_POST['id_user'];
-    $alamat =  $_POST['alamat'];
+    $nama_jalan =  $_POST['nama_jalan'];
+    $kota =  $_POST['kota'];
+    $provinsi =  $_POST['provinsi'];
+    $negara =  $_POST['negara'];
+    $kd_pos =  $_POST['kd_pos'];
+    $alamat = $nama_jalan . ", " . $kota . ", " . $provinsi . ", " . $negara . ", " . $kd_pos; //Mengambil dari pecahan inputan alamat di jadikan 1 ke variabel alamat
+    $link_maps = $_POST['link_maps'];
 
-    /* INVOICE */
-    $invoice = date('mHis');
+        /* INVOICE */
+        /* 
+    tahun|bulan|tanggal|Jam|menit|detik|4 Angka Random
+    22|08|31|23|59|59|9999
+    */;
+    $invoice = date('ymdHis') . rand(1000, 9999);
 
-    $query = mysqli_query($conn, "INSERT INTO transaksi_pembelian VALUES ('$invoice','$id_user','$id_userPemasok',null,null,null,null, '$alamat',null,'$datetime',null,'0')");
-    $query = mysqli_query($conn, "UPDATE users SET alamat = '$alamat' WHERE id_user = '$id_userPemasok'");
+    $dateprd = date('Y-m-d');
+    $date = $dateprd;
+    $date1 = date_create($date);
+    $date2 = date_format($date1, 'l');
+    $tgl   = date_format($date1, 'd');
+    $year  = date_format($date1, 'Y');
+    $date3 = hariIndo($date2);
+    $month = date_format($date1, 'm');
+    $month2 = bulanIndo($month);
+    $datetime = $date3 . ", " . $tgl . " " . $month2 . " " . $year;
+
+    $query = mysqli_query($conn, "INSERT INTO transaksi_pembelian VALUES ('$invoice','$id_user','$id_userPemasok',null,null,null,null, '$alamat','$link_maps','$datetime',null,'0')");
+    $query = mysqli_query($conn, "UPDATE users SET alamat = '$alamat',nama_jalan = '$nama_jalan',kota = '$kota',provinsi = '$provinsi',negara = '$negara',kd_pos = '$kd_pos', link_maps = '$link_maps' WHERE id_user = '$id_userPemasok'");
     if ($query) {
         $_SESSION['no_invoice'] = $invoice;
         $_SESSION['id_pemasok'] = $id_userPemasok;
@@ -176,13 +199,48 @@ if (isset($_POST['next'])) {
                                                                                     echo '';
                                                                                 } ?>" readonly>
                     <span class="pesan">Note : Email harus sesuai dengan yang terdaftar di akun pemasok</span>
-                    <input type="text" name="alamat" placeholder="Alamat Lengkap / Copy Link Maps" value="<?php if ($id != "") {
-                                                                                                                if ($data_user_id['alamat']) {
-                                                                                                                    echo $data_user_id['alamat'];
-                                                                                                                }
-                                                                                                            } else {
-                                                                                                                echo '';
-                                                                                                            } ?>">
+                    <input type="text" name="nama_jalan" placeholder="Masukan Nama Jalan" value="<?php if ($id != "") {
+                                                                                                        if ($data_user_id['nama_jalan']) {
+                                                                                                            echo $data_user_id['nama_jalan'];
+                                                                                                        }
+                                                                                                    } else {
+                                                                                                        echo '';
+                                                                                                    } ?>" required>
+                    <input type="text" name="kota" placeholder="Masukan Kota" value="<?php if ($id != "") {
+                                                                                            if ($data_user_id['kota']) {
+                                                                                                echo $data_user_id['kota'];
+                                                                                            }
+                                                                                        } else {
+                                                                                            echo '';
+                                                                                        } ?>" required>
+                    <input type="text" name="provinsi" placeholder="Masukan Provinsi" value="<?php if ($id != "") {
+                                                                                                    if ($data_user_id['provinsi']) {
+                                                                                                        echo $data_user_id['provinsi'];
+                                                                                                    }
+                                                                                                } else {
+                                                                                                    echo '';
+                                                                                                } ?>" required>
+                    <input type="text" name="negara" placeholder="Masukan Negara" value="<?php if ($id != "") {
+                                                                                                if ($data_user_id['negara']) {
+                                                                                                    echo $data_user_id['negara'];
+                                                                                                }
+                                                                                            } else {
+                                                                                                echo '';
+                                                                                            } ?>" required>
+                    <input type="number" name="kd_pos" placeholder="Masukan Kode Pos" value="<?php if ($id != "") {
+                                                                                                    if ($data_user_id['kd_pos']) {
+                                                                                                        echo $data_user_id['kd_pos'];
+                                                                                                    }
+                                                                                                } else {
+                                                                                                    echo '';
+                                                                                                } ?>" required>
+                    <input type="text" name="link_maps" placeholder="Copy Link Google Maps" value="<?php if ($id != "") {
+                                                                                                        if ($data_user_id['link_maps']) {
+                                                                                                            echo $data_user_id['link_maps'];
+                                                                                                        }
+                                                                                                    } else {
+                                                                                                        echo '';
+                                                                                                    } ?>" required>
 
 
                     <!-- Button -->

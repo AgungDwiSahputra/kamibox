@@ -715,9 +715,9 @@ a{
     background-color: #008638;
 }
 
-/* ============================================= */
+/* +++++++++++++++++++++++++++++++++++++++++++ */
 /* PROFILE */
-/* ============================================= */
+/* +++++++++++++++++++++++++++++++++++++++++++ */
 .container .row.body ul{
     list-style-type: none;
     padding: 20px;
@@ -736,4 +736,12 @@ a{
 .container .row.body li .harga{
     float: right;
     margin-right: 30px;
+}
+.container .row.body li input{
+    background-color: rgba(0,0,0,0);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    border:0;
+    padding:4px;
+    font-size:16px;
+    width: 300px;
 }

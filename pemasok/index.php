@@ -59,9 +59,11 @@ if ($status_login === true and !empty($email) and $level == '3') {
             /* ================================= */
             /* CONTENT LEFT RIGHT GRAFIK*/
             /* ================================= */
-            html,body{
+            html,
+            body {
                 box-sizing: border-box;
             }
+
             .dashboard-wrapper {
                 margin: auto;
                 display: flex;
@@ -92,439 +94,447 @@ if ($status_login === true and !empty($email) and $level == '3') {
 
             }
 
-        .card-artikel {
-            display: flex;
-            gap: 20px;
-            z-index: -1;
-        }
-
-        .swiper {
-            width: 350px;
-            height: 320px;
-            z-index: -1;
-        }
-
-        .swiper-slide {
-
-            /* Center slide text vertically */
-            display: -webkit-box;
-            display: -ms-flexbox;
-            display: -webkit-flex;
-            display: flex;
-            -webkit-box-pack: center;
-            -ms-flex-pack: center;
-            -webkit-justify-content: center;
-            justify-content: center;
-            -webkit-box-align: center;
-            -ms-flex-align: center;
-            -webkit-align-items: center;
-            align-items: center;
-            z-index: -1;
-        }
-
-
-        .segmen-artikel {
-            width: 200px;
-            height: 250px;
-            box-shadow: 0px 1px 8px 0px rgba(0, 0, 0, 0.3);
-            transition: 0.3s;
-            border-radius: 30px;
-            background-color: #FFF;
-            z-index: -1;
-        }
-
-        .img-artikel {
-            position: absolute;
-            width: 200px;
-            height: 250px;
-            border-radius: 30px;
-        }
-
-        .segmen-content-blogs {
-            position: absolute;
-            width: 200px;
-            height: 180px;
-            border-radius: 30px;
-            background-color: rgba(255, 255, 255, 0.8);
-            margin-top: 70px;
-        }
-
-        .segmen-isi-blog {
-            padding: 0 30px;
-            font-size: 0.7rem;
-        }
-
-        .segmen-content-blogs .segmen-button-blog {
-            margin-top: 5px;
-            text-align: center;
-        }
-
-        .segmen-isi-blog .judul-blog {
-            font-weight: 700;
-            margin-bottom: 10px;
-        }
-
-        .segmen-button-blog .btn-blog {
-            font-weight: 500;
-            color: #069B45;
-            background-color: #FFF;
-            margin: 40px 0;
-            padding: 8px 20px;
-            border-radius: 50px;
-            font-family: var(--main-font);
-            border: 1px solid green;
-            font-size: 0.7rem;
-        }
-
-        .card-transaksi,
-        .card-harga {
-            width: 400px;
-            box-shadow: 0px 1px 20px 0px rgba(0, 0, 0, 0.3);
-            transition: 0.3s;
-            border-radius: 30px;
-            background-color: #FFF;
-
-        }
-
-        .heading-grafik,
-        .heading-transaksi,
-        .heading-harga {
-            padding-top: 5px;
-            padding-left: 30px;
-
-        }
-
-        .content-grafik {
-            margin: 0 30px;
-        }
-
-        .content-transaksi,
-        .content-harga {
-            display: flex;
-            gap: 80px;
-            margin: 0 30px;
-            font-size: 0.8rem;
-        }
-
-        .tanggal {
-            font-weight: 99;
-        }
-
-        .total,
-        .harga,
-        .produk {
-            font-weight: 700;
-        }
-
-        .harga,
-        .produk {
-            font-weight: 600;
-        }
-
-        .produk,
-        .harga {
-            line-height: 65%;
-        }
-
-        .tanggal,
-        .total {
-            line-height: 85%;
-        }
-
-        .btn-transaksi,
-        .btn-harga {
-            text-align: center;
-            padding: 15px;
-        }
-
-        .btn-selengkapnya {
-            font-weight: 500;
-            color: #069B45;
-            background-color: #FFF;
-            margin: 40px 0;
-            padding: 8px 20px;
-            border-radius: 50px;
-            font-family: var(--main-font);
-            border: 1px solid var(--main-color);
-            outline: none;
-            font-size: 0.85rem;
-        }
-
-        ::-webkit-scrollbar {
-            width: 10px;
-        }
-         
-        ::-webkit-scrollbar-track {
-            -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);     
-            background: #666;    
-        }
-         
-        ::-webkit-scrollbar-thumb {
-            background: #232323;
-        }
-
-        @media screen and (max-width: 1200px) {
-            .row3, .row4 {
-                margin-right: 50px;
-            }
-        }
-
-        @media screen and (max-width: 1050px) {
-            .dashboard-wrapper .cards{
-                margin: auto;
-                display: inline-flex;
-                flex-direction: column;
-                flex-wrap: wrap;
-                justify-content: center;
-                align-content: center;
-            }
-
-            .row2,.row3,.row4{
-                margin-right: 0;
-            }
-        }
-
-        @media screen and (max-width: 750px) {
-            .navigation{
-                width: 70px;
-            }
-
-            .dashboard-wrapper .cards{
-                margin: auto;
-                display: inline-flex;
-                flex-direction: column;
-                flex-wrap: nowrap;
-                justify-content: center;
-                align-content: center;
-            }
-
-            .row2,.row3,.row4{
-                margin: 20px auto;
-            } 
-
-            .container{
-                margin-left: 30px;
-            }
-
-            .card-grafik {
-                width: 100%;
-                box-shadow: 0px 1px 8px 0px rgba(0, 0, 0, 0.3);
-                border-radius: 30px;
-                overflow: scroll;
-            }  
-            
-        }
-
-         @media screen and (max-width: 550px) {
-            .navigation{
-                width: 60px;
-                top: 10px;
-                left: 1px;
-                bottom: 10px;
-            }
-
-            .navigation-top ul{
-                padding: 0 8px;
-            }
-
-            .navigation-top ul li a .user{
-                width: 25px;
-            }
-            .navigation-top ul li a .bell{
-                width: 18px;
-            }
-
-
-            .dashboard-wrapper .cards{
-                margin: auto;
-                display: inline-flex;
-                flex-direction: column;
-                flex-wrap: nowrap;
-                justify-content: left;
-                align-content: left;
-                margin: 10px;
-            }
-
-            .row2,.row3,.row4{
-                margin: 0px auto;
-            } 
-
-            .card-grafik {
-                width: 75%;
-                border-radius: 2px;
-                margin-left: 40px;
-                margin-top: 30px;
-            }  
-
-            .card-transaksi,
-            .card-harga {
-                width: 100%;
-                border-radius: 2px;
-                overflow: scroll;
-                margin-left: 40px;
-            }
-
-            .swiper {
-                margin-left: 40px;   
-            }
-
-            .content-transaksi,
-            .content-harga {
-                display: flex;
-                margin: 0 8px;
-                font-size: 0.8rem;
-
-            }
-            .container{
-                text-align:left;
-            }
-        }
-
-        @media screen and (max-width: 450px) {
-            .navigation ul li .icon img.putih,
-            .navigation ul li .icon img.hijau{
-                width: 25px;
-            }
-
-            .navigation-top ul li.nav-left{
-                margin-left: 80px;
-                margin-top: 15px;
-                font-size: 12px;
-            }
-
-            .container{
-                font-size: 12px;
-            }
-
-            .card-grafik {
-                width: 60%;
-                margin-left: 40px;
-                margin-top: 20px;
-            } 
-            
-            .swiper {
-                margin-left: 40px;
-                width: 300px;
-                overflow: scroll;   
-            }
-
-            .card-transaksi,
-            .card-harga {
-                width: 300px;
-                border-radius: 2px;
-                margin-left: 40px;
-                overflow: hidden;
-            }               
-
-            .content-transaksi,
-            .content-harga {
+            .card-artikel {
                 display: flex;
                 gap: 20px;
-                margin: 20px;
-                font-size: 0.75rem;
-                width: 300px;
-                overflow: scroll;                
+                z-index: -1;
             }
 
-            .toggle img.close{
-                width: 25px;
-                margin-left: 5px;
+            .swiper {
+                width: 350px;
+                height: 320px;
+                z-index: -1;
+            }
+
+            .swiper-slide {
+
+                /* Center slide text vertically */
+                display: -webkit-box;
+                display: -ms-flexbox;
+                display: -webkit-flex;
+                display: flex;
+                -webkit-box-pack: center;
+                -ms-flex-pack: center;
+                -webkit-justify-content: center;
+                justify-content: center;
+                -webkit-box-align: center;
+                -ms-flex-align: center;
+                -webkit-align-items: center;
+                align-items: center;
+                z-index: -1;
             }
 
 
-        }
+            .segmen-artikel {
+                width: 200px;
+                height: 250px;
+                box-shadow: 0px 1px 8px 0px rgba(0, 0, 0, 0.3);
+                transition: 0.3s;
+                border-radius: 30px;
+                background-color: #FFF;
+                z-index: -1;
+            }
 
-       
-    </style>
+            .img-artikel {
+                position: absolute;
+                width: 200px;
+                height: 250px;
+                border-radius: 30px;
+            }
 
-	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script> 
+            .segmen-content-blogs {
+                position: absolute;
+                width: 200px;
+                height: 180px;
+                border-radius: 30px;
+                background-color: rgba(255, 255, 255, 0.8);
+                margin-top: 70px;
+            }
 
-    <script type="text/javascript">
+            .segmen-isi-blog {
+                padding: 0 30px;
+                font-size: 0.7rem;
+            }
 
-    	google.charts.load('current', {'packages':['corechart']}); 
-        google.charts.setOnLoadCallback(drawChart3); 
+            .segmen-content-blogs .segmen-button-blog {
+                margin-top: 5px;
+                text-align: center;
+            }
 
-           function drawChart3()  { 
+            .segmen-isi-blog .judul-blog {
+                font-weight: 700;
+                margin-bottom: 10px;
+            }
 
-                var data = google.visualization.arrayToDataTable([ 
+            .segmen-button-blog .btn-blog {
+                font-weight: 500;
+                color: #069B45;
+                background-color: #FFF;
+                margin: 40px 0;
+                padding: 8px 20px;
+                border-radius: 50px;
+                font-family: var(--main-font);
+                border: 1px solid green;
+                font-size: 0.7rem;
+            }
 
-                          ['Nama Barang', 'Total'],
+            .card-transaksi,
+            .card-harga {
+                width: 400px;
+                box-shadow: 0px 1px 20px 0px rgba(0, 0, 0, 0.3);
+                transition: 0.3s;
+                border-radius: 30px;
+                background-color: #FFF;
 
-                          <?php 
+            }
 
-                          		$query1 = mysqli_query($conn, "select * from barang");
-           
-        						//$datep = $_GET['ke'];// + " 23:59";    
-                          		
-                          		//jika date tidak diinputkan
-                            if(isset($_GET['ke'])){
-                                $datep = $_GET['ke'];                                
-                            }else{
-                                $datep = date('Y-m-d');         
+            .heading-grafik,
+            .heading-transaksi,
+            .heading-harga {
+                padding-top: 5px;
+                padding-left: 30px;
+
+            }
+
+            .content-grafik {
+                margin: 0 30px;
+            }
+
+            .content-transaksi,
+            .content-harga {
+                display: flex;
+                gap: 80px;
+                margin: 0 30px;
+                font-size: 0.8rem;
+            }
+
+            .tanggal {
+                font-weight: 99;
+            }
+
+            .total,
+            .harga,
+            .produk {
+                font-weight: 700;
+            }
+
+            .harga,
+            .produk {
+                font-weight: 600;
+            }
+
+            .produk,
+            .harga {
+                line-height: 65%;
+            }
+
+            .tanggal,
+            .total {
+                line-height: 85%;
+            }
+
+            .btn-transaksi,
+            .btn-harga {
+                text-align: center;
+                padding: 15px;
+            }
+
+            .btn-selengkapnya {
+                font-weight: 500;
+                color: #069B45;
+                background-color: #FFF;
+                margin: 40px 0;
+                padding: 8px 20px;
+                border-radius: 50px;
+                font-family: var(--main-font);
+                border: 1px solid var(--main-color);
+                outline: none;
+                font-size: 0.85rem;
+            }
+
+            ::-webkit-scrollbar {
+                width: 10px;
+            }
+
+            ::-webkit-scrollbar-track {
+                -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+                background: #666;
+            }
+
+            ::-webkit-scrollbar-thumb {
+                background: #232323;
+            }
+
+            @media screen and (max-width: 1200px) {
+
+                .row3,
+                .row4 {
+                    margin-right: 50px;
+                }
+            }
+
+            @media screen and (max-width: 1050px) {
+                .dashboard-wrapper .cards {
+                    margin: auto;
+                    display: inline-flex;
+                    flex-direction: column;
+                    flex-wrap: wrap;
+                    justify-content: center;
+                    align-content: center;
+                }
+
+                .row2,
+                .row3,
+                .row4 {
+                    margin-right: 0;
+                }
+            }
+
+            @media screen and (max-width: 750px) {
+                .navigation {
+                    width: 70px;
+                }
+
+                .dashboard-wrapper .cards {
+                    margin: auto;
+                    display: inline-flex;
+                    flex-direction: column;
+                    flex-wrap: nowrap;
+                    justify-content: center;
+                    align-content: center;
+                }
+
+                .row2,
+                .row3,
+                .row4 {
+                    margin: 20px auto;
+                }
+
+                .container {
+                    margin-left: 30px;
+                }
+
+                .card-grafik {
+                    width: 100%;
+                    box-shadow: 0px 1px 8px 0px rgba(0, 0, 0, 0.3);
+                    border-radius: 30px;
+                    overflow: scroll;
+                }
+
+            }
+
+            @media screen and (max-width: 550px) {
+                .navigation {
+                    width: 60px;
+                    top: 10px;
+                    left: 1px;
+                    bottom: 10px;
+                }
+
+                .navigation-top ul {
+                    padding: 0 8px;
+                }
+
+                .navigation-top ul li a .user {
+                    width: 25px;
+                }
+
+                .navigation-top ul li a .bell {
+                    width: 18px;
+                }
+
+
+                .dashboard-wrapper .cards {
+                    margin: auto;
+                    display: inline-flex;
+                    flex-direction: column;
+                    flex-wrap: nowrap;
+                    justify-content: left;
+                    align-content: left;
+                    margin: 10px;
+                }
+
+                .row2,
+                .row3,
+                .row4 {
+                    margin: 0px auto;
+                }
+
+                .card-grafik {
+                    width: 75%;
+                    border-radius: 2px;
+                    margin-left: 40px;
+                    margin-top: 30px;
+                }
+
+                .card-transaksi,
+                .card-harga {
+                    width: 100%;
+                    border-radius: 2px;
+                    overflow: scroll;
+                    margin-left: 40px;
+                }
+
+                .swiper {
+                    margin-left: 40px;
+                }
+
+                .content-transaksi,
+                .content-harga {
+                    display: flex;
+                    margin: 0 8px;
+                    font-size: 0.8rem;
+
+                }
+
+                .container {
+                    text-align: left;
+                }
+            }
+
+            @media screen and (max-width: 450px) {
+
+                .navigation ul li .icon img.putih,
+                .navigation ul li .icon img.hijau {
+                    width: 25px;
+                }
+
+                .navigation-top ul li.nav-left {
+                    margin-left: 80px;
+                    margin-top: 15px;
+                    font-size: 12px;
+                }
+
+                .container {
+                    font-size: 12px;
+                }
+
+                .card-grafik {
+                    width: 60%;
+                    margin-left: 40px;
+                    margin-top: 20px;
+                }
+
+                .swiper {
+                    margin-left: 40px;
+                    width: 300px;
+                    overflow: scroll;
+                }
+
+                .card-transaksi,
+                .card-harga {
+                    width: 300px;
+                    border-radius: 2px;
+                    margin-left: 40px;
+                    overflow: hidden;
+                }
+
+                .content-transaksi,
+                .content-harga {
+                    display: flex;
+                    gap: 20px;
+                    margin: 20px;
+                    font-size: 0.75rem;
+                    width: 300px;
+                    overflow: scroll;
+                }
+
+                .toggle img.close {
+                    width: 25px;
+                    margin-left: 5px;
+                }
+
+
+            }
+        </style>
+
+        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+        <script type="text/javascript">
+            google.charts.load('current', {
+                'packages': ['corechart']
+            });
+            google.charts.setOnLoadCallback(drawChart3);
+
+            function drawChart3() {
+
+                var data = google.visualization.arrayToDataTable([
+
+                    ['Nama Barang', 'Total'],
+
+                    <?php
+
+                    $query1 = mysqli_query($conn, "select * from barang");
+
+                    //$datep = $_GET['ke'];// + " 23:59";    
+
+                    //jika date tidak diinputkan
+                    if (isset($_GET['ke'])) {
+                        $datep = $_GET['ke'];
+                    } else {
+                        $datep = date('Y-m-d');
+                    }
+
+                    while ($row1 = mysqli_fetch_array($query1)) {
+
+                        $barang_id = $row1['id_barang'];
+
+                        //jumlah seluruh barang
+                        $query2 = mysqli_query($conn, "select count(transaksi_barang.id_barang) as jml from transaksi_pembelian inner join transaksi_barang ON transaksi_pembelian.pemasok_id = transaksi_barang.pemasok_id where transaksi_pembelian.pemasok_id=$id_user and transaksi_barang.id_barang = $barang_id and transaksi_pembelian.date_grafik between '$datep 00:00' and '$datep 23:59' ");
+
+                        while ($row2 = mysqli_fetch_array($query2)) {
+
+                            //jumlah berat barang 
+                            $query3 = mysqli_query($conn, "select * from transaksi_barang where id_barang = $barang_id and pemasok_id=$id_user");
+                            $no = 0;
+                            $tampung_berat = "";
+                            $data_berat[] = array();
+
+                            while ($row3 = mysqli_fetch_array($query3)) {
+
+
+                                $data_berat[$no] = $row3['berat'];
+                                $tampung_berat .= $data_berat[$no] . ",";
+
+                                $no++;
                             }
 
-                          		while ($row1 = mysqli_fetch_array($query1)) {
-                                     
-	        						$barang_id = $row1['id_barang'];
-	    	
-	    							//jumlah seluruh barang
-							    	$query2 = mysqli_query($conn, "select count(transaksi_barang.id_barang) as jml from transaksi_pembelian inner join transaksi_barang ON transaksi_pembelian.pemasok_id = transaksi_barang.pemasok_id where transaksi_pembelian.pemasok_id=$id_user and transaksi_barang.id_barang = $barang_id and transaksi_pembelian.date_grafik between '$datep 00:00' and '$datep 23:59' ");
+                            $tampung_berat = rtrim($tampung_berat, ',');
 
-								    	while ($row2 = mysqli_fetch_array($query2)) {
-											
-											//jumlah berat barang 
-											$query3= mysqli_query($conn, "select * from transaksi_barang where id_barang = $barang_id and pemasok_id=$id_user");
-											$no=0;
-											$tampung_berat="";
-											$data_berat[]=array();
+                            $tampung_berat = explode(',', $tampung_berat);
 
-											while($row3=mysqli_fetch_array($query3)){
-											
 
-													$data_berat[$no]=$row3['berat'];
-													$tampung_berat .= $data_berat[$no].",";  
-					
-													$no++;
-											}
+                            $total_berat = 0;
+                            foreach ($tampung_berat as $beratn) {
+                                $total_berat = $total_berat + $beratn;
+                            }
 
-											$tampung_berat=rtrim($tampung_berat, ',');
+                            echo "['" . $row1["nama_barang"] . "', " . $total_berat . "],";
+                        }
+                    }
+                    ?>
 
-											$tampung_berat = explode(',',$tampung_berat);
-				
-
-											$total_berat = 0;
-											foreach($tampung_berat as $beratn){
-												$total_berat = $total_berat + $beratn; 
-											}
-
-											echo "['".$row1["nama_barang"]."', ".$total_berat."],";
-								        }
-
-								    }
-                          ?> 
-
-                     ]);
+                ]);
 
                 var options = {
-	                title: ' ',
-	                pieHole: 0.8,
-	                pieSliceTextStyle: {
-	                    color: 'black',
-	                },
-	            }; 
+                    title: ' ',
+                    pieHole: 0.8,
+                    pieSliceTextStyle: {
+                        color: 'black',
+                    },
+                };
 
-                var chart = new google.visualization.PieChart(document.getElementById('piechart3')); 
-                chart.draw(data, options); 
+                var chart = new google.visualization.PieChart(document.getElementById('piechart3'));
+                chart.draw(data, options);
 
-           }
+            }
+        </script>
 
-    </script>
+    </head>
 
-</head>
+    <body>
 
-<body>
-
-<!-- NAVIGATION TOP -->
+        <!-- NAVIGATION TOP -->
         <?php require '../nav-top.php'; ?>
         <!-- ============================= -->
 
@@ -582,62 +592,60 @@ if ($status_login === true and !empty($email) and $level == '3') {
                             <h4>Grafik Terkini</h4>
                         </div>
                         <div class="content-grafik">
-<?php
+                            <?php
 
-//grafik periode
+                            //grafik periode
 
-//jika date tidak diinputkan
-                            if(isset($_GET['ke'])){
-                                $dateprd = $_GET['ke'];                                
-                            }else{
-                                $dateprd = date('Y-m-d');         
+                            //jika date tidak diinputkan
+                            if (isset($_GET['ke'])) {
+                                $dateprd = $_GET['ke'];
+                            } else {
+                                $dateprd = date('Y-m-d');
                             }
 
-	    echo "<form action='index.php' method='get'>
+                            echo "<form action='index.php' method='get'>
           		<label>Pilih Tanggal</label>
-				<input type='date' name='ke' value='".$dateprd."'>
+				<input type='date' name='ke' value='" . $dateprd . "'>
 				<input type='submit' value='cari'>
             </form>";
 
-        $date = $dateprd;
-        $date1 = date_create($date);
-        $date2 = date_format($date1, 'l');
-        $tgl   = date_format($date1, 'd');
-        $year  = date_format($date1, 'Y');
-        $date3 = hariIndo($date2);
-        $month = date_format($date1, 'm');
-        $month2 = bulanIndo($month);
+                            $date = $dateprd;
+                            $date1 = date_create($date);
+                            $date2 = date_format($date1, 'l');
+                            $tgl   = date_format($date1, 'd');
+                            $year  = date_format($date1, 'Y');
+                            $date3 = hariIndo($date2);
+                            $month = date_format($date1, 'm');
+                            $month2 = bulanIndo($month);
 
-        echo "<div style='margin-top:10px;color:green;font-size:0.9rem;'>".$date3 . ", " . $tgl . " " . $month2 . " " . $year."</div>";
-
-            																
-        //echo "<div style='margin-top:10px;color:green;font-size:0.9rem;'>Tanggal ".date("d-m-Y",strtotime($dateprd))."</div>";
-
-   	$cekqueryjmlbrgprd = mysqli_query($conn, "select count(no_invoice) as jml from transaksi_pembelian where pemasok_id=$id_user and date_grafik between '$dateprd 00:00' and '$dateprd 23:59' ");
-
-	$rowjmlprd = mysqli_fetch_assoc($cekqueryjmlbrgprd);
-
-	if($rowjmlprd['jml']==0){
-
-		echo "<div style='color:orangered; width: 400px; height: 200px;margin-top:20px;' > Belum ada transaksi barang </div>";
-
-	}else{
-
-		echo "<div id='piechart3' style='width: 400px; height: 200px;'></div>";
-
-	}
+                            echo "<div style='margin-top:10px;color:green;font-size:0.9rem;'>" . $date3 . ", " . $tgl . " " . $month2 . " " . $year . "</div>";
 
 
-?>
+                            //echo "<div style='margin-top:10px;color:green;font-size:0.9rem;'>Tanggal ".date("d-m-Y",strtotime($dateprd))."</div>";
 
-</div>
+                            $cekqueryjmlbrgprd = mysqli_query($conn, "select count(no_invoice) as jml from transaksi_pembelian where pemasok_id=$id_user and date_grafik between '$dateprd 00:00' and '$dateprd 23:59' ");
+
+                            $rowjmlprd = mysqli_fetch_assoc($cekqueryjmlbrgprd);
+
+                            if ($rowjmlprd['jml'] == 0) {
+
+                                echo "<div style='color:orangered; width: 400px; height: 200px;margin-top:20px;' > Belum ada transaksi barang </div>";
+                            } else {
+
+                                echo "<div id='piechart3' style='width: 400px; height: 200px;'></div>";
+                            }
+
+
+                            ?>
+
+                        </div>
                         <?php
 
                         $query3 = mysqli_query($conn, "SELECT sum(`total_harga`)as total_harga FROM `transaksi_pembelian` WHERE pemasok_id=$id_user and date_grafik BETWEEN '$dateprd 00:00' and '$dateprd 23:59'");
-                        
+
                         $data3 = mysqli_fetch_assoc($query3);
                         $total = $data3['total_harga'];
-                        $total2 = number_format($total, 2, ",", ".");                        
+                        $total2 = number_format($total, 2, ",", ".");
 
                         ?>
                         <p style="margin-left:30px;padding-bottom: 10px;font-size: 0.85rem;">Total Penjualan : <span style="font-weight: 700;margin-left: 30px;">Rp <?php echo $total2; ?></span> </p>

@@ -84,7 +84,7 @@ if ($_SESSION['login'] == true && $_SESSION['level_user'] == '1' || $_SESSION['l
 
 					<form action="cek_otp.php" method="post">
 						<div class="input-otp">
-							<?php
+							<?php //Kondisi untuk login
 							if (isset($_GET['akses'])) {
 							?>
 								<input type="text" name="akses" value="<?= $_GET['akses'] ?>" hidden>
@@ -110,7 +110,17 @@ if ($_SESSION['login'] == true && $_SESSION['level_user'] == '1' || $_SESSION['l
 					</form>
 					<div style="font-size:0.9rem;margin-top: 20px;padding: 10px;">
 						<span>Kamu belum memperoleh OTP Kamibox?</span>
-						<p>Jika masih terkendala <a href="aktifkan_akun_via_otp.php" style="color:blue;font-weight: 600;">klik disini</a> untuk memperoleh bantuan dari kami.</p>
+						<?php
+						if (isset($_GET['akses'])) {
+						?>
+							<p>Jika masih terkendala, coba login kembali <a href="login.php" style="color:blue;font-weight: 600;">klik disini</a></p>
+						<?php
+						} else {
+						?>
+							<p>Jika masih terkendala <a href="aktifkan_akun_via_otp.php" style="color:blue;font-weight: 600;">klik disini</a> untuk memperoleh bantuan dari kami.</p>
+						<?php
+						}
+						?>
 					</div>
 
 				</div>

@@ -2,6 +2,7 @@
 <?php
 require '../connect_db.php';
 require '../session_data.php';
+include 'hari_indo.php';
 /* =========================================================== */
 //pastikan hanya pemasok yg boleh akses halaman ini
 if ($level !== '2') {
@@ -115,16 +116,69 @@ $Jml_JadwalKurir = mysqli_num_rows($query_JadwalKurir);
                         $id_users = $TotalUserTrx['id_user'];
                     }
                     /* Riwayat Transaksi */
-                    $query_transaksi = mysqli_query($conn, "SELECT * FROM transaksi_pembelian WHERE mitra_id = '$id_user' LIMIT 6");
-                    $total_transaksi = mysqli_num_rows($query_transaksi);
+                    // $query_transaksi = mysqli_query($conn, "SELECT * FROM transaksi_pembelian WHERE mitra_id = '$id_user' LIMIT 6");
+                    // $total_transaksi = mysqli_num_rows($query_transaksi);
+
+                    //jika date tidak diinputkan
+                    if (isset($_GET['ke'])) {
+                        $dateprd = $_GET['ke'];
+                    } else {
+                        $dateprd = date('Y-m-d');
+                    }
+                    echo "<form action='index.php' method='get'>
+          		<label>Pilih Tanggal</label>
+				<input type='date' name='ke' value='" . $dateprd . "'>
+				<input type='submit' value='cari'>
+                </form>
+                <a href='index.php?ke=all'><button>Semua</button></a>
+                ";
+
+                    $date = $dateprd;
+                    $date1 = date_create($date);
+                    $date2 = date_format($date1, 'l');
+                    $tgl   = date_format($date1, 'd');
+                    $year  = date_format($date1, 'Y');
+                    $date3 = hariIndo($date2);
+                    $month = date_format($date1, 'm');
+                    $month2 = bulanIndo($month);
+                    if (isset($_GET['ke'])) {
+                        if ($_GET['ke'] != 'all') {
+                            echo "<div style='margin-top:10px;color:green;font-size:0.9rem;'>" . $date3 . ", " . $tgl . " " . $month2 . " " . $year . "</div>";
+
+                            $query_transaksi = mysqli_query($conn, "SELECT * FROM transaksi_pembelian WHERE mitra_id = '$id_user' AND date_grafik between '$dateprd 00:00' and '$dateprd 23:59'");
+                            $total_transaksi = mysqli_num_rows($query_transaksi);
+                        } else {
+                            echo "<div style='margin-top:10px;color:green;font-size:0.9rem;'>Semua Transaksi</div>";
+
+                            $query_transaksi = mysqli_query($conn, "SELECT * FROM transaksi_pembelian WHERE mitra_id = '$id_user'");
+                            $total_transaksi = mysqli_num_rows($query_transaksi);
+                        }
+                    } else {
+                        echo "<div style='margin-top:10px;color:green;font-size:0.9rem;'>" . $date3 . ", " . $tgl . " " . $month2 . " " . $year . "</div>";
+
+                        $query_transaksi = mysqli_query($conn, "SELECT * FROM transaksi_pembelian WHERE mitra_id = '$id_user' AND date_grafik between '$dateprd 00:00' and '$dateprd 23:59'");
+                        $total_transaksi = mysqli_num_rows($query_transaksi);
+                    }
+
                     if ($total_transaksi != 0) {
-                        echo '<div id="basic-doughnut" style="height:250px;"></div>';
+                        echo '<div id="basic-doughnut" style="height:20vw;"></div>';
                     } else {
                         echo '<center><span style="color:red;font-size:14px;">Data Transaksi masih kosong</span></center>';
                     }
                     ?>
                 </div>
-                <span class="footer">Total Penjualan : <b>Rp. <?= number_format($total_penjualan, 0, ',', '.') ?></b> dari <b> <?= $Total_PTransaksi ?></b> Akun Pemasok </span>
+                <?php
+                //Kondisi jika total transaksi tidak = 0
+                if ($total_transaksi != 0) {
+                ?>
+                    <span class="footer">Total Penjualan : <b>Rp. <?= number_format($total_penjualan, 0, ',', '.') ?></b> dari <b> <?= $Total_PTransaksi ?></b> Akun Pemasok </span>
+                <?php
+                } else {
+                ?>
+                    <span class="footer">Total Penjualan : <b>Rp. 0</b> dari <b> 0</b> Akun Pemasok </span>
+                <?php
+                }
+                ?>
             </div>
             <div class="col transaksi">
                 <span class="judul">Riwayat Transaksi</span>
@@ -306,8 +360,8 @@ $Jml_JadwalKurir = mysqli_num_rows($query_JadwalKurir);
             series: [{
                 name: 'Grafik Terkini',
                 type: 'pie',
-                radius: ['40%', '60%'],
-                center: ['41%', '50%'],
+                radius: ['20%', '30%'],
+                center: ['40%', '40%'],
                 itemStyle: {
                     normal: {
                         label: {

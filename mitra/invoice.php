@@ -95,7 +95,22 @@ if ($level !== '2') {
     <!-- ====================================== -->
     <!-- ISI CONTENT -->
     <!-- ====================================== -->
-    <div class="container invoice">
+    <div style="margin-top: 30px;">
+        <a href="riwayat_transaksi.php" style="width: 70px;margin-left: 150px; cursor:pointer;">
+            <button style="padding: 2px 15px; line-height: 30px;vertical-align: middle;border-radius: 30px; font-size: 14px; background-color: red; cursor:pointer; ">
+                <img src="../assets/Icon/arrow-point-to-right.png" style="width: 13px;transform: rotate(180deg);line-height: 20px;vertical-align: middle;">
+                Back
+            </button>
+        </a>
+        <?php
+        if (isset($_GET['no_invoice'])) {
+        ?>
+            <button type="submit" class="btn default ml-1" style="display: inline;" id="download">Download</button>
+        <?php
+        }
+        ?>
+    </div>
+    <div class="container invoice mt-2">
         <?php
         if (isset($_GET['no_invoice'])) {
             $no_invoice = $_GET['no_invoice'];
@@ -118,6 +133,10 @@ if ($level !== '2') {
                         <tr>
                             <td>Alamat</td>
                             <td>: <?= $data_TrxPembelian->alamat ?></td>
+                        </tr>
+                        <tr>
+                            <td>Link Maps</td>
+                            <td>: <a href="<?= $data_TrxPembelian->link_maps ?>" target="_BLANK" style="color: #08AC4D;"><?= $data_TrxPembelian->link_maps ?></a></td>
                         </tr>
                     </table>
                 </div>
@@ -201,13 +220,6 @@ if ($level !== '2') {
         <!-- <button type="submit" class="btn default mt-4 ml-5s" id="preview-btn">Preview</button> -->
         <!-- <div id="preview"></div> -->
     </div>
-    <?php
-    if (isset($_GET['no_invoice'])) {
-    ?>
-        <button type="submit" class="btn default mt-4 ml-5s" id="download">Download</button>
-    <?php
-    }
-    ?>
 
 
     <!-- ====================================== -->

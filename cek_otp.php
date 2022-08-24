@@ -9,7 +9,7 @@ $otp1 = $_POST['otp1'];
 $otp2 = $_POST['otp2'];
 $otp3 = $_POST['otp3'];
 $otp4 = $_POST['otp4'];
-$dataotp_get = $_POST['akses']; // UNTUK KEMBALI MEMASUKAN AKSES PADA OTP
+$dataotp_get = @$_POST['akses']; // UNTUK KEMBALI MEMASUKAN AKSES PADA OTP
 
 if ($otp1 === "") {
 	$validasi['otp1'] = 'kolom ke-1 harus diisi.';
@@ -65,6 +65,7 @@ if (empty($validasi)) {
 		// mengambil data user
 		$get_data_user = mysqli_query($conn, "SELECT * FROM users WHERE id_user='$id_user'");
 		$data_user = mysqli_fetch_array($get_data_user);
+		var_dump($data_user);
 		if (isset($_POST['akses'])) { // JIKA EKSEKUSI LOGIN
 			// JIKA POST AKSES UNTUK LOGIN ADA MAKA AKAN EKSEKUSI LOGIN
 			$_SESSION['login'] = true;
@@ -138,7 +139,9 @@ if (empty($validasi)) {
 			$err = curl_error($curl);
 
 			curl_close($curl);
-			// 		var_dump($response);
+			$decode = json_decode($response, true);
+			var_dump($decode['r']['id']);
+			$id_accurate = $decode['r']['id'];
 
 			if ($err) {
 				echo "cURL Error #:" . $err;
@@ -148,8 +151,8 @@ if (empty($validasi)) {
 				//update idotp itu tidak aktif
 				$update_status_otp = mysqli_query($conn, "update kode_otp set active ='N' where id_kodeotp='$id_otp'");
 
-				//update iduser status aktif
-				$update_status_user = mysqli_query($conn, "update users set active ='1' where id_user='$id_user'");
+				//update iduser status aktif dan update id_accurate
+				$update_status_user = mysqli_query($conn, "update users set active ='1', id_accurate = '$id_accurate' where id_user='$id_user'");
 
 				// echo "OTP Valid. Silahkan Masuk Login!";
 				setcookie('sukses', 'Pendaftaran Berhasil. Silahkan Login', time() + 3, '/');

@@ -22,12 +22,15 @@ $data_user_id = mysqli_fetch_array($query_user);
 
 /* Setelah klik button next */
 if (isset($_POST['next'])) {
+    $id_accuratePemasok = $_POST['id_accurate'];
     $id_userPemasok = $_POST['id_user'];
     $nama_jalan =  $_POST['nama_jalan'];
     $kota =  $_POST['kota'];
     $provinsi =  $_POST['provinsi'];
     $negara =  $_POST['negara'];
     $kd_pos =  $_POST['kd_pos'];
+    $nomor_rekening = $_POST['nomor_rekening'];
+    $catatan =  "Nomor Rekening :" . $_POST['nomor_rekening'];
     $alamat = $nama_jalan . ", " . $kota . ", " . $provinsi . ", " . $negara . ", " . $kd_pos; //Mengambil dari pecahan inputan alamat di jadikan 1 ke variabel alamat
     $link_maps = $_POST['link_maps'];
 
@@ -48,6 +51,57 @@ if (isset($_POST['next'])) {
     $month = date_format($date1, 'm');
     $month2 = bulanIndo($month);
     $datetime = $date3 . ", " . $tgl . " " . $month2 . " " . $year;
+
+    // ========================== api acurate ==========================
+    $get_data_user = mysqli_query($conn, "SELECT * FROM users WHERE id_user='$id_user'");
+    $nama_lengkap = "";
+    $tanggal = date("d/m/Y");
+    $email = "";
+    $alamat = "";
+    $no_hp = "";
+    while ($row = mysqli_fetch_object($get_data_user)) {
+        $nama_lengkap .= $row->nama_lengkap;
+        $email .= $row->email;
+        $alamat .= $row->alamat;
+        $no_hp .= $row->notelp;
+    }
+
+    // mengambil sesion db accurate
+    $get_sesi_db_accuate = mysqli_query($conn, "SELECT * FROM tb_database_response_api");
+    $access_token = "";
+    $session_db = "";
+    $host = "";
+    while ($row = mysqli_fetch_object($get_sesi_db_accuate)) {
+        $access_token .= $row->access_token;
+        $session_db .= $row->session_db;
+        $host .= $row->host;
+    }
+
+    $curl = curl_init();
+    var_dump($id_userPemasok . "<br>");
+
+    curl_setopt_array($curl, array(
+        CURLOPT_URL => "$host/accurate/api/vendor/save.do",
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_ENCODING => "",
+        CURLOPT_MAXREDIRS => 10,
+        CURLOPT_TIMEOUT => 30,
+        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+        CURLOPT_CUSTOMREQUEST => "POST",
+        CURLOPT_POSTFIELDS => "id=$id_accuratePemasok&name=$nama_lengkap&transDate=$tanggal&email=$email&shipStreet=$alamat&billStreet=$nama_jalan&billCity=$kota&billProvince=$provinsi&billCountry=$negara&billZipCode=$kd_pos&notes=$catatan&mobilePhone=$no_hp&vendorNo=$id_userPemasok",
+        CURLOPT_HTTPHEADER => array(
+            "content-type: application/x-www-form-urlencoded",
+            "Authorization: Bearer $access_token",
+            "X-Session-ID: $session_db"
+        ),
+    ));
+
+    $response = curl_exec($curl);
+    $err = curl_error($curl);
+
+    curl_close($curl);
+    // var_dump($response);
+    // ==================================================================
 
     $query = mysqli_query($conn, "INSERT INTO transaksi_pembelian VALUES ('$invoice','$id_user','$id_userPemasok',null,null,null,null, '$alamat','$link_maps','$datetime',null,'0')");
     $query = mysqli_query($conn, "UPDATE users SET alamat = '$alamat',nama_jalan = '$nama_jalan',kota = '$kota',provinsi = '$provinsi',negara = '$negara',kd_pos = '$kd_pos', link_maps = '$link_maps' WHERE id_user = '$id_userPemasok'");
@@ -177,6 +231,11 @@ if (isset($_POST['next'])) {
                         }
                         ?>
                     </select>
+                    <input type="text" name="id_accurate" placeholder="ID Accuarte" value="<?php if ($id != "") {
+                                                                                                echo $data_user_id['id_accurate'];
+                                                                                            } else {
+                                                                                                echo '';
+                                                                                            } ?>" readonly>
                     <input type="text" name="id_user" placeholder="ID Pemasok" value="<?php if ($id != "") {
                                                                                             echo $data_user_id['id_user'];
                                                                                         } else {
@@ -241,6 +300,13 @@ if (isset($_POST['next'])) {
                                                                                                     } else {
                                                                                                         echo '';
                                                                                                     } ?>" required>
+                    <input type="text" name="nomor_rekening" value="<?php if ($id != "") {
+                                                                        if ($data_user_id['nomor_rekening']) {
+                                                                            echo $data_user_id['nomor_rekening'];
+                                                                        }
+                                                                    } else {
+                                                                        echo '';
+                                                                    } ?>" required>
 
 
                     <!-- Button -->

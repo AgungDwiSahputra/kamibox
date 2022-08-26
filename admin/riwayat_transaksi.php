@@ -1,3 +1,14 @@
+<?php error_reporting(0); ?>
+<?php
+require '../connect_db.php';
+require '../session_data.php';
+/* =========================================================== */
+//pastikan hanya pemasok yg boleh akses halaman ini
+if ($level !== '1') {
+    header("location:../index.php");
+}
+/* =========================================================== */
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -16,15 +27,17 @@
 
     <!-- Custom CSS -->
     <link href="css/style.css" rel="stylesheet">
+
+    <!-- JS Jquery -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js"></script>
 </head>
 
 <body>
+
     <!-- NAVIGATION TOP -->
-    <?php
-    require '../connect_db.php';
-    require '../session_data.php';
-    require '../nav-top.php'; ?>
+    <?php require '../nav-top.php'; ?>
     <!-- ============================= -->
+
     <div class="navigation">
         <ul>
             <div class="toggle">
@@ -45,7 +58,7 @@
             <li class="list active">
                 <b></b>
                 <b></b>
-                <a href="">
+                <a href="riwayat_transaksi.php">
                     <span class="icon">
                         <img src="../assets/Icon/input_p.png" alt="Riwayat Transaksi" class="putih">
                         <img src="../assets/Icon/input_h.png" alt="Riwayat Transaksi" class="hijau">
@@ -70,7 +83,7 @@
     <!-- ====================================== -->
     <!-- ISI CONTENT -->
     <!-- ====================================== -->
-    <div class="container">
+    <div class="container riwayat_transaksi">
         <div class="row header">
             <h2>Riwayat Transaksi</h2>
             <h5>
@@ -80,143 +93,17 @@
             </h5>
         </div>
         <div class="row pencarian">
-            <form id="form_pencarian">
+            <form action="" method="post">
                 <img src="../assets/Icon/search.png" alt="Cari">
                 <input type="text" name="cari" id="cari_transaksi" class="input_cari" placeholder="Cari mutasi...">
             </form>
         </div>
-        <div class="row">
-            <ul class="list_riwayat">
-            </ul>
-            <!-- <div>
-                <div style="background:#ddd; width:90%; padding:50px 0px; text-align:center">
-                    <h1>Data tidak ditemukan</h1>
-                </div>
-            </div> -->
-        </div>
+        <div class="row data_rwtTrx"></div>
     </div>
 
     <!-- ====================================== -->
     <!-- JAVA SCRIPT -->
     <!-- ====================================== -->
-    <!-- plugin -->
-    <script src="../assets/js/jquery-3.6.0.min.js"></script>
-    <!-- end plugin -->
-    <!-- ajax -->
-    <script>
-        show_data()
-
-        function show_data() {
-            $.ajax({
-                url: 'ajax/riwayat_transaksi/data_transaksi.php',
-                type: 'get',
-                dataType: 'json',
-                success: function(response) {
-
-                    for (let index = 0; index < response.length; index++) {
-                        let status = 'Menunggu';
-                        let color_status = 'danger';
-                        if (response[index].status_transaksi == '0') {
-                            status = 'Menunggu';
-                            color_status = 'danger';
-                        } else if (response[index].status_transaksi == '1') {
-                            status = 'Penjemputan';
-                            color_status = 'warning';
-                        } else if (response[index].status_transaksi == '2') {
-                            status = 'Berhasil';
-                            color_status = 'success';
-                        }
-                        $('.list_riwayat').append('<li>' +
-                            '<div class="row2">' +
-                            '<div class="col">' +
-                            '<span class="tanggal">' + response[index].tgl_transaksi + '</span>' +
-                            '<span class="nomor">#' + response[index].no_invoice + '</span>' +
-                            '</div>' +
-                            '</div>' +
-                            '<div class="row2">' +
-                            '<div class="col">' +
-                            '<span class="keterangan"><b>' + response[index].nama_lengkap + ' | (' + response[index].total_berat + 'kg)</b></span>' +
-                            '<span class="harga"><b>Rp. ' + response[index].total_harga + '</b></span>' +
-                            '</div>' +
-                            '</div>' +
-                            '<div class="row2">' +
-                            '<div class="col">' +
-                            '<span class="alamat"><b>Alamat : </b>' + response[index].alamat + '</span>' +
-                            '<span class="status ' + color_status + '">' + status + '</span>' +
-                            '</div>' +
-                            '</div>' +
-                            '</li>' +
-                            '<hr width="80%" size="2" align="left" style="margin-left: 80px;color:rgba(0, 0, 0, 0.2);">')
-                    }
-                    // console.log(response)
-                },
-                error: function(xhr, status, error) {
-                    $('.list_riwayat').html('<div style="background:#ddd; width:90%; padding:50px 0px; text-align:center">' +
-                        '<h1>Data tidak ditemukan</h1>' +
-                        '</div>');
-                }
-            })
-        }
-
-        $('#form_pencarian').on('submit', function(e) {
-            e.preventDefault()
-        })
-
-        $('#cari_transaksi').on('keyup', function() {
-            $.ajax({
-                url: "ajax/riwayat_transaksi/cari_transaksi.php",
-                type: "post",
-                data: {
-                    value: $(this).val()
-                },
-                dataType: "json",
-                success: function(response) {
-                    $('.list_riwayat').html('')
-                    for (let index = 0; index < response.length; index++) {
-                        let status = 'Menunggu';
-                        let color_status = 'danger';
-                        if (response[index].status_transaksi == '0') {
-                            status = 'Menunggu';
-                            color_status = 'danger';
-                        } else if (response[index].status_transaksi == '1') {
-                            status = 'Penjemputan';
-                            color_status = 'warning';
-                        } else if (response[index].status_transaksi == '2') {
-                            status = 'Berhasil';
-                            color_status = 'success';
-                        }
-                        $('.list_riwayat').append('<li>' +
-                            '<div class="row2">' +
-                            '<div class="col">' +
-                            '<span class="tanggal">' + response[index].tgl_transaksi + '</span>' +
-                            '<span class="nomor">#' + response[index].no_invoice + '</span>' +
-                            '</div>' +
-                            '</div>' +
-                            '<div class="row2">' +
-                            '<div class="col">' +
-                            '<span class="keterangan"><b>' + response[index].nama_lengkap + ' | (' + response[index].total_berat + 'kg)</b></span>' +
-                            '<span class="harga"><b>Rp. ' + response[index].total_harga + '</b></span>' +
-                            '</div>' +
-                            '</div>' +
-                            '<div class="row2">' +
-                            '<div class="col">' +
-                            '<span class="alamat"><b>Alamat : </b>' + response[index].alamat + '</span>' +
-                            '<span class="status ' + color_status + '">' + status + '</span>' +
-                            '</div>' +
-                            '</div>' +
-                            '</li>' +
-                            '<hr width="80%" size="2" align="left" style="margin-left: 80px;color:rgba(0, 0, 0, 0.2);">')
-                    }
-                },
-                error: function(xhr, status, error) {
-                    $('.list_riwayat').html('<div style="background:#ddd; width:90%; padding:50px 0px; text-align:center">' +
-                        '<h1>Data tidak ditemukan</h1>' +
-                        '</div>');
-                }
-            })
-        })
-    </script>
-    <!-- end ajax -->
     <!-- Navigation Interactive -->
     <script>
         let list = document.querySelectorAll('.navigation .list');
@@ -294,6 +181,29 @@
         }
     </script>
 
+    <script>
+        /* Pencarian Riwayat Transaksi */
+        $(document).ready(function() {
+            load_data();
+
+            function load_data(keyword) {
+                $.ajax({
+                    method: "POST",
+                    url: "data_rwtTrx.php",
+                    data: {
+                        keyword: keyword
+                    },
+                    success: function(hasil) {
+                        $('.data_rwtTrx').html(hasil);
+                    }
+                });
+            }
+            $('#cari_transaksi').keyup(function() {
+                var keyword = $("#cari_transaksi").val();
+                load_data(keyword);
+            });
+        });
+    </script>
 </body>
 
 </html>

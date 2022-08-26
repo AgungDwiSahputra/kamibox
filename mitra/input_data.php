@@ -33,12 +33,13 @@ if (isset($_POST['next'])) {
     $catatan =  "Nomor Rekening :" . $_POST['nomor_rekening'];
     $alamat = $nama_jalan . ", " . $kota . ", " . $provinsi . ", " . $negara . ", " . $kd_pos; //Mengambil dari pecahan inputan alamat di jadikan 1 ke variabel alamat
     $link_maps = $_POST['link_maps'];
+    // var_dump("alamat = '$alamat',nama_jalan = '$nama_jalan',kota = '$kota',provinsi = '$provinsi',negara = '$negara',kd_pos = '$kd_pos', nomor_rekening = '$nomor_rekening', link_maps = '$link_maps'");
 
-        /* INVOICE */
-        /* 
+    /* INVOICE */
+    /* 
     tahun|bulan|tanggal|Jam|menit|detik|4 Angka Random
     22|08|31|23|59|59|9999
-    */;
+    */
     $invoice = date('ymdHis') . rand(1000, 9999);
 
     $dateprd = date('Y-m-d');
@@ -57,12 +58,10 @@ if (isset($_POST['next'])) {
     $nama_lengkap = "";
     $tanggal = date("d/m/Y");
     $email = "";
-    $alamat = "";
     $no_hp = "";
     while ($row = mysqli_fetch_object($get_data_user)) {
         $nama_lengkap .= $row->nama_lengkap;
         $email .= $row->email;
-        $alamat .= $row->alamat;
         $no_hp .= $row->notelp;
     }
 
@@ -78,7 +77,7 @@ if (isset($_POST['next'])) {
     }
 
     $curl = curl_init();
-    var_dump($id_userPemasok . "<br>");
+    // var_dump($id_userPemasok . "<br>");
 
     curl_setopt_array($curl, array(
         CURLOPT_URL => "$host/accurate/api/vendor/save.do",
@@ -103,9 +102,10 @@ if (isset($_POST['next'])) {
     // var_dump($response);
     // ==================================================================
 
-    $query = mysqli_query($conn, "INSERT INTO transaksi_pembelian VALUES ('$invoice','$id_user','$id_userPemasok',null,null,null,null, '$alamat','$link_maps','$datetime',null,'0')");
-    $query = mysqli_query($conn, "UPDATE users SET alamat = '$alamat',nama_jalan = '$nama_jalan',kota = '$kota',provinsi = '$provinsi',negara = '$negara',kd_pos = '$kd_pos', link_maps = '$link_maps' WHERE id_user = '$id_userPemasok'");
-    if ($query) {
+    $queryTransaksi = mysqli_query($conn, "INSERT INTO transaksi_pembelian VALUES ('$invoice','$id_user','$id_userPemasok',null,null,null,null, '$alamat','$link_maps','$datetime',null,'2')");
+
+    $queryUsers = mysqli_query($conn, "UPDATE users SET alamat = '$alamat',nama_jalan = '$nama_jalan',kota = '$kota',provinsi = '$provinsi',negara = '$negara',kd_pos = '$kd_pos', nomor_rekening = '$nomor_rekening', link_maps = '$link_maps' WHERE id_user = '$id_userPemasok'");
+    if ($queryTransaksi == true && $queryUsers == true) {
         $_SESSION['no_invoice'] = $invoice;
         $_SESSION['id_pemasok'] = $id_userPemasok;
 
@@ -258,6 +258,13 @@ if (isset($_POST['next'])) {
                                                                                     echo '';
                                                                                 } ?>" readonly>
                     <span class="pesan">Note : Email harus sesuai dengan yang terdaftar di akun pemasok</span>
+                    <input type="text" name="nomor_rekening" placeholder="Masukan Nomor Rekening" value="<?php if ($id != "") {
+                                                                                                                if ($data_user_id['nomor_rekening']) {
+                                                                                                                    echo $data_user_id['nomor_rekening'];
+                                                                                                                }
+                                                                                                            } else {
+                                                                                                                echo '';
+                                                                                                            } ?>" required>
                     <input type="text" name="nama_jalan" placeholder="Masukan Nama Jalan" value="<?php if ($id != "") {
                                                                                                         if ($data_user_id['nama_jalan']) {
                                                                                                             echo $data_user_id['nama_jalan'];
@@ -300,13 +307,6 @@ if (isset($_POST['next'])) {
                                                                                                     } else {
                                                                                                         echo '';
                                                                                                     } ?>" required>
-                    <input type="text" name="nomor_rekening" value="<?php if ($id != "") {
-                                                                        if ($data_user_id['nomor_rekening']) {
-                                                                            echo $data_user_id['nomor_rekening'];
-                                                                        }
-                                                                    } else {
-                                                                        echo '';
-                                                                    } ?>" required>
 
 
                     <!-- Button -->

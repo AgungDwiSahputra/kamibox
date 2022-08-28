@@ -2,6 +2,7 @@
 <?php
 require '../connect_db.php';
 require '../session_data.php';
+require 'hari_indo.php';
 /* =========================================================== */
 //pastikan hanya pemasok yg boleh akses halaman ini
 if ($level !== '2') {
@@ -10,7 +11,7 @@ if ($level !== '2') {
 /* =========================================================== */
 
 // Query jadwal_kurir
-$query_JadwalKurir = mysqli_query($conn, "SELECT * FROM jadwal_kurir INNER JOIN transaksi_pembelian ON transaksi_pembelian.no_invoice = jadwal_kurir.no_invoice");
+$query_JadwalKurir = mysqli_query($conn, "SELECT * FROM jadwal_kurir WHERE id_mitra = '$id_user'");
 $Jml_JadwalKurir = mysqli_num_rows($query_JadwalKurir);
 // var_dump(mysqli_error($conn));
 
@@ -111,24 +112,42 @@ $Jml_JadwalKurir = mysqli_num_rows($query_JadwalKurir);
                 <?php
                 if ($Jml_JadwalKurir != 0) {
                     while ($data = mysqli_fetch_array($query_JadwalKurir)) {
+                        $id_mitra = $data['id_mitra']; // Untuk Data Jadwal kurir Mitra
+                        $id_pemasok = $data['id_pemasok']; // Untuk Data Jadwal kurir Pemasok
                         $no_invoice = $data['no_invoice'];
-                        $query_Users = mysqli_query($conn, "SELECT users.nama_lengkap, users.notelp, transaksi_pembelian.no_invoice, transaksi_pembelian.pemasok_id FROM users INNER JOIN transaksi_pembelian ON users.id_user = transaksi_pembelian.pemasok_id WHERE no_invoice = '$no_invoice'");
-                        $Data_Users = mysqli_fetch_array($query_Users);
+
+                        // Query Data Jadwal kurir Mitra
+                        $JadwalKurir_Mitra = mysqli_query($conn, "SELECT * FROM jadwal_kurir INNER JOIN users ON jadwal_kurir.id_mitra = users.id_user WHERE jadwal_kurir.id_mitra = $id_mitra");
+                        $Data_JadwalKurir_Mitra = mysqli_fetch_array($JadwalKurir_Mitra);
+                        // Query Data Jadwal kurir Pemasok
+                        $JadwalKurir_Pemasok = mysqli_query($conn, "SELECT * FROM jadwal_kurir INNER JOIN users ON jadwal_kurir.id_pemasok = users.id_user WHERE jadwal_kurir.id_pemasok = $id_pemasok");
+                        $Data_JadwalKurir_Pemasok = mysqli_fetch_array($JadwalKurir_Pemasok);
 
                         // MANIPULASI NO HP jadi +62
                         // cek apakah no hp mengandung karakter + dan 0-9
-                        if (!preg_match('/[^+0-9]/', trim($data['no_telp'])) || !preg_match('/[^+0-9]/', trim($Data_Users['notelp']))) {
+                        if (!preg_match('/[^+0-9]/', trim($Data_JadwalKurir_Mitra['notelp'])) || !preg_match('/[^+0-9]/', trim($Data_JadwalKurir_Pemasok['notelp']))) {
                             // cek apakah no hp karakter 1-3 adalah +62
-                            if (substr(trim($data['no_telp']), 0, 3) == '+62' || substr(trim($Data_Users['notelp']), 0, 3) == '+62') {
-                                $no_telp_kurir = trim($data['no_telp']);
-                                $no_telp_pemasok = trim($Data_Users['notelp']);
+                            if (substr(trim($Data_JadwalKurir_Mitra['notelp']), 0, 3) == '+62' || substr(trim($Data_JadwalKurir_Pemasok['notelp']), 0, 3) == '+62') {
+                                $no_telp_kurir = trim($Data_JadwalKurir_Mitra['notelp']);
+                                $no_telp_pemasok = trim($Data_JadwalKurir_Pemasok['notelp']);
                             }
                             // cek apakah no hp karakter 1 adalah 0
-                            elseif (substr(trim($data['no_telp']), 0, 1) == '0') {
-                                $no_telp_kurir = '62' . substr(trim($data['no_telp']), 1);
-                                $no_telp_pemasok = '62' . substr(trim($Data_Users['notelp']), 1);
+                            elseif (substr(trim($Data_JadwalKurir_Mitra['notelp']), 0, 1) == '0') {
+                                $no_telp_kurir = '62' . substr(trim($Data_JadwalKurir_Mitra['notelp']), 1);
+                                $no_telp_pemasok = '62' . substr(trim($Data_JadwalKurir_Pemasok['notelp']), 1);
                             }
                         }
+
+                        // Konversi Tanggal menjadi format Indonesia
+                        $date = $data['tgl_penjemputan'];
+                        $date1 = date_create($date);
+                        $date2 = date_format($date1, 'l');
+                        $tgl   = date_format($date1, 'd');
+                        $year  = date_format($date1, 'Y');
+                        $date3 = hariIndo($date2);
+                        $month = date_format($date1, 'm');
+                        $month2 = bulanIndo($month);
+                        $datetime = $date3 . ", " . $tgl . " " . $month2 . " " . $year;
                 ?>
                         <div class="row2">
                             <div class="row3">
@@ -136,11 +155,15 @@ $Jml_JadwalKurir = mysqli_num_rows($query_JadwalKurir);
                                     <img src="../assets/Icon/trash.png" alt="Trash">
                                 </div>
                                 <div class="col pt-1 pb-4 pr-3">
-                                    <span class="tanggal"><?= $data['tgl_penjemputan'] ?></span>
-                                    <span class="keterangan"><b><?= "No. Invoice : " . $no_invoice ?></b></span>
-                                    <span class="keterangan"><b>Nama Kurir : </b><?= $data['nama_kurir'] ?> | (<?= $data['no_telp'] ?>)</span>
+                                    <span class="tanggal"><?= $datetime ?></span>
+                                    <span class="keterangan"><b>
+                                            <?php
+                                            echo 'No. Invoice : ' . ($no_invoice != null ? $no_invoice : '-');
+                                            ?></b>
+                                    </span>
+                                    <span class="keterangan"><b>Mitra : </b><?= $Data_JadwalKurir_Mitra['nama_lengkap'] ?> | (<?= $Data_JadwalKurir_Mitra['notelp'] ?>)</span>
                                     <span class="alamat"><b>Tujuan : </b><br>
-                                        <?= "Nama : " . $Data_Users['nama_lengkap'] . "<br>No.Telepon : " . $Data_Users['notelp'] . "<br>Alamat : " . $data['alamat'] ?>
+                                        <?= "Nama : " . $Data_JadwalKurir_Pemasok['nama_lengkap'] . "<br>No.Telepon : " . $Data_JadwalKurir_Pemasok['notelp'] . "<br>Alamat : " . $Data_JadwalKurir_Pemasok['alamat'] ?>
                                     </span>
                                 </div>
                             </div>
@@ -155,13 +178,13 @@ $Jml_JadwalKurir = mysqli_num_rows($query_JadwalKurir);
                                     <a href="#"><button class="btn">Input Data</button></a>
                                 </div> -->
                                 <div class="col ml-4s">
-                                    <a href="https://www.google.com/maps/search/<?= $data['alamat'] ?>" target="_BLANK"><button class="btn">Lokasi</button></a>
+                                    <a href="<?= $Data_JadwalKurir_Pemasok['link_maps'] ?>" target="_BLANK"><button class="btn">Lokasi</button></a>
                                 </div>
                                 <div class="col">
-                                    <a href="https://api.whatsapp.com/send?phone=<?= $no_telp_kurir ?>&text=Jadwal%20Penjemputan%20:%20<?= $data['tgl_penjemputan'] ?>%0ANama%20Kurir%20:%20<?= $data['nama_kurir'] ?>%20|%20(<?= $data['no_telp'] ?>)%0A*Tujuan%20:*%0ANama:%20<?= $Data_Users['nama_lengkap'] ?>%0ANo.Telepon%20:%20<?= $Data_Users['notelp'] ?>%0AAlamat%20:%20<?= $data['alamat'] ?>" target="_BLANK"><button class="btn">Kontak Kurir</button></a>
+                                    <a href="https://api.whatsapp.com/send?phone=<?= $no_telp_pemasok ?>&text=Kami%20akan%20melakukan%20penjemputan%20pada%20tanggal%20*<?= $datatime ?>*%0ANama%20Kurir%20:%20<?= $Data_JadwalKurir_Mitra['nama_lengkap'] ?>%20|%20(<?= $Data_JadwalKurir_Mitra['notelp'] ?>)%0A*Tujuan%20:*%0ANama:%20<?= $Data_JadwalKurir_Pemasok['nama_lengkap'] ?>%0ANo.Telepon%20:%20<?= $Data_JadwalKurir_Pemasok['notelp'] ?>%0AAlamat%20:%20<?= $Data_JadwalKurir_Pemasok['alamat'] ?>%0ALink Gmaps%20:%20<?= $Data_JadwalKurir_Pemasok['link_maps'] ?>" target="_BLANK"><button class="btn">Kontak Pemasok</button></a>
                                 </div>
                                 <div class="col mr-4s">
-                                    <a href="https://api.whatsapp.com/send?phone=<?= $no_telp_pemasok ?>&text=Kami%20akan%20melakukan%20penjemputan%20pada%20tanggal%20*<?= $data['tgl_penjemputan'] ?>*%0ANama%20Kurir%20:%20<?= $data['nama_kurir'] ?>%20|%20(<?= $data['no_telp'] ?>)%0A*Tujuan%20:*%0ANama:%20<?= $Data_Users['nama_lengkap'] ?>%0ANo.Telepon%20:%20<?= $Data_Users['notelp'] ?>%0AAlamat%20:%20<?= $data['alamat'] ?>" target="_BLANK"><button class="btn">Kontak Pemasok</button></a>
+                                    <a href="input_data.php?action=Penjemputan"><button class="btn">Input Data</button></a>
                                 </div>
                             </div>
                             <!-- <div class="isi-dropdown" id="isi-dropdown">

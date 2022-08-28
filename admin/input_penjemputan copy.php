@@ -2,34 +2,24 @@
 require '../connect_db.php';
 require '../session_data.php';
 
-// Query Untuk Select Pemilihan Mitra
-$query_Mitra = mysqli_query($conn, "SELECT * FROM users WHERE userlevelid = '2'");
-$id_user = @$_POST['mitra'];
+$no_invoice = @$_POST['transaksi_pembelian'];
 
-// Query Untuk Select Pemilihan Pemasok
-$query_Pemasok = mysqli_query($conn, "SELECT * FROM users WHERE userlevelid = '3'");
-$id_pemasok = @$_POST['pemasok'];
-$query_PemasokHasil = mysqli_query($conn, "SELECT * FROM users WHERE id_user = '$id_pemasok'"); // Kondisi menyesuaikan id user pemasok yang di pilih
-$data_user_id = mysqli_fetch_array($query_PemasokHasil);
+// Query transaksi pembelian berdasarkan no_invoice yang dipilih
+$query_TrxPembelian = mysqli_query($conn, "SELECT * FROM transaksi_pembelian WHERE no_invoice = '$no_invoice'");
+$data_TrxPembelian = mysqli_fetch_array($query_TrxPembelian);
+// Quert users berdasarkan data pada transaksi pembelian
+$query_Users = mysqli_query($conn, "SELECT users.nama_lengkap, transaksi_pembelian.no_invoice, transaksi_pembelian.pemasok_id FROM users INNER JOIN transaksi_pembelian ON users.id_user = transaksi_pembelian.pemasok_id WHERE status_transaksi = 0");
 
 /* EKSEKUSI PENYIMPANAN DATA JADWAL PENJEMPUTAN KURIR*/
 if (isset($_POST['simpan'])) {
-    $id_accurate = $_POST['id_accurate'];
-    $id_pemasok = $_POST['id_user'];
-    $nama = $_POST['nama'];
-    $nomor_p = $_POST['nomor_p'];
-    $email = $_POST['email'];
+    $no_invoice = $_POST['no_invoice'];
+    $nama_kurir = $_POST['nama_kurir'];
+    $no_telp = $_POST['no_telp'];
     $alamat = $_POST['alamat'];
     $tgl_penjemputan = $_POST['tgl_penjemputan'];
-    // $time_penjemputan = $_POST['time_penjemputan'];
-    $id_mitra = $_POST['mitra'];
-    $ketemu = 0;
-
-
-    // var_dump($id_pemasok . "," . $id_mitra . "," . $tgl_penjemputan . " " . $time_penjemputan);
 
     // Proses simpan 
-    $query = mysqli_query($conn, "INSERT INTO jadwal_kurir VALUES ('',null, '$id_mitra', '$id_pemasok', '$tgl_penjemputan', 'Menunggu')");
+    $query = mysqli_query($conn, "INSERT INTO jadwal_kurir VALUES ('','$no_invoice', '$nama_kurir', '$no_telp', '$alamat', '$tgl_penjemputan', 'belum')");
     if ($query) {
         mysqli_query($conn, "UPDATE transaksi_pembelian SET status_transaksi = 1 WHERE no_invoice = '$no_invoice'");
         header("Location:jadwal_kurir.php");
@@ -133,70 +123,32 @@ if (isset($_POST['simpan'])) {
             <div class="row">
                 <div class="btn kembali"><a href="jadwal_kurir.php"><img src="../assets/Icon/arrow-point-to-right.png">Back</a></div>
                 <form action="" method="POST" class="input_jadwal">
-                    <span><u><b>Data Pemasok</b></u></span><br>
-                    <select onchange="this.form.submit()" name="pemasok" id="pemasok" style="width: 30%;">
-                        <option value="">-- PILIH AKUN PEMASOK --</option>
+                    <select onchange="this.form.submit()" name="transaksi_pembelian" id="transaksi_pembelian" style="width: 30%;">
+                        <option value="">-- PILIH TRANSAKSI --</option>
                         <?php
-                        while ($data = mysqli_fetch_array($query_Pemasok)) {
+                        while ($data = mysqli_fetch_array($query_Users)) {
                         ?>
-                            <option <?php if (!empty($data['id_user'])) {
-                                        echo $data['id_user'] == $id_pemasok ? 'selected' : '';
-                                    } ?> value="<?= $data['id_user'] ?>"><?= "[" . $data['id_user'] . "] " . $data['nama_lengkap'] . " (" . $data['notelp'] . ")" ?></option>
+                            <option <?php if (!empty($data['no_invoice'])) {
+                                        echo $data['no_invoice'] == $no_invoice ? 'selected' : '';
+                                    } ?> value="<?= $data['no_invoice'] ?>"><?= "[" . $data['pemasok_id'] . "] " . $data['nama_lengkap'] . " (" . $data['no_invoice'] . ")" ?></option>
                         <?php
                             $no++;
                         }
                         ?>
                     </select>
-                    <input type="hidden" name="id_accurate" placeholder="ID Accuarte" value="<?php if ($id_pemasok != "") {
-                                                                                                    echo $data_user_id['id_accurate'];
-                                                                                                } else {
-                                                                                                    echo '';
-                                                                                                } ?>" required>
-                    <input type="hidden" name="id_user" placeholder="ID Pemasok" value="<?php if ($id_pemasok != "") {
-                                                                                            echo $data_user_id['id_user'];
-                                                                                        } else {
-                                                                                            echo '';
-                                                                                        } ?>" required>
-                    <input type="text" name="nama" placeholder="Nama Lengkap" value="<?php if ($id_pemasok != "") {
-                                                                                            echo $data_user_id['nama_lengkap'];
-                                                                                        } else {
-                                                                                            echo '';
-                                                                                        } ?>" required readonly>
-                    <input type="text" name="nomor_p" placeholder="Nomor Ponsel" value="<?php if ($id_pemasok != "") {
-                                                                                            echo $data_user_id['notelp'];
-                                                                                        } else {
-                                                                                            echo '';
-                                                                                        } ?>" required readonly>
-                    <input type="email" name="email" placeholder="Email" value="<?php if ($id_pemasok != "") {
-                                                                                    echo $data_user_id['email'];
-                                                                                } else {
-                                                                                    echo '';
-                                                                                } ?>" required readonly>
-                    <input type="text" name="alamat" placeholder="Alamat" value="<?php if ($id_pemasok != "") {
-                                                                                        echo $data_user_id['alamat'];
+                    <input type="text" name="no_invoice" placeholder="No Invoice" value="<?php if ($no_invoice != "") {
+                                                                                                echo $data_TrxPembelian['no_invoice'];
+                                                                                            } else {
+                                                                                                echo '';
+                                                                                            } ?>" readonly>
+                    <input type="text" name="alamat" placeholder="Alamat" value="<?php if ($no_invoice != "") {
+                                                                                        echo $data_TrxPembelian['alamat'];
                                                                                     } else {
                                                                                         echo '';
-                                                                                    } ?>" required readonly>
-
-                    <br>
-                    <span><u><b>Waktu Jemput</b></u></span><br>
-                    <input type="date" name="tgl_penjemputan" placeholder="Masukan tanggal penjemputan" required>
-                    <!-- <input type="time" name="time_penjemputan" placeholder="Masukan waktu penjemputan" required> -->
-                    <br>
-                    <span><u><b>Pilih Mitra</b></u></span><br>
-                    <select name="mitra" id="mitra" style="width: 30%;" required>
-                        <option value="">-- PILIH MITRA --</option>
-                        <?php
-                        while ($data = mysqli_fetch_array($query_Mitra)) {
-                        ?>
-                            <option <?php if (!empty($data['id_user'])) {
-                                        echo $data['id_user'] == $id_user ? 'selected' : '';
-                                    } ?> value="<?= $data['id_user'] ?>"><?= "[" . $data['id_user'] . "] " . $data['nama_lengkap'] . " (" . $data['kota'] . ")" ?></option>
-                        <?php
-                            $no++;
-                        }
-                        ?>
-                    </select>
+                                                                                    } ?>" readonly>
+                    <input type="text" name="nama_kurir" placeholder="Nama Lengkap Kurir">
+                    <input type="date" name="tgl_penjemputan" placeholder="Masukan tanggal penjemputan">
+                    <input type="number" name="no_telp" placeholder="Masukan No Telepon Kurir">
 
                     <!-- Button -->
                     <button type="submit" class="btn" name="simpan" value="simpan">Input Jadwal</button>
@@ -211,9 +163,7 @@ if (isset($_POST['simpan'])) {
     <!-- Navigation Interactive -->
     <script>
         /* Select2 Jquery */
-        $("#mitra").select2();
-        /* Select2 Jquery */
-        $("#pemasok").select2();
+        $("#transaksi_pembelian").select2();
 
         let list = document.querySelectorAll('.navigation .list');
         let nav_dropdown = document.querySelectorAll('.nav-dropdown #nav-ListDropdown');

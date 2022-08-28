@@ -738,7 +738,7 @@ a{
     grid-template-columns: 60px auto;
 }
 .row .kotak .row3.tombol{
-    grid-template-columns: 33.3% 33.3% 33.3%;
+    grid-template-columns: 50% 50%;
 }
 .row .kotak .row3 .tanggal,
 .row .kotak .row3 .keterangan,

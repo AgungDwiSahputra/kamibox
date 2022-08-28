@@ -11,7 +11,7 @@ if ($level !== '2') {
 /* =========================================================== */
 
 // Query jadwal_kurir
-$query_JadwalKurir = mysqli_query($conn, "SELECT * FROM jadwal_kurir INNER JOIN transaksi_pembelian ON transaksi_pembelian.no_invoice = jadwal_kurir.no_invoice LIMIT 3");
+$query_JadwalKurir = mysqli_query($conn, "SELECT * FROM jadwal_kurir WHERE id_mitra = '$id_user' LIMIT 3");
 $Jml_JadwalKurir = mysqli_num_rows($query_JadwalKurir);
 // var_dump(mysqli_error($conn));
 

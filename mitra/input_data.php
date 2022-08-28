@@ -115,6 +115,51 @@ if (isset($_POST['next'])) {
     }
 }
 
+/* KOndisi ketika input data memiliki get action */
+if (isset($_GET['action'])) {
+    var_dump(password_verify($id_user, $_GET['key']));
+    if (password_verify($id_user, $_GET['key'])) {
+
+        $invoice = date('ymdHis') . rand(1000, 9999);
+        // $id_user = $id_user;  //SUdah ada pada SESSION
+        $id_userPemasok = $_GET['id'];
+        $no_penjemputan = $_GET['no'];
+
+        $dateprd = date('Y-m-d');
+        $date = $dateprd;
+        $date1 = date_create($date);
+        $date2 = date_format($date1, 'l');
+        $tgl   = date_format($date1, 'd');
+        $year  = date_format($date1, 'Y');
+        $date3 = hariIndo($date2);
+        $month = date_format($date1, 'm');
+        $month2 = bulanIndo($month);
+        $datetime = $date3 . ", " . $tgl . " " . $month2 . " " . $year;
+        // Mengambil Data users berdasarkan id_user pemasok yang di ambil dari get jadwal penjemputan
+        $queryUsers = mysqli_query($conn, "SELECT * FROM users WHERE id_user = '$id_userPemasok'");
+        $data_queryUsers = mysqli_fetch_array($queryUsers);
+        $alamat = $data_queryUsers['alamat'];
+        $link_maps = $data_queryUsers['link_maps'];
+
+        // var_dump($invoice . ',' . $id_user . ',' . $id_userPemasok . ',null,null,null,null, ' . $alamat . ',' . $link_maps . ',' . $datetime . ',null,' . '2');
+        // Proses insert data
+        $queryTransaksi = mysqli_query($conn, "INSERT INTO transaksi_pembelian VALUES ('$invoice','$id_user','$id_userPemasok',null,null,null,null, '$alamat','$link_maps','$datetime',null,'2')");
+        $queryJadwalKurir = mysqli_query($conn, "UPDATE jadwal_kurir SET no_invoice = '$invoice' WHERE no_penjemputan = '$no_penjemputan'");
+
+        if ($queryTransaksi) {
+            $_SESSION['no_invoice'] = $invoice;
+            $_SESSION['no_penjemputan'] = $no_penjemputan;
+            $_SESSION['id_pemasok'] = $id_userPemasok;
+
+            header("Location: input_data_1.php");
+        } else {
+            header("Location: jadwal_penjemputan.php");
+        }
+    } else {
+        header("Location:../index.php");
+    }
+}
+
 ?>
 
 <!DOCTYPE html>

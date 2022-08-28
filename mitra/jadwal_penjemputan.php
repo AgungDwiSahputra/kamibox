@@ -115,6 +115,7 @@ $Jml_JadwalKurir = mysqli_num_rows($query_JadwalKurir);
                         $id_mitra = $data['id_mitra']; // Untuk Data Jadwal kurir Mitra
                         $id_pemasok = $data['id_pemasok']; // Untuk Data Jadwal kurir Pemasok
                         $no_invoice = $data['no_invoice'];
+                        $no_penjemputan = $data['no_penjemputan'];
 
                         // Query Data Jadwal kurir Mitra
                         $JadwalKurir_Mitra = mysqli_query($conn, "SELECT * FROM jadwal_kurir INNER JOIN users ON jadwal_kurir.id_mitra = users.id_user WHERE jadwal_kurir.id_mitra = $id_mitra");
@@ -177,14 +178,25 @@ $Jml_JadwalKurir = mysqli_num_rows($query_JadwalKurir);
                                 <div class="col mr-4s">
                                     <a href="#"><button class="btn">Input Data</button></a>
                                 </div> -->
-                                <div class="col ml-4s">
-                                    <a href="<?= $Data_JadwalKurir_Pemasok['link_maps'] ?>" target="_BLANK"><button class="btn">Lokasi</button></a>
+                                <div class="col">
+                                    <a href="<?= $Data_JadwalKurir_Pemasok['link_maps'] ?>" target="_BLANK"><button class="btn default">Lokasi</button></a>
                                 </div>
                                 <div class="col">
-                                    <a href="https://api.whatsapp.com/send?phone=<?= $no_telp_pemasok ?>&text=Kami%20akan%20melakukan%20penjemputan%20pada%20tanggal%20*<?= $datatime ?>*%0ANama%20Kurir%20:%20<?= $Data_JadwalKurir_Mitra['nama_lengkap'] ?>%20|%20(<?= $Data_JadwalKurir_Mitra['notelp'] ?>)%0A*Tujuan%20:*%0ANama:%20<?= $Data_JadwalKurir_Pemasok['nama_lengkap'] ?>%0ANo.Telepon%20:%20<?= $Data_JadwalKurir_Pemasok['notelp'] ?>%0AAlamat%20:%20<?= $Data_JadwalKurir_Pemasok['alamat'] ?>%0ALink Gmaps%20:%20<?= $Data_JadwalKurir_Pemasok['link_maps'] ?>" target="_BLANK"><button class="btn">Kontak Pemasok</button></a>
+                                    <a href="https://api.whatsapp.com/send?phone=<?= $no_telp_pemasok ?>&text=Kami%20akan%20melakukan%20penjemputan%20pada%20tanggal%20*<?= $datatime ?>*%0ANama%20Kurir%20:%20<?= $Data_JadwalKurir_Mitra['nama_lengkap'] ?>%20|%20(<?= $Data_JadwalKurir_Mitra['notelp'] ?>)%0A*Tujuan%20:*%0ANama:%20<?= $Data_JadwalKurir_Pemasok['nama_lengkap'] ?>%0ANo.Telepon%20:%20<?= $Data_JadwalKurir_Pemasok['notelp'] ?>%0AAlamat%20:%20<?= $Data_JadwalKurir_Pemasok['alamat'] ?>%0ALink Gmaps%20:%20<?= $Data_JadwalKurir_Pemasok['link_maps'] ?>" target="_BLANK"><button class="btn default">Kontak Pemasok</button></a>
                                 </div>
-                                <div class="col mr-4s">
-                                    <a href="input_data.php?action=Penjemputan"><button class="btn">Input Data</button></a>
+                                <div class="col">
+                                    <!-- id = id pemasok || no = no penjemputan -->
+                                    <?php
+                                    if ($data['status'] != 'Selesai') {
+                                    ?>
+                                        <a href="input_data.php?action=Penjemputan&id=<?= $id_pemasok ?>&no=<?= $no_penjemputan ?>&key=<?= password_hash($id_user, PASSWORD_DEFAULT) ?>"><button class="btn default">Input Data</button></a>
+                                    <?php
+                                    } else {
+                                    ?>
+                                        <a href="#"><button class="btn selesai" disabled>Selesai</button></a>
+                                    <?php
+                                    }
+                                    ?>
                                 </div>
                             </div>
                             <!-- <div class="isi-dropdown" id="isi-dropdown">

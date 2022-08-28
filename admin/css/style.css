@@ -35,6 +35,18 @@ a{
     background-color: #008638;
 }
 
+.btn.selesai{
+    border-radius: 30px;
+    background-color: #d80303;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    color: white;
+    width: 150px !important;
+    margin-left: 120px;
+}
+.btn.selesai:hover{
+    background-color: #860000;
+}
+
 .pt-1{
     padding-top: 10px !important;
 }
@@ -738,7 +750,7 @@ a{
     grid-template-columns: 60px auto;
 }
 .row .kotak .row3.tombol{
-    grid-template-columns: 50% 50%;
+    grid-template-columns: 33.3% 33.3% 33.3%;
 }
 .row .kotak .row3 .tanggal,
 .row .kotak .row3 .keterangan,
@@ -751,17 +763,6 @@ a{
 }
 .row .kotak .row3.tombol a{
     text-decoration: none;
-}
-.row .kotak .row3.tombol .btn{
-    border-radius: 30px;
-    background-color: #08AC4D;
-    border: 1px solid rgba(0, 0, 0, 0.2);
-    color: white;
-    width: 150px !important;
-    margin: 0 auto;
-}
-.row .kotak .row3.tombol .btn:hover{
-    background-color: #008638;
 }
 
 /* =========================================== */

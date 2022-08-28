@@ -167,11 +167,24 @@ if (isset($_GET['no_invoice']) && $_GET['action'] == 'konfirmasi') {
                                 </div>
                             </div>
                             <div class="row3 tombol pb-1">
-                                <div class="col ml-4s">
-                                    <a href="<?= $Data_JadwalKurir_Pemasok['link_maps'] ?>" target="_BLANK"><button class="btn">Lokasi</button></a>
+                                <div class="col">
+                                    <a href="<?= $Data_JadwalKurir_Pemasok['link_maps'] ?>" target="_BLANK"><button class="btn default">Lokasi</button></a>
                                 </div>
-                                <div class="col mr-4s">
-                                    <a href="https://api.whatsapp.com/send?phone=<?= $no_telp_kurir ?>&text=Jadwal%20Penjemputan%20:%20<?= $datetime ?>%0ANama%20Kurir%20:%20<?= $Data_JadwalKurir_Mitra['nama_lengkap'] ?>%20|%20(<?= $Data_JadwalKurir_Mitra['notelp'] ?>)%0A*Tujuan%20:*%0ANama:%20<?= $Data_JadwalKurir_Pemasok['nama_lengkap'] ?>%0ANo.Telepon%20:%20<?= $Data_JadwalKurir_Pemasok['notelp'] ?>%0AAlamat%20:%20<?= $Data_JadwalKurir_Pemasok['alamat'] ?>%0ALink Gmaps%20:%20<?= $Data_JadwalKurir_Pemasok['link_maps'] ?>" target="_BLANK"><button class="btn">Kontak Mitra</button></a>
+                                <div class="col">
+                                    <a href="https://api.whatsapp.com/send?phone=<?= $no_telp_kurir ?>&text=Jadwal%20Penjemputan%20:%20<?= $datetime ?>%0ANama%20Kurir%20:%20<?= $Data_JadwalKurir_Mitra['nama_lengkap'] ?>%20|%20(<?= $Data_JadwalKurir_Mitra['notelp'] ?>)%0A*Tujuan%20:*%0ANama:%20<?= $Data_JadwalKurir_Pemasok['nama_lengkap'] ?>%0ANo.Telepon%20:%20<?= $Data_JadwalKurir_Pemasok['notelp'] ?>%0AAlamat%20:%20<?= $Data_JadwalKurir_Pemasok['alamat'] ?>%0ALink Gmaps%20:%20<?= $Data_JadwalKurir_Pemasok['link_maps'] ?>" target="_BLANK"><button class="btn default">Kontak Mitra</button></a>
+                                </div>
+                                <div class="col">
+                                    <?php
+                                    if ($data['status'] != 'Selesai') {
+                                    ?>
+                                        <a href="#"><button class="btn selesai" disabled><?= $data['status'] ?></button></a>
+                                    <?php
+                                    } else {
+                                    ?>
+                                        <a href="#"><button class="btn default" disabled><?= $data['status'] ?></button></a>
+                                    <?php
+                                    }
+                                    ?>
                                 </div>
                             </div>
                             <hr width="100%" style="border:1px dashed black;">

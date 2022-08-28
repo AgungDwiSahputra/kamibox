@@ -135,7 +135,16 @@ if (isset($_POST['input_data'])) {
     $total_harga = $_POST['total_harga'];
     $total_berat = $_POST['total_berat'];
     $Update_TrxPembelian = mysqli_query($conn, "UPDATE transaksi_pembelian SET harga_item = '$harga_item', total_berat = '$total_berat', biaya_jemput = '$biaya_penjemputan', total_harga = '$total_harga' WHERE no_invoice = '$invoice_session'");
+
     if ($Update_TrxPembelian) {
+        if (isset($_SESSION['no_penjemputan'])) {
+            /* RUBAH STATUS PENJEMPUTAN */
+            $no_penjemputan = $_SESSION['no_penjemputan'];
+            $Update_Penjemputan = mysqli_query($conn, "UPDATE jadwal_kurir SET status = 'Selesai' WHERE no_penjemputan = '$no_penjemputan'");
+
+            /* ===================== */
+        }
+
         unset($_SESSION['no_invoice']);
         unset($_SESSION['input_barang']);
         unset($_SESSION['id_pemasok']);

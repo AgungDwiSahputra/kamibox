@@ -42,6 +42,29 @@ if ($_SESSION['login'] == true && $_SESSION['level_user'] == '1' || $_SESSION['l
 				display: none;
 				opacity: 0;
 			}
+
+
+
+			@media screen and (max-width: 749px) {
+				.btn-otp {
+					display: none;
+				}
+
+				.btn-otp-viaemail {
+					display: none;
+				}
+			}
+
+			@media screen and (max-width: 450px) {
+				.otp-wrapper {
+					width: 100%;
+					margin: 0;
+				}
+
+				.otp-card {
+					border-radius: 0px;
+				}
+			}
 		</style>
 	</head>
 

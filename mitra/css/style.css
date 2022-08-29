@@ -15,6 +15,25 @@ a{
     color: black;
 }
 
+.container{
+    padding-top: 40px;
+    padding-left: 140px;
+}
+
+.row{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+}
+.col{
+    flex: auto;
+}
+.box-shadow{
+    background-color: white;
+    box-shadow: 1px 0 20px rgba(0, 0, 0, 0.2);
+}
+
+
 .btn{
     display: block;
     width: 25%;
@@ -28,7 +47,8 @@ a{
     border: 1px solid rgba(0, 0, 0, 0.2);
     color: white;
     width: 150px !important;
-    margin-left: 120px;
+display: inline;
+    margin: 0 auto;
 }
 .btn.default:hover{
     background-color: #008638;
@@ -43,6 +63,41 @@ a{
 }
 .btn.selesai:hover{
     background-color: #860000;
+}
+/* UKURAN WIDTH PADA BOX */
+.w-10{
+    width: 10% !important;
+}
+.w-20{
+    width: 20% !important;
+}
+.w-40{
+    width: 40% !important;
+}
+.w-60{
+    width: 60% !important;
+}
+.w-80{
+    width: 80% !important;
+}
+.w-100{
+    width: 100% !important;
+}
+/* ============================ */
+.p-1{
+    padding: 10px !important;
+}
+.p-2{
+    padding: 20px !important;
+}
+.p-3{
+    padding: 30px !important;
+}
+.p-4{
+    padding: 40px !important;
+}
+.p-5{
+    padding: 50px !important;
 }
 
 .pt-1{
@@ -96,8 +151,37 @@ a{
 .pr-4{
     padding-right: 40px !important;
 }
+/* -------------------------------- */
+.py-1{
+    padding: 10px 0 !important;
+}
+.py-2{
+    padding: 20px 0 !important;
+}
+.py-3{
+    padding: 30px 0 !important;
+}
+.py-4{
+    padding: 40px 0 !important;
+}
+.py-5{
+    padding: 50px 0 !important;
+}
 
 /* Margin */
+.m-2{
+    margin: 20px !important;
+}
+.m-3{
+    margin: 30px !important;
+}
+.m-4{
+    margin: 40px !important;
+}
+.m-5{
+    margin: 50px !important;
+}
+
 .ml-1{
     margin-left: 10px !important;
 }
@@ -482,13 +566,6 @@ a{
 /* ================================= */
 /* CONTENT */
 /* ================================= */
-.container{
-    width: 100%;
-}
-.container .row{
-    margin-top: 40px;
-    margin-left: 140px;
-}
 .container .row.header h2{
     margin-bottom: 10px;
 }
@@ -502,19 +579,14 @@ a{
 }
 
 /* Dashboard (Index) */
-.container .row.body{
-    display: grid;
-    grid-row-gap: 50px;
-    grid-template-columns: auto auto;
-    margin-right: 50px;
-}
 .container .row.body .col{
-    margin: 20px;
-    padding: 30px;
+    /* margin: 20px;
+    padding: 30px; */
+    flex: auto;
     color: black;
     border-radius: 20px;
-    box-shadow: 1px 0 20px rgba(0, 0, 0, 0.2);
 }
+
 .container .row.body .col.grafik #basic-doughnut{
     width: 100% !important;
 }
@@ -524,13 +596,12 @@ a{
     overflow: visible !important;
 }
 .container .row.body .col.grafik .table{
-    height: 330px;
-    overflow-y: auto;
+    height: auto;
 }
 .container .row.body .col.transaksi .table{
-    height: 250px;
-    overflow-y: auto;
+    height: 300px;
 }
+
 .container .row.body .col.transaksi table{
     width: 100%;
 }
@@ -553,63 +624,16 @@ a{
     font-weight: bold;
     margin-bottom: 20px;
 }
-.container .row.footer{
-    margin-left: 160px;
-    width: 90%;
+
+.container .footer .col{
+    flex: auto;
+    color: black;
+    border-radius: 20px;
 }
-.container .row.footer .col{
-    padding: 20px;
-}
-.container .row.footer .col img{
+.container .footer .col img{
     width: 30px;
-    padding: 20px 0 0 20px;
-}
-.container .row.footer .col .row2{
-    padding: 5px;
-}
-.container .row.footer .col .row3{
-    display: grid;
-    grid-row-gap: 50px;
-    grid-template-columns: 60px auto;
-}
-.container .row.footer .col .row3.tombol{
-    grid-template-columns: 33.3% 33.3% 33.3%;
-}
-.container .row.footer .col .row3 .tanggal,
-.container .row.footer .col .row3 .keterangan,
-.container .row.footer .col .row3 .alamat{
-    display: block;
-}
-.container .row.footer .col .row3 .tanggal,
-.container .row.footer .col .row3 .alamat{
-    color: rgba(0, 0, 0, 0.7);
-}
-.container .row.footer .col .row3.tombol a{
-    text-decoration: none;
-}
-.container .row.footer .col .row3.tombol .btn{
-    border-radius: 30px;
-    background-color: #08AC4D;
-    border: 1px solid rgba(0, 0, 0, 0.2);
-    color: white;
-    width: 150px !important;
-    margin: 0 auto;
-}
-.container .row.footer .col .row3.tombol .btn:hover{
-    background-color: #008638;
-}
-.container .row.footer .col .btn{
-    border-radius: 30px;
-    background-color: white;
-    border: 1px solid rgba(0, 0, 0, 0.2);
-    color: #08AC4D;
-    width: 150px !important;
-    margin: 0 auto;
-    margin-top: 30px;
-}
-.container .row.footer .col .btn:hover{
-    background-color: #08AC4D;
-    color: white;
+    height: 30px;
+    padding: 20px;
 }
 
 /* =========================================== */
@@ -1045,19 +1069,10 @@ a{
 	color: rgba(0, 0, 0, 0.2);
 }
 
-@media screen and (min-width: 750px) {
-    .pencarian .input_cari{
-        width: 90%;
-    }
-    .pencarian img{
-        left: 90%;
-        margin-left: 15px;
-    }
-}
 /* ===================================== */
 /* Isi COntent Riwayat Transaksi */
 /* ===================================== */
-.container .row:nth-child(3){
+.container .data_rwtTrx{
     background-color: #fff;
     border-radius: 20px;
     box-shadow: 1px 0 20px rgba(0, 0, 0, 0.2);
@@ -1121,4 +1136,120 @@ a{
     padding:4px;
     font-size:16px;
     width: 300px;
+}
+
+
+/*
+============================================================================
+
+TAMPILAN MOBILE
+** Created by Agung Dwi Sahputra
+*/
+@media (max-width: 900px) {
+/* Umum */
+    .container{
+        padding-top: 40px;
+        padding-left: 20px;
+        margin-bottom: 80px;
+    }
+
+/* Isi Content */
+    .container .footer .col img{
+        display: none !important;
+    }
+
+/* Navigatioon Atas */
+    .navigation-top ul li.nav-left{
+        margin-left: 20px;
+    }
+
+/* Navigasi Kiri */
+    .navigation{
+        top: auto;
+        bottom: 20px;
+        left: 20px !important;
+        right: 20px !important;
+        width: 95%;
+        height: 60px;
+        padding: 0;
+        display: block !important;
+        margin: 0 auto !important;
+        text-align: center;
+    }
+    .navigation ul{
+        width: 100%;
+        margin: 0;
+        left: 25%;
+        padding: 0;
+    }
+    .navigation ul li{
+        float: left;
+        width: 60px;
+        margin: 0 2%;
+        padding: 0;
+        border-top-left-radius: 0;
+        border-top-right-radius: 0;
+        border-bottom-left-radius: 30px;
+        border-bottom-right-radius: 30px;
+    }
+    .navigation ul li b{
+        display: none !important;
+    }
+    .navigation ul li a .title{
+        display: none;
+    }
+    /* Toggle */
+    .toggle{
+        display: none;
+    }
+}
+@media (max-width: 650px) {
+/* Navigation Kiri */
+    .navigation{
+        width: 93% !important;
+    }
+    .navigation ul{
+    left: 20% !important;
+    }
+
+/* INPUT PENCARIAN (Riwayat Transaksi) */
+    .pencarian .input_cari{
+        width: 90%;
+    }
+    .pencarian img{
+        left: 90%;
+        margin-left: 15px;
+    }
+}
+@media (max-width: 500px) {
+    *{
+        font-size: small;
+    }
+/* Navigation Atas */
+    .navigation-top ul li a .user,
+    .navigation-top ul li a .bell{
+        margin-top: 5px;
+    }
+    .navigation-top ul li a .user{
+        width: 30px;
+    }
+    .navigation-top ul li a .bell{
+        width: 20px;
+    }
+
+/* Navigation Kiri */
+    .navigation ul{
+        left: 15% !important;
+        height: 100% !important;
+    }
+    .navigation ul li a .icon{
+        min-width: 50px;
+        height: 50px;
+        line-height: 60px;
+    }
+    .navigation ul li .icon img.putih,
+    .navigation ul li .icon img.hijau{
+        width: 25px;
+        margin: 15px 18px;
+    }
 }

@@ -99,33 +99,34 @@ $Jml_JadwalKurir = mysqli_num_rows($query_JadwalKurir);
     <!-- ====================================== -->
     <!-- ISI CONTENT -->
     <!-- ====================================== -->
-    <div class="container dashboard">
-        <div class="row header">
-            <h2>Dashboard</h2>
-        </div>
+    <section id="dashboard">
+        <div class="container dashboard">
+            <div class="row header">
+                <h2>Dashboard</h2>
+            </div>
 
-        <div class="row body">
-            <div class="col grafik">
-                <div class="table">
-                    <span class=" judul">Grafik Terkini</span>
-                    <?php
-                    $query_PTransaksi = mysqli_query($conn, "SELECT DISTINCT pemasok_id FROM transaksi_pembelian");
-                    $Total_PTransaksi = mysqli_num_rows($query_PTransaksi);
-                    $query_UserTrx = mysqli_query($conn, "SELECT * FROM users");
-                    while ($TotalUserTrx = mysqli_fetch_array($query_UserTrx)) {
-                        $id_users = $TotalUserTrx['id_user'];
-                    }
-                    /* Riwayat Transaksi */
-                    // $query_transaksi = mysqli_query($conn, "SELECT * FROM transaksi_pembelian WHERE mitra_id = '$id_user' LIMIT 6");
-                    // $total_transaksi = mysqli_num_rows($query_transaksi);
+            <div class="row body">
+                <div class="col grafik box-shadow p-3 m-2">
+                    <div class="table">
+                        <span class=" judul">Grafik Terkini</span>
+                        <?php
+                        $query_PTransaksi = mysqli_query($conn, "SELECT DISTINCT pemasok_id FROM transaksi_pembelian");
+                        $Total_PTransaksi = mysqli_num_rows($query_PTransaksi);
+                        $query_UserTrx = mysqli_query($conn, "SELECT * FROM users");
+                        while ($TotalUserTrx = mysqli_fetch_array($query_UserTrx)) {
+                            $id_users = $TotalUserTrx['id_user'];
+                        }
+                        /* Riwayat Transaksi */
+                        // $query_transaksi = mysqli_query($conn, "SELECT * FROM transaksi_pembelian WHERE mitra_id = '$id_user' LIMIT 6");
+                        // $total_transaksi = mysqli_num_rows($query_transaksi);
 
-                    //jika date tidak diinputkan
-                    if (isset($_GET['ke'])) {
-                        $dateprd = $_GET['ke'];
-                    } else {
-                        $dateprd = date('Y-m-d');
-                    }
-                    echo "<form action='index.php' method='get'>
+                        //jika date tidak diinputkan
+                        if (isset($_GET['ke'])) {
+                            $dateprd = $_GET['ke'];
+                        } else {
+                            $dateprd = date('Y-m-d');
+                        }
+                        echo "<form action='index.php' method='get'>
           		<label>Pilih Tanggal</label>
 				<input type='date' name='ke' value='" . $dateprd . "'>
 				<input type='submit' value='cari'>
@@ -133,137 +134,136 @@ $Jml_JadwalKurir = mysqli_num_rows($query_JadwalKurir);
                 <a href='index.php?ke=all'><button>Semua</button></a>
                 ";
 
-                    $date = $dateprd;
-                    $date1 = date_create($date);
-                    $date2 = date_format($date1, 'l');
-                    $tgl   = date_format($date1, 'd');
-                    $year  = date_format($date1, 'Y');
-                    $date3 = hariIndo($date2);
-                    $month = date_format($date1, 'm');
-                    $month2 = bulanIndo($month);
-                    if (isset($_GET['ke'])) {
-                        if ($_GET['ke'] != 'all') {
+                        $date = $dateprd;
+                        $date1 = date_create($date);
+                        $date2 = date_format($date1, 'l');
+                        $tgl   = date_format($date1, 'd');
+                        $year  = date_format($date1, 'Y');
+                        $date3 = hariIndo($date2);
+                        $month = date_format($date1, 'm');
+                        $month2 = bulanIndo($month);
+                        if (isset($_GET['ke'])) {
+                            if ($_GET['ke'] != 'all') {
+                                echo "<div style='margin-top:10px;color:green;font-size:0.9rem;'>" . $date3 . ", " . $tgl . " " . $month2 . " " . $year . "</div>";
+
+                                $query_transaksi = mysqli_query($conn, "SELECT * FROM transaksi_pembelian WHERE mitra_id = '$id_user' AND date_grafik between '$dateprd 00:00' and '$dateprd 23:59'");
+                                $total_transaksi = mysqli_num_rows($query_transaksi);
+                            } else {
+                                echo "<div style='margin-top:10px;color:green;font-size:0.9rem;'>Semua Transaksi</div>";
+
+                                $query_transaksi = mysqli_query($conn, "SELECT * FROM transaksi_pembelian WHERE mitra_id = '$id_user'");
+                                $total_transaksi = mysqli_num_rows($query_transaksi);
+                            }
+                        } else {
                             echo "<div style='margin-top:10px;color:green;font-size:0.9rem;'>" . $date3 . ", " . $tgl . " " . $month2 . " " . $year . "</div>";
 
                             $query_transaksi = mysqli_query($conn, "SELECT * FROM transaksi_pembelian WHERE mitra_id = '$id_user' AND date_grafik between '$dateprd 00:00' and '$dateprd 23:59'");
                             $total_transaksi = mysqli_num_rows($query_transaksi);
-                        } else {
-                            echo "<div style='margin-top:10px;color:green;font-size:0.9rem;'>Semua Transaksi</div>";
-
-                            $query_transaksi = mysqli_query($conn, "SELECT * FROM transaksi_pembelian WHERE mitra_id = '$id_user'");
-                            $total_transaksi = mysqli_num_rows($query_transaksi);
                         }
-                    } else {
-                        echo "<div style='margin-top:10px;color:green;font-size:0.9rem;'>" . $date3 . ", " . $tgl . " " . $month2 . " " . $year . "</div>";
 
-                        $query_transaksi = mysqli_query($conn, "SELECT * FROM transaksi_pembelian WHERE mitra_id = '$id_user' AND date_grafik between '$dateprd 00:00' and '$dateprd 23:59'");
-                        $total_transaksi = mysqli_num_rows($query_transaksi);
-                    }
-
+                        if ($total_transaksi != 0) {
+                            echo '<div id="basic-doughnut" style="height:20vw;"></div>';
+                        } else {
+                            echo '<center><span style="color:red;font-size:14px;">Data Transaksi masih kosong</span></center>';
+                        }
+                        ?>
+                    </div>
+                    <?php
+                    //Kondisi jika total transaksi tidak = 0
                     if ($total_transaksi != 0) {
-                        echo '<div id="basic-doughnut" style="height:20vw;"></div>';
+                    ?>
+                        <span class="footer">Total Penjualan : <b>Rp. <?= number_format($total_penjualan, 0, ',', '.') ?></b> dari <b> <?= $Total_PTransaksi ?></b> Akun Pemasok </span>
+                    <?php
                     } else {
-                        echo '<center><span style="color:red;font-size:14px;">Data Transaksi masih kosong</span></center>';
+                    ?>
+                        <span class="footer">Total Penjualan : <b>Rp. 0</b> dari <b> 0</b> Akun Pemasok </span>
+                    <?php
                     }
                     ?>
                 </div>
-                <?php
-                //Kondisi jika total transaksi tidak = 0
-                if ($total_transaksi != 0) {
-                ?>
-                    <span class="footer">Total Penjualan : <b>Rp. <?= number_format($total_penjualan, 0, ',', '.') ?></b> dari <b> <?= $Total_PTransaksi ?></b> Akun Pemasok </span>
-                <?php
-                } else {
-                ?>
-                    <span class="footer">Total Penjualan : <b>Rp. 0</b> dari <b> 0</b> Akun Pemasok </span>
-                <?php
-                }
-                ?>
-            </div>
-            <div class="col transaksi">
-                <span class="judul">Riwayat Transaksi</span>
-                <div class="table">
-                    <table>
-                        <?php
-                        // Tabel Transaksi Pembelian
-                        if ($total_transaksi != 0) {
-                            while ($data_transaksi = mysqli_fetch_array($query_transaksi)) {
-                                $pemasok_id = $data_transaksi['pemasok_id'];
-                                $query_user = mysqli_query($conn, "SELECT * FROM users WHERE id_user = '$pemasok_id'");
-                                $data_user = mysqli_fetch_array($query_user);
-                        ?>
-                                <tr>
-                                    <td><?= $data_user['nama_lengkap'] ?></td>
-                                    <td>Rp. <?= number_format($data_transaksi['total_harga'], 0, ',', '.') ?></td>
-                                </tr>
-                        <?php
+                <div class="col transaksi box-shadow p-3 m-2">
+                    <span class="judul">Riwayat Transaksi</span>
+                    <div class="table">
+                        <table>
+                            <?php
+                            // Tabel Transaksi Pembelian
+                            if ($total_transaksi != 0) {
+                                while ($data_transaksi = mysqli_fetch_array($query_transaksi)) {
+                                    $pemasok_id = $data_transaksi['pemasok_id'];
+                                    $query_user = mysqli_query($conn, "SELECT * FROM users WHERE id_user = '$pemasok_id'");
+                                    $data_user = mysqli_fetch_array($query_user);
+                            ?>
+                                    <tr>
+                                        <td><?= $data_user['nama_lengkap'] ?></td>
+                                        <td>Rp. <?= number_format($data_transaksi['total_harga'], 0, ',', '.') ?></td>
+                                    </tr>
+                            <?php
+                                }
+                            } else {
+                                echo '<tr><td style="color:red;text-align:center;font-size:14px;">Data Transaksi masih kosong</td></tr>';
                             }
-                        } else {
-                            echo '<tr><td style="color:red;text-align:center;font-size:14px;">Data Transaksi masih kosong</td></tr>';
-                        }
-                        ?>
-                    </table>
+                            ?>
+                        </table>
+                        <a href="riwayat_transaksi.php" id="selengkapnya">Selengkapnya</a>
+                    </div>
                 </div>
-                <a href="riwayat_transaksi.php" id="selengkapnya">Selengkapnya</a>
             </div>
-        </div>
-        <div class="row footer">
-            <div class="col">
-                <span class="judul">Jadwal Penjemputan</span>
-                <?php
-                if ($Jml_JadwalKurir != 0) {
-                    while ($data = mysqli_fetch_array($query_JadwalKurir)) {
-                        $no_invoice = $data['no_invoice'];
-                        $query_Users = mysqli_query($conn, "SELECT users.nama_lengkap, users.notelp, transaksi_pembelian.no_invoice, transaksi_pembelian.pemasok_id FROM users INNER JOIN transaksi_pembelian ON users.id_user = transaksi_pembelian.pemasok_id WHERE no_invoice = '$no_invoice' LIMIT 6");
-                        $Data_Users = mysqli_fetch_array($query_Users);
+            <div class="row footer">
+                <div class="col box-shadow p-3 m-2">
+                    <span class="judul">Jadwal Penjemputan</span>
+                    <?php
+                    if ($Jml_JadwalKurir != 0) {
+                        while ($data = mysqli_fetch_array($query_JadwalKurir)) {
+                            $no_invoice = $data['no_invoice'];
+                            $query_Users = mysqli_query($conn, "SELECT users.nama_lengkap, users.notelp, transaksi_pembelian.no_invoice, transaksi_pembelian.pemasok_id FROM users INNER JOIN transaksi_pembelian ON users.id_user = transaksi_pembelian.pemasok_id WHERE no_invoice = '$no_invoice' LIMIT 6");
+                            $Data_Users = mysqli_fetch_array($query_Users);
 
-                        // MANIPULASI NO HP jadi +62
-                        // cek apakah no hp mengandung karakter + dan 0-9
-                        if (!preg_match('/[^+0-9]/', trim($data['no_telp'])) || !preg_match('/[^+0-9]/', trim($Data_Users['notelp']))) {
-                            // cek apakah no hp karakter 1-3 adalah +62
-                            if (substr(trim($data['no_telp']), 0, 3) == '+62' || substr(trim($Data_Users['notelp']), 0, 3) == '+62') {
-                                $no_telp_kurir = trim($data['no_telp']);
-                                $no_telp_pemasok = trim($Data_Users['notelp']);
+                            // MANIPULASI NO HP jadi +62
+                            // cek apakah no hp mengandung karakter + dan 0-9
+                            if (!preg_match('/[^+0-9]/', trim($data['no_telp'])) || !preg_match('/[^+0-9]/', trim($Data_Users['notelp']))) {
+                                // cek apakah no hp karakter 1-3 adalah +62
+                                if (substr(trim($data['no_telp']), 0, 3) == '+62' || substr(trim($Data_Users['notelp']), 0, 3) == '+62') {
+                                    $no_telp_kurir = trim($data['no_telp']);
+                                    $no_telp_pemasok = trim($Data_Users['notelp']);
+                                }
+                                // cek apakah no hp karakter 1 adalah 0
+                                elseif (substr(trim($data['no_telp']), 0, 1) == '0') {
+                                    $no_telp_kurir = '62' . substr(trim($data['no_telp']), 1);
+                                    $no_telp_pemasok = '62' . substr(trim($Data_Users['notelp']), 1);
+                                }
                             }
-                            // cek apakah no hp karakter 1 adalah 0
-                            elseif (substr(trim($data['no_telp']), 0, 1) == '0') {
-                                $no_telp_kurir = '62' . substr(trim($data['no_telp']), 1);
-                                $no_telp_pemasok = '62' . substr(trim($Data_Users['notelp']), 1);
-                            }
-                        }
-                ?>
-                        <div class="row2">
-                            <div class="row3">
-                                <div class="col">
-                                    <img src="../assets/Icon/trash.png" alt="Trash">
-                                </div>
-                                <div class="col pt-1 pb-4 pr-3">
-                                    <span class="tanggal"><?= $data['tgl_penjemputan'] ?></span>
-                                    <span class="keterangan"><b><?= "No. Invoice : " . $no_invoice ?></b></span>
-                                    <span class="keterangan"><b>Nama Kurir : </b><?= $data['nama_kurir'] ?> | (<?= $data['no_telp'] ?>)</span>
+                    ?>
+                            <div class="row">
+                                <img src="../assets/Icon/trash.png" alt="Trash">
+                                <div class="col py-2">
+                                    <span class="tanggal"><?= $data['tgl_penjemputan'] ?></span><br>
+                                    <span class="keterangan"><b><?= "No. Invoice : " . $no_invoice ?></b></span><br>
+                                    <span class="keterangan"><b>Nama Kurir : </b><?= $data['nama_kurir'] ?> | (<?= $data['no_telp'] ?>)</span><br>
                                     <span class="alamat"><b>Tujuan : </b><br>
                                         <?= "Nama : " . $Data_Users['nama_lengkap'] . "<br>No.Telepon : " . $Data_Users['notelp'] . "<br>Alamat : " . $data['alamat'] ?>
                                     </span>
                                 </div>
                             </div>
-                            <!-- <div class="isi-dropdown" id="isi-dropdown">
+                            <hr width="100%" style="border:1px dashed black;">
+                    <?php
+                        }
+                    } else {
+                        echo '<tr><td><center style="color:red;font-size:14px;">Jadwal Penjemputan Kurir masih kosong</center></td></tr>';
+                    }
+                    ?>
+                    <center>
+                        <a href="jadwal_penjemputan.php"><button type="submit" class="btn default">Selengkapnya</button></a>
+                    </center>
+                </div>
+                <!-- <div class="isi-dropdown" id="isi-dropdown">
                                 <input type="text" name="keterangan" placeholder="Masukan Keterangan Tambahan...">
                                 <button type="submit" class="btn">Input</button>
                             </div>
                             <img src="../assets/Icon/arrow-point-to-right.png" alt="Panah" class="dropdown" id="dropdown"> -->
-                            <hr width="100%" style="border:1px dashed black;">
-                        </div>
-                <?php
-                    }
-                } else {
-                    echo '<tr><td><center style="color:red;font-size:14px;">Jadwal Penjemputan Kurir masih kosong</center></td></tr>';
-                }
-                ?>
-                <a href="jadwal_penjemputan.php"><button type="submit" class="btn">Selengkapnya</button></a>
+
             </div>
         </div>
-    </div>
-
+    </section>
     <!-- ====================================== -->
     <!-- JAVA SCRIPT -->
     <!-- ====================================== -->

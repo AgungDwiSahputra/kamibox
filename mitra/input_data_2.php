@@ -51,6 +51,7 @@ if (isset($_POST['tambah_item'])) {
 // Di Proses setelah user megklik tombol input data
 if (isset($_POST['input_data'])) {
     // ========================== api acurate ==========================
+    require '../auto_refresh.php'; // Auto Refresh token 5 hari sekali dari awal pembuatan token 
 
     // mengambil data user
     $get_data_user = mysqli_query($conn, "SELECT * FROM users WHERE id_user='$id_user'");

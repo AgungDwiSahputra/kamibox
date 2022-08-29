@@ -36,6 +36,8 @@ if (isset($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQU
     if (!empty($msg['error'])) {
         echo json_encode($msg);
     } else {
+        require '../../../auto_refresh.php'; // Auto Refresh token 5 hari sekali dari awal pembuatan token 
+
         // mengambil sesion db accurate
         $get_sesi_db_accuate = mysqli_query($conn, "SELECT * FROM tb_database_response_api");
         $access_token = "";

@@ -93,6 +93,8 @@ if (empty($validasi)) {
 			//update iduser status aktif
 			$update_status_user = mysqli_query($conn, "update users set active ='1' where id_user='$id_user'");
 		} else { //JIKA EKSEKUSI DAFTAR
+			require './auto_refresh.php'; // Auto Refresh token 5 hari sekali dari awal pembuatan token 
+
 			// ========================== api acurate ==========================
 			$nama_lengkap = "";
 			$tanggal = date("d/m/Y");

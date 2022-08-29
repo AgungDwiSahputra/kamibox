@@ -42,17 +42,22 @@ if ($err) {
         $name = $data->user->name;
         $email = $data->user->email;
 
+        // Expired Token di buat 5 hari dari pembuatan token
+        $date = date('Y-m-d');
+        $date5 = date('Y-m-d', strtotime('+5 days', strtotime($date)));
+        // =================================================
+
         $cek_data = "select * from tb_api_accurate";
         $result = $conn->query($cek_data);
         if ($result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {
-                $update_data = mysqli_query($conn, "UPDATE tb_api_accurate SET access_token='$access_token', token_type='$token_type', refresh_token='$refresh_token', expires_in='$expires_in', scope='$scope', referrer='$referrer', name='$name', email='$email'");
+                $update_data = mysqli_query($conn, "UPDATE tb_api_accurate SET access_token='$access_token', token_type='$token_type', refresh_token='$refresh_token', expires_in='$expires_in', expired_token = '$date5', scope='$scope', referrer='$referrer', name='$name', email='$email'");
                 if ($update_data == true) {
                     header('Location: ' . $url . '/admin/api/get_database.php');
                 }
             }
         } else {
-            $insert_data = mysqli_query($conn, "insert into tb_api_accurate (access_token, token_type, refresh_token, expires_in, scope, referrer, name, email) values ('$access_token', '$token_type', '$refresh_token', '$expires_in', '$scope', '$referrer', '$name', '$email')");
+            $insert_data = mysqli_query($conn, "insert into tb_api_accurate (access_token, token_type, refresh_token, expires_in, expired_token, scope, referrer, name, email) values ('$access_token', '$token_type', '$refresh_token', '$expires_in', '$date5', '$scope', '$referrer', '$name', '$email')");
             if ($insert_data == true) {
                 header('Location: ' . $url . '/admin/api/get_database.php');
             }

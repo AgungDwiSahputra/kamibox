@@ -95,8 +95,8 @@ if ($level !== '2') {
     <!-- ====================================== -->
     <!-- ISI CONTENT -->
     <!-- ====================================== -->
-    <div style="margin-top: 30px;">
-        <a href="riwayat_transaksi.php" style="width: 70px;margin-left: 150px; cursor:pointer;">
+    <div class="container mb-1">
+        <a href="riwayat_transaksi.php" style="width: 70px; cursor:pointer;">
             <button style="padding: 2px 15px; line-height: 30px;vertical-align: middle;border-radius: 30px; font-size: 14px; background-color: red; cursor:pointer; ">
                 <img src="../assets/Icon/arrow-point-to-right.png" style="width: 13px;transform: rotate(180deg);line-height: 20px;vertical-align: middle;">
                 Back
@@ -110,115 +110,125 @@ if ($level !== '2') {
         }
         ?>
     </div>
-    <div class="container invoice mt-2">
-        <?php
-        if (isset($_GET['no_invoice'])) {
-            $no_invoice = $_GET['no_invoice'];
-            $query_TrxPembelian = mysqli_query($conn, "SELECT users.nama_lengkap, transaksi_pembelian.* FROM transaksi_pembelian INNER JOIN users ON users.id_user = transaksi_pembelian.pemasok_id WHERE no_invoice = '$no_invoice'");
-            $query_TrxBarang = mysqli_query($conn, "SELECT * FROM transaksi_barang INNER JOIN barang ON barang.id_barang = transaksi_barang.id_barang WHERE transaksi_barang.no_invoice = '$no_invoice'");
-            $data_TrxPembelian = mysqli_fetch_object($query_TrxPembelian);
-        ?>
-            <div class="box" id="invoice">
-                <div class="row header">
-                    <h1>Invoice #<span id="no_invoice"><?= $data_TrxPembelian->no_invoice ?></span></h1>
-                    <table align="left" style="font-weight:bold; margin-bottom:30px;">
-                        <tr>
-                            <td width="100px">Nama</td>
-                            <td width="500px">: <?= $data_TrxPembelian->nama_lengkap ?></td>
-                        </tr>
-                        <tr>
-                            <td>Tanggal</td>
-                            <td>: <?= $data_TrxPembelian->tgl_transaksi ?></td>
-                        </tr>
-                        <tr>
-                            <td>Alamat</td>
-                            <td>: <?= $data_TrxPembelian->alamat ?></td>
-                        </tr>
-                        <tr>
-                            <td>Link Maps</td>
-                            <td>: <a href="<?= $data_TrxPembelian->link_maps ?>" target="_BLANK" style="color: #08AC4D;"><?= $data_TrxPembelian->link_maps ?></a></td>
-                        </tr>
-                    </table>
-                </div>
-                <div class="row body">
-                    <table class="list-produk" border="1">
-                        <thead>
-                            <tr>
-                                <th>Produk</th>
-                                <th>Berat (kg)</th>
-                                <th>Harga /Item</th>
-                                <th>Total Harga</th>
-                            </tr>
-                        </thead>
-                        <tbody style="text-align: center;">
-                            <?php
-                            while ($data_TrxBarang = mysqli_fetch_object($query_TrxBarang)) {
+    <div class="container" id="invoice">
+        <div class="invoice box-shadow p-3 m-2">
+            <div class="row">
+                <div class="col">
+                    <?php
+                    if (isset($_GET['no_invoice'])) {
+                        $no_invoice = $_GET['no_invoice'];
+                        $query_TrxPembelian = mysqli_query($conn, "SELECT users.nama_lengkap, transaksi_pembelian.* FROM transaksi_pembelian INNER JOIN users ON users.id_user = transaksi_pembelian.pemasok_id WHERE no_invoice = '$no_invoice'");
+                        $query_TrxBarang = mysqli_query($conn, "SELECT * FROM transaksi_barang INNER JOIN barang ON barang.id_barang = transaksi_barang.id_barang WHERE transaksi_barang.no_invoice = '$no_invoice'");
+                        $data_TrxPembelian = mysqli_fetch_object($query_TrxPembelian);
+                    ?>
+                        <div class="box" id="cetak">
+                            <div class="row header">
+                                <div class="col">
+                                    <h1>Invoice #<span id="no_invoice"><?= $data_TrxPembelian->no_invoice ?></span></h1>
+                                    <table align="left" style="font-weight:bold;">
+                                        <tr>
+                                            <td width="100px">Nama</td>
+                                            <td width="500px">: <?= $data_TrxPembelian->nama_lengkap ?></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Tanggal</td>
+                                            <td>: <?= $data_TrxPembelian->tgl_transaksi ?></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Alamat</td>
+                                            <td>: <?= $data_TrxPembelian->alamat ?></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Link Maps</td>
+                                            <td>: <a href="<?= $data_TrxPembelian->link_maps ?>" target="_BLANK" style="color: #08AC4D;"><?= $data_TrxPembelian->link_maps ?></a></td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="row body">
+                                <div class="col">
+                                    <table class="list-produk" border="1">
+                                        <thead>
+                                            <tr>
+                                                <th>Produk</th>
+                                                <th>Berat (kg)</th>
+                                                <th>Harga /Item</th>
+                                                <th>Total Harga</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody style="text-align: center;">
+                                            <?php
+                                            while ($data_TrxBarang = mysqli_fetch_object($query_TrxBarang)) {
 
-                            ?>
-                                <tr>
-                                    <td><b><?= $data_TrxBarang->nama_barang ?></b></td>
+                                            ?>
+                                                <tr>
+                                                    <td><b><?= $data_TrxBarang->nama_barang ?></b></td>
 
-                                    <td>
-                                        <?php
-                                        $List_TrxBerat = explode(',', $data_TrxBarang->berat);
-                                        $total_harga = 0; // Total Berat per Item Daur Ulang
-                                        $total_berat = 0; // Total berat per item
-                                        // var_dump($List_TrxBerat[0]);
-                                        for ($i = 0; $i < count($List_TrxBerat); $i++) {
-                                            if ($List_TrxBerat[$i] != null) {
-                                        ?>
-                                                <!-- CETAK PENIMBANGAN -->
-                                                Penimbangan <?= $i + 1 ?>&emsp;: <?= $List_TrxBerat[$i] ?>kg<br>
-                                                <!-- ============================ -->
-                                        <?php
-                                                $total_harga += $data_TrxBarang->harga_barang * $List_TrxBerat[$i];
-                                                $total_berat += $List_TrxBerat[$i];
-                                            } else {
-                                                echo '<li><span class="daur_ulang">Belum ada hasil penimbangan</span></li>';
+                                                    <td>
+                                                        <?php
+                                                        $List_TrxBerat = explode(',', $data_TrxBarang->berat);
+                                                        $total_harga = 0; // Total Berat per Item Daur Ulang
+                                                        $total_berat = 0; // Total berat per item
+                                                        // var_dump($List_TrxBerat[0]);
+                                                        for ($i = 0; $i < count($List_TrxBerat); $i++) {
+                                                            if ($List_TrxBerat[$i] != null) {
+                                                        ?>
+                                                                <!-- CETAK PENIMBANGAN -->
+                                                                Penimbangan <?= $i + 1 ?>&emsp;: <?= $List_TrxBerat[$i] ?>kg<br>
+                                                                <!-- ============================ -->
+                                                        <?php
+                                                                $total_harga += $data_TrxBarang->harga_barang * $List_TrxBerat[$i];
+                                                                $total_berat += $List_TrxBerat[$i];
+                                                            } else {
+                                                                echo '<li><span class="daur_ulang">Belum ada hasil penimbangan</span></li>';
+                                                            }
+                                                        }
+                                                        echo "<b>TOTAL BERAT : " . $total_berat . "kg</b>";
+                                                        ?>
+                                                    </td>
+
+                                                    <td>Rp. <?= number_format($data_TrxBarang->harga_barang, 0, ',', '.') ?></td>
+                                                    <td>Rp. <?= number_format($total_harga, 0, ',', '.') ?></td>
+                                                </tr>
+                                            <?php
                                             }
-                                        }
-                                        echo "<b>TOTAL BERAT : " . $total_berat . "kg</b>";
-                                        ?>
-                                    </td>
+                                            ?>
+                                        </tbody>
+                                    </table>
+                                    <br>
+                                    <table class="rekam mt-4">
+                                        <tr>
+                                            <td>Subtotal</td>
+                                            <td width="130px">Rp. <?= number_format($data_TrxPembelian->harga_item, 0, ',', '.') ?></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Pajak</td>
+                                            <td>Rp. <?= number_format($data_TrxPembelian->biaya_jemput, 0, ',', '.') ?></td>
+                                        </tr>
+                                        <tr>
 
-                                    <td>Rp. <?= number_format($data_TrxBarang->harga_barang, 0, ',', '.') ?></td>
-                                    <td>Rp. <?= number_format($total_harga, 0, ',', '.') ?></td>
-                                </tr>
-                            <?php
-                            }
-                            ?>
-                        </tbody>
-                    </table>
-                    <br>
-                    <table class="rekam mt-4">
-                        <tr>
-                            <td>Subtotal</td>
-                            <td width="130px">Rp. <?= number_format($data_TrxPembelian->harga_item, 0, ',', '.') ?></td>
-                        </tr>
-                        <tr>
-                            <td>Pajak</td>
-                            <td>Rp. <?= number_format($data_TrxPembelian->biaya_jemput, 0, ',', '.') ?></td>
-                        </tr>
-                        <tr>
-
-                            <th>
-                                <h3>TOTAL</h3>
-                            </th>
-                            <th>
-                                <h3>Rp. <?= number_format($data_TrxPembelian->total_harga, 0, ',', '.') ?></h3>
-                            </th>
-                        </tr>
-                    </table>
+                                            <th>
+                                                <h3>TOTAL</h3>
+                                            </th>
+                                            <th>
+                                                <h3>Rp. <?= number_format($data_TrxPembelian->total_harga, 0, ',', '.') ?></h3>
+                                            </th>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- <div id="preview" style="width:100px;"></div> -->
+                    <?php
+                    } else {
+                        echo '<span style="text-align:center;display:block;color:red;">No Invoice TIdak Tersedia</span>';
+                    }
+                    ?>
+                    <!-- Button -->
+                    <!-- <button type="submit" class="btn default mt-4 ml-5s" id="preview-btn">Preview</button> -->
                 </div>
             </div>
-        <?php
-        } else {
-            echo '<span style="text-align:center;display:block;color:red;">No Invoice TIdak Tersedia</span>';
-        }
-        ?>
-        <!-- Button -->
-        <!-- <button type="submit" class="btn default mt-4 ml-5s" id="preview-btn">Preview</button> -->
-        <!-- <div id="preview"></div> -->
+        </div>
     </div>
 
 
@@ -305,8 +315,15 @@ if ($level !== '2') {
 
     <!-- HTML to GAMBAR -->
     <script>
+        // html2canvas(document.getElementById("invoice")).then(function(canvas) {
+        //     var anchorTag = document.createElement("a");
+        //     var no_invoice = document.getElementById("no_invoice").innerText;
+        //     document.body.appendChild(anchorTag);
+        //     document.getElementById("preview").appendChild(canvas);
+        //     // document.getElementById("invoice").style.visibility = 'hidden';
+        // });
         document.getElementById("download").addEventListener("click", function() {
-            html2canvas(document.getElementById("invoice")).then(function(canvas) {
+            html2canvas(document.getElementById("cetak")).then(function(canvas) {
                 var anchorTag = document.createElement("a");
                 var no_invoice = document.getElementById("no_invoice").innerText;
                 document.body.appendChild(anchorTag);

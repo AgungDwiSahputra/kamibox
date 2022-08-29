@@ -253,111 +253,118 @@ if (isset($_GET['action'])) {
     <!-- ====================================== -->
     <div class="container">
         <div class="row header">
-            <h2>Input Data</h2>
-            <h5>
-                <a href="">Beranda</a>
-                <span class="panah">></span>
-                <a href="">Input Data</a>
-            </h5>
+            <div class="col">
+                <h2>Input Data</h2>
+                <h5>
+                    <a href="">Beranda</a>
+                    <span class="panah">></span>
+                    <a href="">Input Data</a>
+                </h5>
+            </div>
         </div>
         <div id="phase-1">
-            <div class="row">
-                <form action="" method="POST" class="input_jadwal">
-                    <select onchange="this.form.submit()" name="akun_customer" id="akun_customer">
-                        <option value="">-- PILIH AKUN PEMASOK --</option>
-                        <?php
-                        while ($data = mysqli_fetch_array($query)) {
-                        ?>
-                            <option <?php if (!empty($data['id_user'])) {
-                                        echo $data['id_user'] == $id ? 'selected' : '';
-                                    } ?> value="<?= $data['id_user'] ?>"><?= "[" . $data['id_user'] . "] " . $data['nama_lengkap'] . " (" . $data['notelp'] . ")" ?></option>
-                        <?php
-                            $no++;
-                        }
-                        ?>
-                    </select>
-                    <input type="text" name="id_accurate" placeholder="ID Accuarte" value="<?php if ($id != "") {
-                                                                                                echo $data_user_id['id_accurate'];
+            <form action="" method="POST" class="input_jadwal">
+                <div class="row">
+                    <div class="col">
+                        <h3>Detail Pemasok</h3>
+                        <select onchange="this.form.submit()" name="akun_customer" id="akun_customer">
+                            <option value="">-- PILIH AKUN PEMASOK --</option>
+                            <?php
+                            while ($data = mysqli_fetch_array($query)) {
+                            ?>
+                                <option <?php if (!empty($data['id_user'])) {
+                                            echo $data['id_user'] == $id ? 'selected' : '';
+                                        } ?> value="<?= $data['id_user'] ?>"><?= "[" . $data['id_user'] . "] " . $data['nama_lengkap'] . " (" . $data['notelp'] . ")" ?></option>
+                            <?php
+                                $no++;
+                            }
+                            ?>
+                        </select>
+                        <input type="text" name="id_accurate" placeholder="ID Accuarte" value="<?php if ($id != "") {
+                                                                                                    echo $data_user_id['id_accurate'];
+                                                                                                } else {
+                                                                                                    echo '';
+                                                                                                } ?>" readonly>
+                        <input type="text" name="id_user" placeholder="ID Pemasok" value="<?php if ($id != "") {
+                                                                                                echo $data_user_id['id_user'];
                                                                                             } else {
                                                                                                 echo '';
                                                                                             } ?>" readonly>
-                    <input type="text" name="id_user" placeholder="ID Pemasok" value="<?php if ($id != "") {
-                                                                                            echo $data_user_id['id_user'];
-                                                                                        } else {
-                                                                                            echo '';
-                                                                                        } ?>" readonly>
-                    <input type="text" name="nama" placeholder="Nama Lengkap" value="<?php if ($id != "") {
-                                                                                            echo $data_user_id['nama_lengkap'];
-                                                                                        } else {
-                                                                                            echo '';
-                                                                                        } ?>" readonly>
-                    <input type="text" name="nomor_p" placeholder="Nomor Ponsel" value="<?php if ($id != "") {
-                                                                                            echo $data_user_id['notelp'];
-                                                                                        } else {
-                                                                                            echo '';
-                                                                                        } ?>" readonly>
-                    <span class="pesan">Note : Nomor telepon harus sesuai dengan nomor yang terdaftar di akun pemasok</span>
-                    <input type="email" name="email" placeholder="Email" value="<?php if ($id != "") {
-                                                                                    echo $data_user_id['email'];
-                                                                                } else {
-                                                                                    echo '';
-                                                                                } ?>" readonly>
-                    <span class="pesan">Note : Email harus sesuai dengan yang terdaftar di akun pemasok</span>
-                    <input type="text" name="nomor_rekening" placeholder="Masukan Nomor Rekening" value="<?php if ($id != "") {
-                                                                                                                if ($data_user_id['nomor_rekening']) {
-                                                                                                                    echo $data_user_id['nomor_rekening'];
-                                                                                                                }
-                                                                                                            } else {
-                                                                                                                echo '';
-                                                                                                            } ?>" required>
-                    <input type="text" name="nama_jalan" placeholder="Masukan Nama Jalan" value="<?php if ($id != "") {
-                                                                                                        if ($data_user_id['nama_jalan']) {
-                                                                                                            echo $data_user_id['nama_jalan'];
-                                                                                                        }
-                                                                                                    } else {
-                                                                                                        echo '';
-                                                                                                    } ?>" required>
-                    <input type="text" name="kota" placeholder="Masukan Kota" value="<?php if ($id != "") {
-                                                                                            if ($data_user_id['kota']) {
-                                                                                                echo $data_user_id['kota'];
-                                                                                            }
-                                                                                        } else {
-                                                                                            echo '';
-                                                                                        } ?>" required>
-                    <input type="text" name="provinsi" placeholder="Masukan Provinsi" value="<?php if ($id != "") {
-                                                                                                    if ($data_user_id['provinsi']) {
-                                                                                                        echo $data_user_id['provinsi'];
-                                                                                                    }
-                                                                                                } else {
-                                                                                                    echo '';
-                                                                                                } ?>" required>
-                    <input type="text" name="negara" placeholder="Masukan Negara" value="<?php if ($id != "") {
-                                                                                                if ($data_user_id['negara']) {
-                                                                                                    echo $data_user_id['negara'];
+                        <input type="text" name="nama" placeholder="Nama Lengkap" value="<?php if ($id != "") {
+                                                                                                echo $data_user_id['nama_lengkap'];
+                                                                                            } else {
+                                                                                                echo '';
+                                                                                            } ?>" readonly>
+                        <input type="text" name="nomor_p" placeholder="Nomor Ponsel" value="<?php if ($id != "") {
+                                                                                                echo $data_user_id['notelp'];
+                                                                                            } else {
+                                                                                                echo '';
+                                                                                            } ?>" readonly>
+                        <span class="pesan">Note : Nomor telepon harus sesuai dengan nomor yang terdaftar di akun pemasok</span>
+                        <input type="email" name="email" placeholder="Email" value="<?php if ($id != "") {
+                                                                                        echo $data_user_id['email'];
+                                                                                    } else {
+                                                                                        echo '';
+                                                                                    } ?>" readonly>
+                        <span class="pesan">Note : Email harus sesuai dengan yang terdaftar di akun pemasok</span>
+                        <input type="text" name="nomor_rekening" placeholder="Masukan Nomor Rekening" value="<?php if ($id != "") {
+                                                                                                                    if ($data_user_id['nomor_rekening']) {
+                                                                                                                        echo $data_user_id['nomor_rekening'];
+                                                                                                                    }
+                                                                                                                } else {
+                                                                                                                    echo '';
+                                                                                                                } ?>" required>
+                    </div>
+                    <div class="col">
+                        <h3>Detail Alamat</h3>
+                        <input type="text" name="nama_jalan" placeholder="Masukan Nama Jalan" value="<?php if ($id != "") {
+                                                                                                            if ($data_user_id['nama_jalan']) {
+                                                                                                                echo $data_user_id['nama_jalan'];
+                                                                                                            }
+                                                                                                        } else {
+                                                                                                            echo '';
+                                                                                                        } ?>" required>
+                        <input type="text" name="kota" placeholder="Masukan Kota" value="<?php if ($id != "") {
+                                                                                                if ($data_user_id['kota']) {
+                                                                                                    echo $data_user_id['kota'];
                                                                                                 }
                                                                                             } else {
                                                                                                 echo '';
                                                                                             } ?>" required>
-                    <input type="number" name="kd_pos" placeholder="Masukan Kode Pos" value="<?php if ($id != "") {
-                                                                                                    if ($data_user_id['kd_pos']) {
-                                                                                                        echo $data_user_id['kd_pos'];
-                                                                                                    }
-                                                                                                } else {
-                                                                                                    echo '';
-                                                                                                } ?>" required>
-                    <input type="text" name="link_maps" placeholder="Copy Link Google Maps" value="<?php if ($id != "") {
-                                                                                                        if ($data_user_id['link_maps']) {
-                                                                                                            echo $data_user_id['link_maps'];
+                        <input type="text" name="provinsi" placeholder="Masukan Provinsi" value="<?php if ($id != "") {
+                                                                                                        if ($data_user_id['provinsi']) {
+                                                                                                            echo $data_user_id['provinsi'];
                                                                                                         }
                                                                                                     } else {
                                                                                                         echo '';
                                                                                                     } ?>" required>
+                        <input type="text" name="negara" placeholder="Masukan Negara" value="<?php if ($id != "") {
+                                                                                                    if ($data_user_id['negara']) {
+                                                                                                        echo $data_user_id['negara'];
+                                                                                                    }
+                                                                                                } else {
+                                                                                                    echo '';
+                                                                                                } ?>" required>
+                        <input type="number" name="kd_pos" placeholder="Masukan Kode Pos" value="<?php if ($id != "") {
+                                                                                                        if ($data_user_id['kd_pos']) {
+                                                                                                            echo $data_user_id['kd_pos'];
+                                                                                                        }
+                                                                                                    } else {
+                                                                                                        echo '';
+                                                                                                    } ?>" required>
+                        <input type="text" name="link_maps" placeholder="Copy Link Google Maps" value="<?php if ($id != "") {
+                                                                                                            if ($data_user_id['link_maps']) {
+                                                                                                                echo $data_user_id['link_maps'];
+                                                                                                            }
+                                                                                                        } else {
+                                                                                                            echo '';
+                                                                                                        } ?>" required>
 
-
+                    </div>
                     <!-- Button -->
-                    <button type="submit" class="btn" name="next" value="next">Next</button>
-                </form>
-            </div>
+                </div>
+                <button type="submit" class="btn default mt-3" name="next" value="next">Next</button>
+            </form>
         </div>
     </div>
     <script>

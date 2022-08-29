@@ -35,19 +35,23 @@
     ?>
             <a class="list-hover" href="invoice.php?no_invoice=<?= $data_transaksi['no_invoice'] ?>">
                 <li>
-                    <div class="row2">
+                    <div class="row">
                         <div class="col">
                             <span class="tanggal"><?= $data_transaksi['tgl_transaksi'] ?></span>
+                        </div>
+                        <div class="col" style="text-align: right;">
                             <span class="nomor">#<?= $data_transaksi['no_invoice'] ?></span>
                         </div>
                     </div>
-                    <div class="row2">
+                    <div class="row">
                         <div class="col">
                             <span class="keterangan"><b><?= "(" . $data_user['id_user'] . ")" . $data_user['nama_lengkap'] ?></b></span>
+                        </div>
+                        <div class="col" style="text-align: right;">
                             <span class="status <?= $color_status ?>"><?= $status ?></span>
                         </div>
                     </div>
-                    <div class="row2">
+                    <div class="row">
                         <div class="col">
                             <span class="alamat"><b>Alamat : </b><?= $data_transaksi['alamat'] ?></span>
                         </div>

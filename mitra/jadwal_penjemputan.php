@@ -100,15 +100,17 @@ $Jml_JadwalKurir = mysqli_num_rows($query_JadwalKurir);
     <!-- ====================================== -->
     <div class="container">
         <div class="row header">
-            <h2>Jadwal Penjemputan Kurir</h2>
-            <h5>
-                <a href="">Beranda</a>
-                <span class="panah">></span>
-                <a href="">Jadwal Penjemputan</a>
-            </h5>
+            <div class="col">
+                <h2>Jadwal Penjemputan Kurir</h2>
+                <h5>
+                    <a href="">Beranda</a>
+                    <span class="panah">></span>
+                    <a href="">Jadwal Penjemputan</a>
+                </h5>
+            </div>
         </div>
         <div class="row">
-            <div class="kotak">
+            <div class="kotak box-shadow p-3 m-2">
                 <?php
                 if ($Jml_JadwalKurir != 0) {
                     while ($data = mysqli_fetch_array($query_JadwalKurir)) {
@@ -150,34 +152,21 @@ $Jml_JadwalKurir = mysqli_num_rows($query_JadwalKurir);
                         $month2 = bulanIndo($month);
                         $datetime = $date3 . ", " . $tgl . " " . $month2 . " " . $year;
                 ?>
-                        <div class="row2">
-                            <div class="row3">
-                                <div class="col">
-                                    <img src="../assets/Icon/trash.png" alt="Trash">
-                                </div>
-                                <div class="col pt-1 pb-4 pr-3">
-                                    <span class="tanggal"><?= $datetime ?></span>
-                                    <span class="keterangan"><b>
-                                            <?php
-                                            echo 'No. Invoice : ' . ($no_invoice != null ? $no_invoice : '-');
-                                            ?></b>
-                                    </span>
-                                    <span class="keterangan"><b>Mitra : </b><?= $Data_JadwalKurir_Mitra['nama_lengkap'] ?> | (<?= $Data_JadwalKurir_Mitra['notelp'] ?>)</span>
-                                    <span class="alamat"><b>Tujuan : </b><br>
-                                        <?= "Nama : " . $Data_JadwalKurir_Pemasok['nama_lengkap'] . "<br>No.Telepon : " . $Data_JadwalKurir_Pemasok['notelp'] . "<br>Alamat : " . $Data_JadwalKurir_Pemasok['alamat'] ?>
-                                    </span>
-                                </div>
+                        <div class="row">
+                            <img src="../assets/Icon/trash.png" alt="Trash">
+                            <div class="col py-2">
+                                <span class="tanggal"><?= $datetime ?></span><br>
+                                <span class="keterangan"><b>
+                                        <?php
+                                        echo 'No. Invoice : ' . ($no_invoice != null ? $no_invoice : '-');
+                                        ?></b>
+                                </span><br>
+                                <span class="keterangan"><b>Mitra : </b><?= $Data_JadwalKurir_Mitra['nama_lengkap'] ?> | (<?= $Data_JadwalKurir_Mitra['notelp'] ?>)</span><br>
+                                <span class="alamat"><b>Tujuan : </b><br>
+                                    <?= "Nama : " . $Data_JadwalKurir_Pemasok['nama_lengkap'] . "<br>No.Telepon : " . $Data_JadwalKurir_Pemasok['notelp'] . "<br>Alamat : " . $Data_JadwalKurir_Pemasok['alamat'] ?>
+                                </span>
                             </div>
-                            <div class="row3 tombol pb-1">
-                                <!-- <div class="col ml-4s">
-                                    <a href="#"><button class="btn">Lokasi</button></a>
-                                </div>
-                                <div class="col">
-                                    <a href="#"><button class="btn">Kontak</button></a>
-                                </div>
-                                <div class="col mr-4s">
-                                    <a href="#"><button class="btn">Input Data</button></a>
-                                </div> -->
+                            <div class="row tombol pb-1">
                                 <div class="col">
                                     <a href="<?= $Data_JadwalKurir_Pemasok['link_maps'] ?>" target="_BLANK"><button class="btn default">Lokasi</button></a>
                                 </div>

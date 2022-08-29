@@ -13,9 +13,9 @@ $invoice_session = $_SESSION['no_invoice'];
 
 /* Jika Belum Menyelesaikan step awal */
 // Kondisi jika setelah memilih barang daur ulang tidak bisa kembali ketampilan ini dari URL kecuali dari button tambah pada tampilan menambahkan berat
-// if (!isset($_SESSION['input_barang'])) {
-//     header("Location: input_data_1.php");
-// }
+if (!isset($_SESSION['input_barang'])) {
+    header("Location: input_data_1.php");
+}
 
 /* Mengambil TRX BARANG untuk mengambil id barang yang sedang di input */
 $query_TrxBarang = mysqli_query($conn, "SELECT * FROM transaksi_barang INNER JOIN barang ON barang.id_barang = transaksi_barang.id_barang WHERE no_invoice = '$invoice_session'");
@@ -251,117 +251,125 @@ if (isset($_GET['hapus'])) {
     <!-- ====================================== -->
     <div class="container">
         <div class="row header">
-            <h2>Input Data</h2>
-            <h5>
-                <a href="">Beranda</a>
-                <span class="panah">></span>
-                <a href="">Input Data</a>
-            </h5>
+            <div class="col">
+                <h2>Input Data</h2>
+                <h5>
+                    <a href="">Beranda</a>
+                    <span class="panah">></span>
+                    <a href="">Input Data</a>
+                </h5>
+            </div>
         </div>
 
         <!-- PHASE 3 -->
         <div id="phase-3">
             <div class="row">
-                <h5>Jenis Daur Ulang</h5>
-                <ul>
-                    <?php
-                    // ---------------------------------------------------------------------------------
-                    $total_beratAll = 0; //Total Berat untuk di hitung total semua item daur ulang
-                    $total_harga = 0; //Total Harga semua Item Daur Ulang
-                    $biaya_penjemputan = 10000; //Harga per 1kg
-                    $total_penjemputan = 0; //Total Penjemputan untuk total smua berat item daur ulang
-                    $total_keseluruhan = 0;
-                    while ($TrxBarang = mysqli_fetch_array($query_TrxBarang)) {
-                        $id_barang = $TrxBarang['id_barang'];
-                        $query_BarangID = mysqli_query($conn, "SELECT * FROM barang WHERE id_barang = '$id_barang'");
-                        $BarangId = mysqli_fetch_array($query_BarangID); //Data Barang yang sesuai dengan ID arang pada TRX Barang
-                    ?>
-                        <li class="dropdown">
-                            <a href="?hapus=<?= $TrxBarang['id'] ?>">
-                                <img src="../assets/Icon/delete-button.png" alt="Hapus" id="hapus">
-                            </a>
-                            <div class="list">
-                                <span class="jenis"><?= $BarangId['nama_barang'] ?></span>
-                                <img src="../assets/Icon/arrow-point-to-right.png" alt="panah" id="panah">
-                                <form action="" method="POST" style="display: inline;" id="input_berat_item">
-                                    <input id="id_TrxBarang" type="text" name="id_TrxBarang" value="<?= $TrxBarang['id'] ?>" hidden>
-                                    <input id="berat_TrxBarang" type="text" name="berat_TrxBarang" value="<?= $TrxBarang['berat'] ?>" hidden>
-                                    <input id="berat_barang" name="berat_barang" type="number" class="total" placeholder="100" min="0">kg
-                                    <button type="submit" class="btn_add"><img src="../assets/Icon/add-button.png" alt="Add" id="add"></button>
-                                </form>
-                            </div>
-                            <ul class="isi-dropdown">
-                                <div class="berat_list">
-                                    <?php
-                                    $List_TrxBerat = explode(',', $TrxBarang['berat']);
-                                    $total_berat = 0; // Total Berat per Item Daur Ulang
-                                    // var_dump($List_TrxBerat[0]);
-                                    for ($i = 0; $i < count($List_TrxBerat); $i++) {
-                                        if ($List_TrxBerat[$i] != null) {
-                                    ?>
-                                            <li>
-                                                <span class="daur_ulang">Penimbangan <?= $i + 1 ?>&emsp;: <?= $List_TrxBerat[$i] ?>kg</span>
-                                            </li>
-                                    <?php
-                                            $total_berat += $List_TrxBerat[$i]; //Proses Perhitungan total berat per item
-                                            $total_beratAll += $List_TrxBerat[$i]; //Proses Perhitungan total berat semua item
-                                            $total_harga += $BarangId['harga_barang'] * $List_TrxBerat[$i];
-                                        } else {
-                                            echo '<li><span class="daur_ulang">Belum ada hasil penimbangan</span></li>';
+                <div class="col">
+                    <h5>Jenis Daur Ulang</h5>
+                    <ul>
+                        <?php
+                        // ---------------------------------------------------------------------------------
+                        $total_beratAll = 0; //Total Berat untuk di hitung total semua item daur ulang
+                        $total_harga = 0; //Total Harga semua Item Daur Ulang
+                        $biaya_penjemputan = 10000; //Harga per 1kg
+                        $total_penjemputan = 0; //Total Penjemputan untuk total smua berat item daur ulang
+                        $total_keseluruhan = 0;
+                        while ($TrxBarang = mysqli_fetch_array($query_TrxBarang)) {
+                            $id_barang = $TrxBarang['id_barang'];
+                            $query_BarangID = mysqli_query($conn, "SELECT * FROM barang WHERE id_barang = '$id_barang'");
+                            $BarangId = mysqli_fetch_array($query_BarangID); //Data Barang yang sesuai dengan ID arang pada TRX Barang
+                        ?>
+                            <li class="dropdown">
+                                <a href="?hapus=<?= $TrxBarang['id'] ?>">
+                                    <img src="../assets/Icon/delete-button.png" alt="Hapus" id="hapus">
+                                </a>
+                                <div class="list">
+                                    <span class="jenis"><?= $BarangId['nama_barang'] ?></span>
+                                    <img src="../assets/Icon/arrow-point-to-right.png" alt="panah" id="panah">
+                                    <form action="" method="POST" style="display: inline;" id="input_berat_item">
+                                        <input id="id_TrxBarang" type="text" name="id_TrxBarang" value="<?= $TrxBarang['id'] ?>" hidden>
+                                        <input id="berat_TrxBarang" type="text" name="berat_TrxBarang" value="<?= $TrxBarang['berat'] ?>" hidden>
+                                        <input id="berat_barang" name="berat_barang" type="number" class="total" placeholder="100" min="0">kg
+                                        <button type="submit" class="btn_add"><img src="../assets/Icon/add-button.png" alt="Add" id="add"></button>
+                                    </form>
+                                </div>
+                                <ul class="isi-dropdown">
+                                    <div class="berat_list">
+                                        <?php
+                                        $List_TrxBerat = explode(',', $TrxBarang['berat']);
+                                        $total_berat = 0; // Total Berat per Item Daur Ulang
+                                        // var_dump($List_TrxBerat[0]);
+                                        for ($i = 0; $i < count($List_TrxBerat); $i++) {
+                                            if ($List_TrxBerat[$i] != null) {
+                                        ?>
+                                                <li>
+                                                    <span class="daur_ulang">Penimbangan <?= $i + 1 ?>&emsp;: <?= $List_TrxBerat[$i] ?>kg</span>
+                                                </li>
+                                        <?php
+                                                $total_berat += $List_TrxBerat[$i]; //Proses Perhitungan total berat per item
+                                                $total_beratAll += $List_TrxBerat[$i]; //Proses Perhitungan total berat semua item
+                                                $total_harga += $BarangId['harga_barang'] * $List_TrxBerat[$i];
+                                            } else {
+                                                echo '<li><span class="daur_ulang">Belum ada hasil penimbangan</span></li>';
+                                            }
                                         }
-                                    }
-                                    $total_penjemputan = $biaya_penjemputan * $total_beratAll;
-                                    $total_keseluruhan = $total_harga + $total_penjemputan;
-                                    ?>
-                                </div>
-                                <div class="berat_total">
-                                    <li class="daur_ulang_total">
-                                        <span>Total Berat&emsp;: <?= $total_berat ?>kg</span>
-                                    </li>
-                                </div>
-                            </ul>
-                        </li>
-                    <?php
-                    }
-                    ?>
-                </ul>
-                <!-- Button -->
-                <form action="" method="POST">
-                    <button type="submit" class="btn default" name="tambah_item" value="tambah_item">
-                        Tambah
-                    </button>
-                </form>
+                                        $total_penjemputan = $biaya_penjemputan * $total_beratAll;
+                                        $total_keseluruhan = $total_harga + $total_penjemputan;
+                                        ?>
+                                    </div>
+                                    <div class="berat_total">
+                                        <li class="daur_ulang_total">
+                                            <span>Total Berat&emsp;: <?= $total_berat ?>kg</span>
+                                        </li>
+                                    </div>
+                                </ul>
+                            </li>
+                        <?php
+                        }
+                        ?>
+                    </ul>
+                    <!-- Button -->
+                    <form action="" method="POST">
+                        <button type="submit" class="btn default float-left" name="tambah_item" value="tambah_item">
+                            Tambah
+                        </button>
+                    </form>
+                </div>
             </div>
             <div class="row">
-                <h5>Perkiraan Pendapatan</h5>
-                <div class="kotak">
-                    <ul class="atas">
-                        <li>
-                            <span class="title">Total Harga</span>
-                            <span class="keterangan"><?= number_format($total_harga, 0, ',', '.') ?></span>
-                        </li>
-                        <li>
-                            <span class="title">Total Berat</span>
-                            <span class="keterangan"><?= $total_beratAll ?>kg</span>
-                        </li>
-                        <li>
-                            <span class="title">Biaya Penjemputan</span>
-                            <span class="keterangan"><?= number_format($total_penjemputan, 0, ',', '.') ?></span>
-                        </li>
-                    </ul>
-                    <h4 class="bawah">
-                        <span class="title">Estimasi Pendapatan</span>
-                        <span class="keterangan"><?= number_format($total_keseluruhan, 0, ',', '.') ?></span>
-                    </h4>
+                <div class="col">
+                    <h5>Perkiraan Pendapatan</h5>
+                    <div class="row">
+                        <div class="col box-shadow p-3 mr-2">
+                            <ul class="atas">
+                                <li>
+                                    <span class="title">Total Harga</span>
+                                    <span class="keterangan"><?= number_format($total_harga, 0, ',', '.') ?></span>
+                                </li>
+                                <li>
+                                    <span class="title">Total Berat</span>
+                                    <span class="keterangan"><?= $total_beratAll ?>kg</span>
+                                </li>
+                                <li>
+                                    <span class="title">Biaya Penjemputan</span>
+                                    <span class="keterangan"><?= number_format($total_penjemputan, 0, ',', '.') ?></span>
+                                </li>
+                            </ul>
+                            <h4 class="bawah">
+                                <span class="title">Estimasi Pendapatan</span>
+                                <span class="keterangan"><?= number_format($total_keseluruhan, 0, ',', '.') ?></span>
+                            </h4>
+                        </div>
+                    </div>
+                    <!-- Button -->
+                    <form action="" method="POST">
+                        <input type="text" name="harga_item" value="<?= $total_harga ?>" hidden>
+                        <input type="text" name="biaya_penjemputan" value="<?= $total_penjemputan ?>" hidden>
+                        <input type="text" name="total_harga" value="<?= $total_keseluruhan ?>" hidden>
+                        <input type="text" name="total_berat" value="<?= $total_beratAll ?>" hidden>
+                        <button type="submit" class="btn default mt-4 float-left" name="input_data">Input Data</button>
+                    </form>
                 </div>
-                <!-- Button -->
-                <form action="" method="POST">
-                    <input type="text" name="harga_item" value="<?= $total_harga ?>" hidden>
-                    <input type="text" name="biaya_penjemputan" value="<?= $total_penjemputan ?>" hidden>
-                    <input type="text" name="total_harga" value="<?= $total_keseluruhan ?>" hidden>
-                    <input type="text" name="total_berat" value="<?= $total_beratAll ?>" hidden>
-                    <button type="submit" class="btn default mt-4" name="input_data">Input Data</button>
-                </form>
             </div>
         </div>
     </div>

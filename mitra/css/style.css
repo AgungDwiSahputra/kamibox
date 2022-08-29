@@ -21,6 +21,7 @@ a{
 }
 
 .row{
+    width: 100%;
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
@@ -32,7 +33,12 @@ a{
     background-color: white;
     box-shadow: 1px 0 20px rgba(0, 0, 0, 0.2);
 }
-
+.float-left{
+    float: left !important;
+}
+.float-right{
+    float: right !important;
+}
 
 .btn{
     display: block;
@@ -47,7 +53,6 @@ a{
     border: 1px solid rgba(0, 0, 0, 0.2);
     color: white;
     width: 150px !important;
-display: inline;
     margin: 0 auto;
 }
 .btn.default:hover{
@@ -59,7 +64,7 @@ display: inline;
     border: 1px solid rgba(0, 0, 0, 0.2);
     color: white;
     width: 150px !important;
-    margin-left: 120px;
+    margin: 0 auto;
 }
 .btn.selesai:hover{
     background-color: #860000;
@@ -231,6 +236,22 @@ display: inline;
 }
 .mt-4s{
     margin-top: 40% !important;
+}
+/* ------------------------------ */
+.mb-1{
+    margin-bottom: 10px !important;
+}
+.mb-2{
+    margin-bottom: 20px !important;
+}
+.mb-3{
+    margin-bottom: 30px !important;
+}
+.mb-4{
+    margin-bottom: 40px !important;
+}
+.mb-4s{
+    margin-bottom: 40% !important;
 }
 
 /* ------------------------------- */
@@ -639,81 +660,18 @@ display: inline;
 /* =========================================== */
 /* Jadwal Kurir */
 /* =========================================== */
-.row .kotak{
+.container .row .kotak{
     width: 90%;
     padding: 10px 20px;
-    background-color: #fff;
-    box-shadow: 2px 2px 30px rgba(0, 0, 0, 0.2);
 }
-.row .kotak img{
+.container .row .kotak img{
     width: 30px;
-    padding: 20px 0 0 20px;
+    height: 30px;
+    padding: 20px 20px;
 }
-.row .kotak .row2{
-    padding: 5px;
-}
-.row .kotak .row3{
-    display: grid;
-    grid-row-gap: 50px;
-    grid-template-columns: 60px auto;
-}
-.row .kotak .row3.tombol{
-    grid-template-columns: 33.3% 33.3% 33.3%;
-}
-.row .kotak .row3 .tanggal,
-.row .kotak .row3 .keterangan,
-.row .kotak .row3 .alamat{
-    display: block;
-}
-.row .kotak .row3 .tanggal,
-.row .kotak .row3 .alamat{
-    color: rgba(0, 0, 0, 0.7);
-}
-.row .kotak .row3.tombol a{
-    text-decoration: none;
-}
-.row .kotak .row2 img.dropdown{
-    display: block;
-    width: 20px;
-    margin: 0 auto;
-    margin-top: -30px !important;
-    transform: rotate(90deg);
-    transition: transform 0.2s;
-    cursor: pointer;
-}
-.row .kotak .row2 .isi-dropdown{
+.container .row .kotak .tombol {
+    width: 100%;
     text-align: center;
-    height: 0;
-    margin: 10px;
-    overflow-y: hidden;
-    transition: height 0.2s;
-}
-.row .kotak .row2 .isi-dropdown.active{
-    padding: 10px 100px 0 100px;
-    margin-top: 20px;
-    height: 50px;
-}
-.row .kotak .row2 img.dropdown.active{
-    transform: rotate(-90deg);
-    margin-top: -10px !important;
-    padding: 0;
-}
-.row .kotak .row2 .isi-dropdown input{
-    width: 80%;
-    height: 30px;
-    padding: 1px 20px;
-    border-radius: 30px;
-    border: 1px solid rgba(0, 0, 0, 0.2);
-    display: inline;
-}
-.row .kotak .row2 .isi-dropdown .btn{
-    width: 100px;
-    height: 30px;
-    border-radius: 30px;
-    background-color: #08AC4D;
-    border: 1px solid rgba(0, 0, 0, 0.2);
-    color: white;
-    display: inline;
 }
 
 
@@ -738,7 +696,7 @@ display: inline;
     vertical-align: middle;
 }
 /* PHASE 1 (Input Data) */
-.row .input_jadwal input, .row .input_jadwal #akun_customer{
+.input_jadwal input, .input_jadwal #akun_customer{
     width: 350px;
     height: 30px;
     border-radius: 30px;
@@ -748,33 +706,21 @@ display: inline;
     font-size: 14px;
     border: 1px solid rgba(0, 0, 0, 0.2);
 }
-.row .input_jadwal #akun_customer{
+.input_jadwal #akun_customer{
     width: 390px;
     padding: 0 15px;
 }
-.row .input_jadwal input[name='nomor_p'],
-.row .input_jadwal input[name='email']{
+.input_jadwal input[name='nomor_p'],
+.input_jadwal input[name='email']{
     margin-bottom: 0;
 }
-.row .input_jadwal .pesan{
+.input_jadwal .pesan{
     font-size: 10px;
     display: block;
     margin-top: 5px;
     margin-bottom: 10px;
     margin-left: 20px;
     color: red;
-}
-.row .input_jadwal button{
-    border-radius: 30px;
-    background-color: #08AC4D;
-    border: 1px solid rgba(0, 0, 0, 0.2);
-    color: white;
-    width: 150px !important;
-    margin-top: 50px;
-    margin-left: 120px;
-}
-.row .input_jadwal button:hover{
-    background-color: #008638;
 }
 
 /* PHASE 2 (Dropdown) */
@@ -958,74 +904,62 @@ display: inline;
 
 /* ================== */
 /*  Kotak Pendapatan  */
-#phase-3 .kotak{
-    width: 400px;
-    padding: 30px 40px;
-    padding-bottom: 3px !important;
-    background-color: #fff;
-    box-shadow: 1px 0 10px rgba(0, 0, 0, 0.2);
+#phase-3 .box-shadow{
     border-radius: 10px;
 }
-#phase-3 .kotak .atas{
+#phase-3 .atas{
     border-bottom: 1px solid rgba(0, 0, 0, 0.2);
 }
-#phase-3 .kotak .atas li{
+#phase-3 .atas li{
     margin: 10px 0;
 }
-#phase-3 .kotak .bawah{
+#phase-3 .bawah{
     margin-top: 50px;
 
 }
-#phase-3 .kotak .keterangan{
+#phase-3 .keterangan{
     float: right;
 }
 
 
 /* INVOICE */
-.container.invoice{
-    background-color: white;
-    width: 80vw;
-    margin-left: 140px;
-    margin-top: 50px;
-    padding: 20px 50px;
+.container#invoice{
+    overflow-x: scroll !important;
+}
+.invoice{
+    width: 1100px;
     border-radius: 20px;
-    font-size: 14px;
-    box-shadow: 1px 0 20px rgba(0, 0, 0, 0.2);
 }
-.container.invoice .box{
+.invoice .box{
+    width: 1000px;
     background-color: white;
     padding: 20px 50px;
 }
-.container.invoice .row{
-    margin-left: 0;
-    margin-top: 0;
-}
-.container.invoice .row.header h2{
+.invoice .row.header h2{
     font-size: 25px;
 }
-.container.invoice .row.header{
+.invoice .row.header{
     text-align: left;
     font-size: 14px;
-    margin-bottom: 100px;
 }
-.container.invoice .row.body{
+.invoice .row.body{
     display: inline;
     margin-top: 30px;
 }
-.container.invoice .row.body table.list-produk{
+.invoice .row.body table.list-produk{
     width: 100%;
     border-spacing: 0;
     margin-top: 100px !important;
 }
-.container.invoice .row.body table.list-produk th{
+.invoice .row.body table.list-produk th{
     background-color: #08AC4D;
     color: #fff;
     padding: 5px;
 }
-.container.invoice .row.body table.list-produk td{
+.invoice .row.body table.list-produk td{
     padding: 5px 30px;
 }
-.container.invoice .row.body table.rekam{
+.invoice .row.body table.rekam{
     margin-left: auto;
     text-align: right;
 }
@@ -1039,7 +973,7 @@ display: inline;
 /* Input Pencarian */
 /* =========================================== */
 .pencarian .input_cari{
-    width: 80%;
+    width: 95%;
     height: 35px;
     border-radius: 30px;
     padding: 0 20px;
@@ -1050,7 +984,7 @@ display: inline;
     width: 20px;
     height: 20px;
     position: absolute;
-    left: 80%;
+    left: 93%;
     margin-left: 30px;
     margin-top: 10px;
 }
@@ -1073,11 +1007,7 @@ display: inline;
 /* Isi COntent Riwayat Transaksi */
 /* ===================================== */
 .container .data_rwtTrx{
-    background-color: #fff;
     border-radius: 20px;
-    box-shadow: 1px 0 20px rgba(0, 0, 0, 0.2);
-    width: 80%;
-    padding: 10px;
 }
 .container .list_riwayat{
     list-style-type: none;
@@ -1088,22 +1018,17 @@ display: inline;
     padding: 10px;
     margin: 10px;
 }
-.container .list_riwayat li .col{
-    display: grid;
-    grid-column-gap: 100px;
-    grid-template-columns: 70% auto;
-}
-.container .list_riwayat .row2 .nomor,
-.container .list_riwayat .row2 .harga,
-.container .list_riwayat .row2 .status{
+.container .list_riwayat .nomor,
+.container .list_riwayat .harga,
+.container .list_riwayat .status{
     margin-left: auto;
 }
-.container .list_riwayat .row2 .nomor{
+.container .list_riwayat .nomor{
     font-size: 12px;
     color: rgba(0, 0, 0, 0.7);
 }
-.container .list_riwayat .row2 .tanggal,
-.container .list_riwayat .row2 .alamat{
+.container .list_riwayat .tanggal,
+.container .list_riwayat .alamat{
     color: rgba(0, 0, 0, 0.7);
 }
 
@@ -1150,7 +1075,7 @@ TAMPILAN MOBILE
     .container{
         padding-top: 40px;
         padding-left: 20px;
-        margin-bottom: 80px;
+        margin-bottom: 100px;
     }
 
 /* Isi Content */
@@ -1220,6 +1145,20 @@ TAMPILAN MOBILE
         left: 90%;
         margin-left: 15px;
     }
+
+
+/* FILE JADWAL PENJEMPUTAN
+** Responsive by Agung Dwi Sahputra
+*/
+    .container .row .kotak .tombol{
+        flex-direction: column;
+    }
+    .container .row .kotak .tombol .col{
+        margin: 5px 0;
+    }
+    .container .row .kotak img{
+        display: none;
+    }
 }
 @media (max-width: 500px) {
     *{
@@ -1251,5 +1190,27 @@ TAMPILAN MOBILE
     .navigation ul li .icon img.hijau{
         width: 25px;
         margin: 15px 18px;
+    }
+
+/* FILE PROFILE
+** Responsive by Agung Dwi Sahputra
+*/    
+    .container .row.body li{
+        height: 50px;
+    }
+}
+
+@media (max-width: 450px) {
+/* Navigation Kiri */
+    .navigation ul{
+        left: 10% !important;
+        height: 100% !important;
+    }
+
+/* FILE DATA RIWAYAT TRANSAKSI
+** Responsive by Agung Dwi Sahputra
+*/
+    .container .list_riwayat .row{
+        flex-direction: column-reverse;
     }
 }

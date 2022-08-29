@@ -96,20 +96,26 @@ if ($level !== '2') {
     <!-- ====================================== -->
     <div class="container">
         <div class="row header">
-            <h2>Riwayat Transaksi</h2>
-            <h5>
-                <a href="">Beranda</a>
-                <span class="panah">></span>
-                <a href="">Riwayat Transaksi</a>
-            </h5>
+            <div class="col">
+                <h2>Riwayat Transaksi</h2>
+                <h5>
+                    <a href="">Beranda</a>
+                    <span class="panah">></span>
+                    <a href="">Riwayat Transaksi</a>
+                </h5>
+            </div>
         </div>
         <div class="row pencarian">
-            <form action="" method="post">
-                <img src="../assets/Icon/search.png" alt="Cari">
-                <input type="text" name="cari" id="cari_transaksi" class="input_cari" placeholder="Cari mutasi...">
-            </form>
+            <div class="col">
+                <form action="" method="post">
+                    <img src="../assets/Icon/search.png" alt="Cari">
+                    <input type="text" name="cari" id="cari_transaksi" class="input_cari" placeholder="Cari mutasi...">
+                </form>
+            </div>
         </div>
-        <div class="row data_rwtTrx"></div>
+        <div class="row">
+            <div class="col box-shadow p-3 mr-2 mt-2 mb-2 data_rwtTrx"></div>
+        </div>
     </div>
 
     <!-- ====================================== -->

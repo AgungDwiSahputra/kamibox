@@ -1070,6 +1070,11 @@ a{
 TAMPILAN MOBILE
 ** Created by Agung Dwi Sahputra
 */
+@media (max-width: 1350px) {
+    .container .row .kotak img{
+        display: none;
+    }
+}
 @media (max-width: 900px) {
 /* Umum */
     .container{

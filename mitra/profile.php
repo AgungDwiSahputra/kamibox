@@ -10,6 +10,7 @@ if ($level !== '2') {
 /* EKSEKUSI UPDATE PROFILE */
 if (isset($_POST['update'])) {
     $idProfile = $_POST['id_user'];
+    $idAccurate = $_POST['id_accurate'];
     $namaProfile = $_POST['nama'];
     $emailProfile = $_POST['email'];
     $no_telpProfile = $_POST['no_telp'];
@@ -19,10 +20,51 @@ if (isset($_POST['update'])) {
     $negaraProfile = $_POST['negara'];
     $kd_posProfile = $_POST['kd_pos'];
     $norekProfile = $_POST['norek'];
+    $notes = "Nomor Rekening : " . $norekProfile;
+    $alamat = $nama_jalanProfile . ", " . $kotaProfile . ", " . $provinsiProfile . ", " . $negaraProfile . ", " . $kd_posProfile; //Mengambil dari pecahan inputan alamat di jadikan 1 ke variabel alamat
+    $tanggal = date("d/m/Y");
 
     $query = mysqli_query($conn, "UPDATE users SET nama_lengkap = '$namaProfile', email = '$emailProfile', notelp = '$no_telpProfile', nama_jalan = '$nama_jalanProfile', kota = '$kotaProfile', provinsi = '$provinsiProfile', negara = '$negaraProfile', kd_pos = '$kd_posProfile',  nomor_rekening = '$norekProfile' WHERE id_user = '$idProfile'");
 
     if ($query) {
+        // ========================== api acurate ==========================
+        require '../auto_refresh.php'; // Auto Refresh token 5 hari sekali dari awal pembuatan token 
+
+        // mengambil sesion db accurate
+        $get_sesi_db_accuate = mysqli_query($conn, "SELECT * FROM tb_database_response_api");
+        $access_token = "";
+        $session_db = "";
+        $host = "";
+        while ($row = mysqli_fetch_object($get_sesi_db_accuate)) {
+            $access_token .= $row->access_token;
+            $session_db .= $row->session_db;
+            $host .= $row->host;
+        }
+
+        $curl = curl_init();
+
+        curl_setopt_array($curl, array(
+            CURLOPT_URL => "$host/accurate/api/vendor/save.do",
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_ENCODING => "",
+            CURLOPT_MAXREDIRS => 10,
+            CURLOPT_TIMEOUT => 30,
+            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+            CURLOPT_CUSTOMREQUEST => "POST",
+            CURLOPT_POSTFIELDS => "id=$idAccurate&name=$namaProfile&transDate=$tanggal&email=$email&billCity=$kotaProfile&billCountry=$negaraProfile&billProvince=$provinsiProfile&billStreet=$alamat&billZipCode=$kd_posProfile&mobilePhone=$no_telpProfile&vendorNo=$id_user&notes=$notes",
+            CURLOPT_HTTPHEADER => array(
+                "content-type: application/x-www-form-urlencoded",
+                "Authorization: Bearer $access_token",
+                "X-Session-ID: $session_db"
+            ),
+        ));
+
+        $response = curl_exec($curl);
+        $err = curl_error($curl);
+
+        curl_close($curl);
+        /* ====================================================== */
+
         setcookie('sukses', 'Berhasil Update Data Diri', time() + 3, '/');
         header("Location:profile.php");
     }

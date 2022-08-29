@@ -41,7 +41,7 @@ $curl = curl_init();
 $date = date("d/m/Y");
 
 curl_setopt_array($curl, array(
-  CURLOPT_URL => "$host/accurate/api/item/detail.do?id=151",
+  CURLOPT_URL => "$host/accurate/api/vendor/detail.do?id=751",
   CURLOPT_RETURNTRANSFER => true,
   CURLOPT_ENCODING => "",
   CURLOPT_MAXREDIRS => 10,
@@ -61,7 +61,7 @@ $err = curl_error($curl);
 curl_close($curl);
 $json = json_decode($response, true);
 var_dump($json['d']['id']);
-var_dump($json['d']['name']);
+var_dump($json);
 
 
 // $query3 =  mysqli_query($conn, "SELECT * FROM barang");

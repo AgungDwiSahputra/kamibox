@@ -93,9 +93,10 @@ if (empty($validasi)) {
 			//update iduser status aktif
 			$update_status_user = mysqli_query($conn, "update users set active ='1' where id_user='$id_user'");
 		} else { //JIKA EKSEKUSI DAFTAR
+			// ========================== api acurate ==========================
 			require './auto_refresh.php'; // Auto Refresh token 5 hari sekali dari awal pembuatan token 
 
-			// ========================== api acurate ==========================
+			/* OPTIONAL DATA PEMASOK */
 			$nama_lengkap = "";
 			$tanggal = date("d/m/Y");
 			$email = "";
@@ -107,6 +108,7 @@ if (empty($validasi)) {
 				$alamat .= $row->alamat;
 				$no_hp .= $row->notelp;
 			}
+			/* ============================= */
 
 			// mengambil sesion db accurate
 			$get_sesi_db_accuate = mysqli_query($conn, "SELECT * FROM tb_database_response_api");

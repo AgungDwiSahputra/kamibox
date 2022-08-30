@@ -77,14 +77,19 @@ require '../session_data.php';
     <!-- ====================================== -->
     <div class="container">
         <div class="row header">
-            <h2>Update Harga</h2>
-            <h5>
-                <a href="">Beranda</a>
-                <span class="panah">></span>
-                <a href="">Update Harga</a>
-            </h5>
+            <div class="col">
+                <h2>Update Harga</h2>
+                <h5>
+                    <a href="">Beranda</a>
+                    <span class="panah">></span>
+                    <a href="">Update Harga</a>
+                </h5>
+            </div>
         </div>
-        <div class="row content" id="show-data">
+        <div class="row">
+            <div class="col content" id="show-data">
+
+            </div>
 
         </div>
     </div>

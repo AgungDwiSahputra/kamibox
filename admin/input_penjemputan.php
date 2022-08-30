@@ -120,89 +120,96 @@ if (isset($_POST['simpan'])) {
     <!-- ====================================== -->
     <div class="container">
         <div class="row header">
-            <h2>Input Jadwal Penjemputan</h2>
-            <h5>
-                <a href="">Beranda</a>
-                <span class="panah">></span>
-                <a href="">Jadwal Kurir</a>
-                <span class="panah">></span>
-                <a href="">Input Jadwal Penjemputan</a>
-            </h5>
+            <div class="col">
+                <h2>Input Jadwal Penjemputan</h2>
+                <h5>
+                    <a href="">Beranda</a>
+                    <span class="panah">></span>
+                    <a href="">Jadwal Kurir</a>
+                    <span class="panah">></span>
+                    <a href="">Input Jadwal Penjemputan</a>
+                </h5>
+            </div>
         </div>
         <div id="phase-1">
-            <div class="row">
-                <div class="btn kembali"><a href="jadwal_kurir.php"><img src="../assets/Icon/arrow-point-to-right.png">Back</a></div>
-                <form action="" method="POST" class="input_jadwal">
-                    <span><u><b>Data Pemasok</b></u></span><br>
-                    <select onchange="this.form.submit()" name="pemasok" id="pemasok" style="width: 30%;">
-                        <option value="">-- PILIH AKUN PEMASOK --</option>
-                        <?php
-                        while ($data = mysqli_fetch_array($query_Pemasok)) {
-                        ?>
-                            <option <?php if (!empty($data['id_user'])) {
-                                        echo $data['id_user'] == $id_pemasok ? 'selected' : '';
-                                    } ?> value="<?= $data['id_user'] ?>"><?= "[" . $data['id_user'] . "] " . $data['nama_lengkap'] . " (" . $data['notelp'] . ")" ?></option>
-                        <?php
-                            $no++;
-                        }
-                        ?>
-                    </select>
-                    <input type="hidden" name="id_accurate" placeholder="ID Accuarte" value="<?php if ($id_pemasok != "") {
-                                                                                                    echo $data_user_id['id_accurate'];
-                                                                                                } else {
-                                                                                                    echo '';
-                                                                                                } ?>" required>
-                    <input type="hidden" name="id_user" placeholder="ID Pemasok" value="<?php if ($id_pemasok != "") {
-                                                                                            echo $data_user_id['id_user'];
-                                                                                        } else {
-                                                                                            echo '';
-                                                                                        } ?>" required>
-                    <input type="text" name="nama" placeholder="Nama Lengkap" value="<?php if ($id_pemasok != "") {
-                                                                                            echo $data_user_id['nama_lengkap'];
-                                                                                        } else {
-                                                                                            echo '';
-                                                                                        } ?>" required readonly>
-                    <input type="text" name="nomor_p" placeholder="Nomor Ponsel" value="<?php if ($id_pemasok != "") {
-                                                                                            echo $data_user_id['notelp'];
-                                                                                        } else {
-                                                                                            echo '';
-                                                                                        } ?>" required readonly>
-                    <input type="email" name="email" placeholder="Email" value="<?php if ($id_pemasok != "") {
-                                                                                    echo $data_user_id['email'];
-                                                                                } else {
-                                                                                    echo '';
-                                                                                } ?>" required readonly>
-                    <input type="text" name="alamat" placeholder="Alamat" value="<?php if ($id_pemasok != "") {
-                                                                                        echo $data_user_id['alamat'];
+            <div class="btn kembali"><a href="jadwal_kurir.php"><img src="../assets/Icon/arrow-point-to-right.png">Back</a></div>
+            <form action="" method="POST" class="input_jadwal">
+                <div class="row">
+                    <div class="col">
+                        <span><u><b>Data Pemasok</b></u></span><br>
+                        <select onchange="this.form.submit()" name="pemasok" id="pemasok" style="width: 30%;">
+                            <option value="">-- PILIH AKUN PEMASOK --</option>
+                            <?php
+                            while ($data = mysqli_fetch_array($query_Pemasok)) {
+                            ?>
+                                <option <?php if (!empty($data['id_user'])) {
+                                            echo $data['id_user'] == $id_pemasok ? 'selected' : '';
+                                        } ?> value="<?= $data['id_user'] ?>"><?= "[" . $data['id_user'] . "] " . $data['nama_lengkap'] . " (" . $data['notelp'] . ")" ?></option>
+                            <?php
+                                $no++;
+                            }
+                            ?>
+                        </select>
+                        <input type="hidden" name="id_accurate" placeholder="ID Accuarte" value="<?php if ($id_pemasok != "") {
+                                                                                                        echo $data_user_id['id_accurate'];
+                                                                                                    } else {
+                                                                                                        echo '';
+                                                                                                    } ?>" required>
+                        <input type="hidden" name="id_user" placeholder="ID Pemasok" value="<?php if ($id_pemasok != "") {
+                                                                                                echo $data_user_id['id_user'];
+                                                                                            } else {
+                                                                                                echo '';
+                                                                                            } ?>" required>
+                        <input type="text" name="nama" placeholder="Nama Lengkap" value="<?php if ($id_pemasok != "") {
+                                                                                                echo $data_user_id['nama_lengkap'];
+                                                                                            } else {
+                                                                                                echo '';
+                                                                                            } ?>" required readonly>
+                        <input type="text" name="nomor_p" placeholder="Nomor Ponsel" value="<?php if ($id_pemasok != "") {
+                                                                                                echo $data_user_id['notelp'];
+                                                                                            } else {
+                                                                                                echo '';
+                                                                                            } ?>" required readonly>
+                        <input type="email" name="email" placeholder="Email" value="<?php if ($id_pemasok != "") {
+                                                                                        echo $data_user_id['email'];
                                                                                     } else {
                                                                                         echo '';
                                                                                     } ?>" required readonly>
+                        <input type="text" name="alamat" placeholder="Alamat" value="<?php if ($id_pemasok != "") {
+                                                                                            echo $data_user_id['alamat'];
+                                                                                        } else {
+                                                                                            echo '';
+                                                                                        } ?>" required readonly>
 
-                    <br>
-                    <span><u><b>Waktu Jemput</b></u></span><br>
-                    <input type="date" name="tgl_penjemputan" placeholder="Masukan tanggal penjemputan" required>
-                    <!-- <input type="time" name="time_penjemputan" placeholder="Masukan waktu penjemputan" required> -->
-                    <br>
-                    <span><u><b>Pilih Mitra</b></u></span><br>
-                    <select name="mitra" id="mitra" style="width: 30%;" required>
-                        <option value="">-- PILIH MITRA --</option>
-                        <?php
-                        while ($data = mysqli_fetch_array($query_Mitra)) {
-                        ?>
-                            <option <?php if (!empty($data['id_user'])) {
-                                        echo $data['id_user'] == $id_user ? 'selected' : '';
-                                    } ?> value="<?= $data['id_user'] ?>"><?= "[" . $data['id_user'] . "] " . $data['nama_lengkap'] . " (" . $data['kota'] . ")" ?></option>
-                        <?php
-                            $no++;
-                        }
-                        ?>
-                    </select>
+                        <br>
+                    </div>
+                    <div class="col">
+                        <span><u><b>Waktu Jemput</b></u></span><br>
+                        <input type="date" name="tgl_penjemputan" placeholder="Masukan tanggal penjemputan" required>
+                        <!-- <input type="time" name="time_penjemputan" placeholder="Masukan waktu penjemputan" required> -->
+                        <br>
+                        <span><u><b>Pilih Mitra</b></u></span><br>
+                        <select name="mitra" id="mitra" style="width: 30%;" required>
+                            <option value="">-- PILIH MITRA --</option>
+                            <?php
+                            while ($data = mysqli_fetch_array($query_Mitra)) {
+                            ?>
+                                <option <?php if (!empty($data['id_user'])) {
+                                            echo $data['id_user'] == $id_user ? 'selected' : '';
+                                        } ?> value="<?= $data['id_user'] ?>"><?= "[" . $data['id_user'] . "] " . $data['nama_lengkap'] . " (" . $data['kota'] . ")" ?></option>
+                            <?php
+                                $no++;
+                            }
+                            ?>
+                        </select>
+                    </div>
 
                     <!-- Button -->
-                    <button type="submit" class="btn" name="simpan" value="simpan">Input Jadwal</button>
-                </form>
-            </div>
+                </div>
+                <button type="submit" class="btn default mt-3" name="simpan" value="simpan">Input Jadwal</button>
         </div>
+        </form>
+    </div>
     </div>
 
     <!-- ====================================== -->

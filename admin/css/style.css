@@ -3,6 +3,29 @@
 *{
     font-family: 'Poppins', sans-serif !important;
 }
+
+/* SCROLLBAR */
+	/* width */
+    ::-webkit-scrollbar {
+        width: 10px;
+      }
+      
+      /* Track */
+      ::-webkit-scrollbar-track {
+        background: #f1f1f1;
+      }
+      
+      /* Handle */
+      ::-webkit-scrollbar-thumb {
+        background: #08AC4D;
+      }
+      
+      /* Handle on hover */
+      ::-webkit-scrollbar-thumb:hover {
+        background: #008236;
+      }
+    /* -========================================- */
+
 body{
     width: 100%;
     padding: 0;
@@ -15,6 +38,31 @@ a{
     color: black;
 }
 
+.container{
+    padding-top: 40px;
+    padding-left: 140px;
+}
+
+.row{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+}
+.col{
+    flex: auto;
+}
+.box-shadow{
+    background-color: white;
+    box-shadow: 1px 0 20px rgba(0, 0, 0, 0.2);
+}
+.float-left{
+    float: left !important;
+}
+.float-right{
+    float: right !important;
+}
+
 .btn{
     display: block;
     width: 25%;
@@ -22,29 +70,62 @@ a{
     border: 1px solid rgba(0, 0, 0, 0.2);
     cursor: pointer;
 }
-
 .btn.default{
     border-radius: 30px;
     background-color: #08AC4D;
     border: 1px solid rgba(0, 0, 0, 0.2);
     color: white;
     width: 150px !important;
-    margin-left: 120px;
+    margin: 0 auto;
 }
 .btn.default:hover{
     background-color: #008638;
 }
-
 .btn.selesai{
     border-radius: 30px;
     background-color: #d80303;
     border: 1px solid rgba(0, 0, 0, 0.2);
     color: white;
     width: 150px !important;
-    margin-left: 120px;
+    margin: 0 auto;
 }
 .btn.selesai:hover{
     background-color: #860000;
+}
+/* UKURAN WIDTH PADA BOX */
+.w-10{
+    width: 10% !important;
+}
+.w-20{
+    width: 20% !important;
+}
+.w-40{
+    width: 40% !important;
+}
+.w-60{
+    width: 60% !important;
+}
+.w-80{
+    width: 80% !important;
+}
+.w-100{
+    width: 100% !important;
+}
+/* ============================ */
+.p-1{
+    padding: 10px !important;
+}
+.p-2{
+    padding: 20px !important;
+}
+.p-3{
+    padding: 30px !important;
+}
+.p-4{
+    padding: 40px !important;
+}
+.p-5{
+    padding: 50px !important;
 }
 
 .pt-1{
@@ -98,8 +179,37 @@ a{
 .pr-4{
     padding-right: 40px !important;
 }
+/* -------------------------------- */
+.py-1{
+    padding: 10px 0 !important;
+}
+.py-2{
+    padding: 20px 0 !important;
+}
+.py-3{
+    padding: 30px 0 !important;
+}
+.py-4{
+    padding: 40px 0 !important;
+}
+.py-5{
+    padding: 50px 0 !important;
+}
 
 /* Margin */
+.m-2{
+    margin: 20px !important;
+}
+.m-3{
+    margin: 30px !important;
+}
+.m-4{
+    margin: 40px !important;
+}
+.m-5{
+    margin: 50px !important;
+}
+
 .ml-1{
     margin-left: 10px !important;
 }
@@ -149,6 +259,22 @@ a{
 }
 .mt-4s{
     margin-top: 40% !important;
+}
+/* ------------------------------ */
+.mb-1{
+    margin-bottom: 10px !important;
+}
+.mb-2{
+    margin-bottom: 20px !important;
+}
+.mb-3{
+    margin-bottom: 30px !important;
+}
+.mb-4{
+    margin-bottom: 40px !important;
+}
+.mb-4s{
+    margin-bottom: 40% !important;
 }
 
 /* ------------------------------- */
@@ -477,13 +603,6 @@ a{
 /* ================================= */
 /* CONTENT */
 /* ================================= */
-.container{
-    width: 100%;
-}
-.container .row{
-    margin-top: 40px;
-    margin-left: 140px;
-}
 .container .row.header h2{
     margin-bottom: 10px;
 }
@@ -499,16 +618,16 @@ a{
 /* +++++++++++++++++++++++++++++++++++++++++++ */
 /* UPDATE HARGA */
 /* +++++++++++++++++++++++++++++++++++++++++++ */
-.container .row.content ul{
+.container .content ul{
     list-style-type: none;
     margin: 0;
     padding: 0;
 }
-.container .row.content ul li.dropdown{
+.container .content ul li.dropdown{
     width: 400px;
     margin: 15px 0;
 }
-.container .row.content ul li.dropdown .list{
+.container .content ul li.dropdown .list{
     line-height: 20px;
     align-items: center;
     padding: 10px 20px;
@@ -517,12 +636,12 @@ a{
     background-color: white;
     cursor: pointer;
 }
-.container .row.content ul li.dropdown .harga{
+.container .content ul li.dropdown .harga{
     margin-right: 60px;
     position: relative;
     float: right;
 }
-.container .row.content ul li.dropdown img{
+.container .content ul li.dropdown img{
     position: relative;
     width: 15px;
     padding: 3px;
@@ -530,12 +649,12 @@ a{
     transform: rotate(90deg);
     transition: transform 0.5s;
 }
-.container .row.content ul li.dropdown .list:hover{
+.container .content ul li.dropdown .list:hover{
     background-color: rgb(250, 250, 250);
 }
 
 /* Isi Dropdown */
-.container .row.content ul li.dropdown ul.isi-dropdown{
+.container .content ul li.dropdown ul.isi-dropdown{
     list-style-type: none;
     width: 80%;
     height: 0;
@@ -548,22 +667,22 @@ a{
     overflow: hidden;
     transition: height 0.5s;
 }
-.container .row.content ul li.dropdown ul.isi-dropdown.active{
+.container .content ul li.dropdown ul.isi-dropdown.active{
     height: 150px;
     padding: 10px 15px;
 }
-.container .row.content ul li.dropdown ul.isi-dropdown li{
+.container .content ul li.dropdown ul.isi-dropdown li{
     width: 100%;
 }
-.container .row.content ul li.dropdown ul.isi-dropdown span{
+.container .content ul li.dropdown ul.isi-dropdown span{
     font-weight: normal;
     font-size: 14px;
 }
-.container .row.content ul li.dropdown ul.isi-dropdown .keterangan{
+.container .content ul li.dropdown ul.isi-dropdown .keterangan{
     position: relative;
     float: right;
 }
-.container .row.content ul li.dropdown ul.isi-dropdown .btn{
+.container .content ul li.dropdown ul.isi-dropdown .btn{
     margin-top: 30px !important;
     margin: 10px auto;
     border-radius: 30px;
@@ -571,57 +690,50 @@ a{
     background-color: white;
     transition: background-color 1s, color 0.5s, border 0.2;
 }
-.container .row.content ul li.dropdown ul.isi-dropdown .btn:hover{
+.container .content ul li.dropdown ul.isi-dropdown .btn:hover{
     background-color: #08AC4D;
     color: white;
     border: 2px solid white;
 }
 
 /* INVOICE */
-.container.invoice{
-    background-color: white;
-    width: 80vw;
-    margin-left: 140px;
-    margin-top: 50px;
-    padding: 20px 50px;
+.container#invoice{
+    overflow-x: scroll !important;
+}
+.invoice{
+    width: 1100px;
     border-radius: 20px;
-    font-size: 14px;
-    box-shadow: 1px 0 20px rgba(0, 0, 0, 0.2);
 }
-.container.invoice .box{
+.invoice .box{
+    width: 1000px;
     background-color: white;
     padding: 20px 50px;
 }
-.container.invoice .row{
-    margin-left: 0;
-    margin-top: 0;
-}
-.container.invoice .row.header h2{
+.invoice .row.header h2{
     font-size: 25px;
 }
-.container.invoice .row.header{
+.invoice .row.header{
     text-align: left;
     font-size: 14px;
-    margin-bottom: 100px;
 }
-.container.invoice .row.body{
+.invoice .row.body{
     display: inline;
     margin-top: 30px;
 }
-.container.invoice .row.body table.list-produk{
+.invoice .row.body table.list-produk{
     width: 100%;
     border-spacing: 0;
     margin-top: 100px !important;
 }
-.container.invoice .row.body table.list-produk th{
+.invoice .row.body table.list-produk th{
     background-color: #08AC4D;
     color: #fff;
     padding: 5px;
 }
-.container.invoice .row.body table.list-produk td{
+.invoice .row.body table.list-produk td{
     padding: 5px 30px;
 }
-.container.invoice .row.body table.rekam{
+.invoice .row.body table.rekam{
     margin-left: auto;
     text-align: right;
 }
@@ -634,7 +746,7 @@ a{
 /* Input Pencarian */
 /* =========================================== */
 .pencarian .input_cari{
-    width: 80%;
+    width: 95%;
     height: 35px;
     border-radius: 30px;
     padding: 0 20px;
@@ -645,7 +757,7 @@ a{
     width: 20px;
     height: 20px;
     position: absolute;
-    left: 80%;
+    left: 93%;
     margin-left: 30px;
     margin-top: 10px;
 }
@@ -664,24 +776,11 @@ a{
 	color: rgba(0, 0, 0, 0.2);
 }
 
-@media screen and (min-width: 750px) {
-    .pencarian .input_cari{
-        width: 90%;
-    }
-    .pencarian img{
-        left: 90%;
-        margin-left: 15px;
-    }
-}
 /* ===================================== */
 /* Isi COntent Riwayat Transaksi */
 /* ===================================== */
-.container.riwayat_transaksi .row:nth-child(3){
-    background-color: #fff;
+.container .data_rwtTrx{
     border-radius: 20px;
-    box-shadow: 1px 0 20px rgba(0, 0, 0, 0.2);
-    width: 80%;
-    padding: 10px;
 }
 .container .list_riwayat{
     list-style-type: none;
@@ -692,24 +791,20 @@ a{
     padding: 10px;
     margin: 10px;
 }
-.container .list_riwayat li .col{
-    display: grid;
-    grid-column-gap: 100px;
-    grid-template-columns: 70% auto;
-}
-.container .list_riwayat .row2 .nomor,
-.container .list_riwayat .row2 .harga,
-.container .list_riwayat .row2 .status{
+.container .list_riwayat .nomor,
+.container .list_riwayat .harga,
+.container .list_riwayat .status{
     margin-left: auto;
 }
-.container .list_riwayat .row2 .nomor{
+.container .list_riwayat .nomor{
     font-size: 12px;
     color: rgba(0, 0, 0, 0.7);
 }
-.container .list_riwayat .row2 .tanggal,
-.container .list_riwayat .row2 .alamat{
+.container .list_riwayat .tanggal,
+.container .list_riwayat .alamat{
     color: rgba(0, 0, 0, 0.7);
 }
+
 
 /* ===================================================== */
 /* =========================================== */
@@ -739,36 +834,15 @@ a{
 }
 .row .kotak img{
     width: 30px;
-    padding: 20px 0 0 20px;
+    height: 30px;
+    padding: 20px 20px;
 }
-.row .kotak .row2{
-    padding: 5px;
-}
-.row .kotak .row3{
-    display: grid;
-    grid-row-gap: 50px;
-    grid-template-columns: 60px auto;
-}
-.row .kotak .row3.tombol{
-    grid-template-columns: 33.3% 33.3% 33.3%;
-}
-.row .kotak .row3 .tanggal,
-.row .kotak .row3 .keterangan,
-.row .kotak .row3 .alamat{
-    display: block;
-}
-.row .kotak .row3 .tanggal,
-.row .kotak .row3 .alamat{
-    color: rgba(0, 0, 0, 0.7);
-}
-.row .kotak .row3.tombol a{
-    text-decoration: none;
-}
+
 
 /* =========================================== */
 /* Input Jadwal Penjemputan */
 /* =========================================== */
-.row .btn.kembali{
+.btn.kembali{
     width: 70px;
     padding: 2px 15px;
     line-height: 30px;
@@ -778,14 +852,14 @@ a{
     font-size: 14px;
     background-color: red;
 }
-.row .btn.kembali img{
+.btn.kembali img{
     width: 13px;
     transform: rotate(180deg);
     margin-right: 10px;
     line-height: 20px;
     vertical-align: middle;
 }
-.row .input_jadwal input{
+.input_jadwal input{
     width: 350px;
     height: 30px;
     border-radius: 30px;
@@ -795,7 +869,7 @@ a{
     font-size: 14px;
     border: 1px solid rgba(0, 0, 0, 0.2);
 }
-.row .input_jadwal .pesan{
+.input_jadwal .pesan{
     font-size: 10px;
     display: block;
     margin-top: 5px;
@@ -803,7 +877,7 @@ a{
     margin-left: 20px;
     color: red;
 }
-.row .input_jadwal button{
+.input_jadwal button{
     border-radius: 30px;
     background-color: #08AC4D;
     border: 1px solid rgba(0, 0, 0, 0.2);
@@ -812,7 +886,7 @@ a{
     margin-top: 50px;
     margin-left: 120px;
 }
-.row .input_jadwal button:hover{
+.input_jadwal button:hover{
     background-color: #008638;
 }
 
@@ -845,4 +919,158 @@ a{
     padding:4px;
     font-size:16px;
     width: 300px;
+}
+
+
+/* TAMPILAN MOBILE
+** Created by Agung Dwi Sahputra
+*/
+@media (max-width: 1350px) {
+    .container .row .kotak img{
+        display: none;
+    }
+}
+@media (max-width: 900px) {
+/* Umum */
+    .container{
+        padding-top: 40px;
+        padding-left: 20px;
+        margin-bottom: 100px;
+    }
+
+/* Isi Content */
+    .container .footer .col img{
+        display: none !important;
+    }
+
+/* Navigatioon Atas */
+    .navigation-top ul li.nav-left{
+        margin-left: 20px;
+    }
+
+/* Navigasi Kiri */
+    .navigation{
+        top: auto;
+        bottom: 20px;
+        left: 20px !important;
+        right: 20px !important;
+        width: 95%;
+        height: 60px;
+        padding: 0;
+        display: block !important;
+        margin: 0 auto !important;
+        text-align: center;
+    }
+    .navigation ul{
+        width: 100%;
+        margin: 0;
+        left: 30%;
+        padding: 0;
+    }
+    .navigation ul li{
+        float: left;
+        width: 60px;
+        margin: 0 2%;
+        padding: 0;
+        border-top-left-radius: 0;
+        border-top-right-radius: 0;
+        border-bottom-left-radius: 30px;
+        border-bottom-right-radius: 30px;
+    }
+    .navigation ul li b{
+        display: none !important;
+    }
+    .navigation ul li a .title{
+        display: none;
+    }
+    /* Toggle */
+    .toggle{
+        display: none;
+    }
+}
+@media (max-width: 650px) {
+/* Navigation Kiri */
+    .navigation{
+        width: 93% !important;
+    }
+    .navigation ul{
+        left: 25% !important;
+    }
+
+/* INPUT PENCARIAN (Riwayat Transaksi) */
+    .pencarian .input_cari{
+        width: 90%;
+    }
+    .pencarian img{
+        left: 90%;
+        margin-left: 15px;
+    }
+
+
+/* FILE JADWAL PENJEMPUTAN
+** Responsive by Agung Dwi Sahputra
+*/
+    .container .row .kotak .tombol{
+        flex-direction: column;
+    }
+    .container .row .kotak .tombol .col{
+        margin: 5px 0;
+    }
+    .container .row .kotak img{
+        display: none;
+    }
+}
+@media (max-width: 500px) {
+    *{
+        font-size: small;
+    }
+/* Navigation Atas */
+    .navigation-top ul li a .user,
+    .navigation-top ul li a .bell{
+        margin-top: 5px;
+    }
+    .navigation-top ul li a .user{
+        width: 30px;
+    }
+    .navigation-top ul li a .bell{
+        width: 20px;
+    }
+
+/* Navigation Kiri */
+    .navigation ul{
+        left: 25% !important;
+        height: 100% !important;
+    }
+    .navigation ul li a .icon{
+        min-width: 50px;
+        height: 50px;
+        line-height: 60px;
+    }
+    .navigation ul li .icon img.putih,
+    .navigation ul li .icon img.hijau{
+        width: 25px;
+        margin: 15px 18px;
+    }
+
+/* FILE PROFILE
+** Responsive by Agung Dwi Sahputra
+*/    
+    .container .row.body li{
+        height: 50px;
+    }
+}
+
+@media (max-width: 450px) {
+/* Navigation Kiri */
+    .navigation ul{
+        left: 20% !important;
+        height: 100% !important;
+    }
+
+/* FILE DATA RIWAYAT TRANSAKSI
+** Responsive by Agung Dwi Sahputra
+*/
+    .container .list_riwayat .row{
+        flex-direction: column-reverse;
+    }
 }

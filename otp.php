@@ -45,6 +45,12 @@ if ($_SESSION['login'] == true && $_SESSION['level_user'] == '1' || $_SESSION['l
 
 
 
+			@media (max-width: 1000px) {
+				.menu-toggle {
+					display: none !important;
+				}
+			}
+
 			@media screen and (max-width: 749px) {
 				.btn-otp {
 					display: none;

@@ -31,11 +31,11 @@
                 <div class="head">
                     <h4 style="margin: 0;">Notifikasi</h4>
                 </div>
-                <div class="body">
+                <div class="body" style="overflow-x:hidden;">
                     <?php
                     /* RIWAYAT TRANSAKSI */
                     if ($level == '1') {
-                        $query_transaksi = mysqli_query($conn, "SELECT * FROM transaksi_pembelian LIMIT 5");
+                        $query_transaksi = mysqli_query($conn, "SELECT * FROM transaksi_pembelian INNER JOIN users ON users.id_user = transaksi_pembelian.pemasok_id LIMIT 5");
                     } else  if ($level == '2') {
                         $query_transaksi = mysqli_query($conn, "SELECT * FROM transaksi_pembelian WHERE mitra_id = '$id_user' LIMIT 5");
                     } else  if ($level == '3') {
@@ -66,9 +66,10 @@
                                 <div class="col">
                                     <img src="../assets/Icon/hvs.png" alt="Riwayat" id="riwayat">
                                 </div>
-                                <a href="riwayat_transaksi.php">
+                                <a href="invoice.php?no_invoice=<?= $data_transaksiN['no_invoice'] ?>">
                                     <div class="col">
                                         <span class="tanggal"><?= $data_transaksiN['tgl_transaksi'] ?></span>
+                                        <span class="nama"><b><?= $data_transaksiN['nama_lengkap'] ?></b></span>
                                         <span class="keterangan <?= $color_status ?>"><b><?= $status ?></b></span>
                                     </div>
                                 </a>

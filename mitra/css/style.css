@@ -417,12 +417,17 @@ a{
     border-bottom: 1px solid rgba(0, 0, 0, 0.2);
 }
 .navigation-top ul li .nav-ListDropdown .body .row .tanggal,
+.navigation-top ul li .nav-ListDropdown .body .row .nama,
 .navigation-top ul li .nav-ListDropdown .body .row .keterangan{
     display: block;
     height: 15px;
 }
 .navigation-top ul li .nav-ListDropdown .body .row .tanggal{
     font-size: 10px;
+    color: rgba(0, 0, 0, 0.7);
+}
+.navigation-top ul li .nav-ListDropdown .body .row .nama{
+    font-size: 12px;
     color: rgba(0, 0, 0, 0.7);
 }
 .navigation-top ul li .nav-ListDropdown .body .row:hover{

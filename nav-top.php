@@ -37,11 +37,11 @@
                     if ($level == '1') {
                         $query_transaksi = mysqli_query($conn, "SELECT * FROM transaksi_pembelian INNER JOIN users ON users.id_user = transaksi_pembelian.pemasok_id LIMIT 5");
                     } else  if ($level == '2') {
-                        $query_transaksi = mysqli_query($conn, "SELECT * FROM transaksi_pembelian WHERE mitra_id = '$id_user' LIMIT 5");
+                        $query_transaksi = mysqli_query($conn, "SELECT * FROM transaksi_pembelian INNER JOIN users ON users.id_user = transaksi_pembelian.pemasok_id WHERE mitra_id = '$id_user' LIMIT 5");
                     } else  if ($level == '3') {
-                        $query_transaksi = mysqli_query($conn, "SELECT * FROM transaksi_pembelian WHERE pemasok_id = '$id_user' LIMIT 5");
+                        $query_transaksi = mysqli_query($conn, "SELECT * FROM transaksi_pembelian INNER JOIN users ON users.id_user = transaksi_pembelian.pemasok_id WHERE pemasok_id = '$id_user' LIMIT 5");
                     } else {
-                        $query_transaksi = mysqli_query($conn, "SELECT * FROM transaksi_pembelian WHERE pemasok_id = '$id_user' LIMIT 5");
+                        $query_transaksi = mysqli_query($conn, "SELECT * FROM transaksi_pembelian INNER JOIN users ON users.id_user = transaksi_pembelian.pemasok_id WHERE pemasok_id = '$id_user' LIMIT 5");
                     }
                     $total_penjualan = 0; //UNTUK TOTAL PENJUALAN PADA GRAFIK
                     while ($data_transaksiN = mysqli_fetch_array($query_transaksi)) {

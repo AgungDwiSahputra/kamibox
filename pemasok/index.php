@@ -70,21 +70,6 @@ if ($status_login === true and !empty($email) and $level == '3') {
 
             }
 
-            .row2 {
-                margin-left: 150px;
-                margin-top: 30px;
-            }
-
-            .row3 {
-                margin-right: 250px;
-                margin-top: 40px;
-            }
-
-            .row4 {
-                margin-right: 250px;
-                margin-top: 30px;
-            }
-
             .card-grafik {
                 width: 500px;
                 box-shadow: 0px 1px 20px 0px rgba(0, 0, 0, 0.3);
@@ -252,200 +237,6 @@ if ($status_login === true and !empty($email) and $level == '3') {
                 font-size: 0.85rem;
             }
 
-            ::-webkit-scrollbar {
-                width: 10px;
-            }
-
-            ::-webkit-scrollbar-track {
-                -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
-                background: #666;
-            }
-
-            ::-webkit-scrollbar-thumb {
-                background: #232323;
-            }
-
-            @media screen and (max-width: 1200px) {
-
-                .row3,
-                .row4 {
-                    margin-right: 50px;
-                }
-            }
-
-            @media screen and (max-width: 1050px) {
-                .dashboard-wrapper .cards {
-                    margin: auto;
-                    display: inline-flex;
-                    flex-direction: column;
-                    flex-wrap: wrap;
-                    justify-content: center;
-                    align-content: center;
-                }
-
-                .row2,
-                .row3,
-                .row4 {
-                    margin-right: 0;
-                }
-            }
-
-            @media screen and (max-width: 750px) {
-                .navigation {
-                    width: 70px;
-                }
-
-                .dashboard-wrapper .cards {
-                    margin: auto;
-                    display: inline-flex;
-                    flex-direction: column;
-                    flex-wrap: nowrap;
-                    justify-content: center;
-                    align-content: center;
-                }
-
-                .row2,
-                .row3,
-                .row4 {
-                    margin: 20px auto;
-                }
-
-                .container {
-                    margin-left: 30px;
-                }
-
-                .card-grafik {
-                    width: 100%;
-                    box-shadow: 0px 1px 8px 0px rgba(0, 0, 0, 0.3);
-                    border-radius: 30px;
-                    overflow: scroll;
-                }
-
-            }
-
-            @media screen and (max-width: 550px) {
-                .navigation {
-                    width: 60px;
-                    top: 10px;
-                    left: 1px;
-                    bottom: 10px;
-                }
-
-                .navigation-top ul {
-                    padding: 0 8px;
-                }
-
-                .navigation-top ul li a .user {
-                    width: 25px;
-                }
-
-                .navigation-top ul li a .bell {
-                    width: 18px;
-                }
-
-
-                .dashboard-wrapper .cards {
-                    margin: auto;
-                    display: inline-flex;
-                    flex-direction: column;
-                    flex-wrap: nowrap;
-                    justify-content: left;
-                    align-content: left;
-                    margin: 10px;
-                }
-
-                .row2,
-                .row3,
-                .row4 {
-                    margin: 0px auto;
-                }
-
-                .card-grafik {
-                    width: 75%;
-                    border-radius: 2px;
-                    margin-left: 40px;
-                    margin-top: 30px;
-                }
-
-                .card-transaksi,
-                .card-harga {
-                    width: 100%;
-                    border-radius: 2px;
-                    overflow: scroll;
-                    margin-left: 40px;
-                }
-
-                .swiper {
-                    margin-left: 40px;
-                }
-
-                .content-transaksi,
-                .content-harga {
-                    display: flex;
-                    margin: 0 8px;
-                    font-size: 0.8rem;
-
-                }
-
-                .container {
-                    text-align: left;
-                }
-            }
-
-            @media screen and (max-width: 450px) {
-
-                .navigation ul li .icon img.putih,
-                .navigation ul li .icon img.hijau {
-                    width: 25px;
-                }
-
-                .navigation-top ul li.nav-left {
-                    margin-left: 80px;
-                    margin-top: 15px;
-                    font-size: 12px;
-                }
-
-                .container {
-                    font-size: 12px;
-                }
-
-                .card-grafik {
-                    width: 60%;
-                    margin-left: 40px;
-                    margin-top: 20px;
-                }
-
-                .swiper {
-                    margin-left: 40px;
-                    width: 300px;
-                    overflow: scroll;
-                }
-
-                .card-transaksi,
-                .card-harga {
-                    width: 300px;
-                    border-radius: 2px;
-                    margin-left: 40px;
-                    overflow: hidden;
-                }
-
-                .content-transaksi,
-                .content-harga {
-                    display: flex;
-                    gap: 20px;
-                    margin: 20px;
-                    font-size: 0.75rem;
-                    width: 300px;
-                    overflow: scroll;
-                }
-
-                .toggle img.close {
-                    width: 25px;
-                    margin-left: 5px;
-                }
-
-
-            }
         </style>
 
         <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
@@ -482,7 +273,7 @@ if ($status_login === true and !empty($email) and $level == '3') {
                         //jumlah seluruh barang
                         $query2 = mysqli_query($conn, "select count(transaksi_barang.id_barang) as jml from transaksi_pembelian inner join transaksi_barang ON transaksi_pembelian.pemasok_id = transaksi_barang.pemasok_id where transaksi_pembelian.pemasok_id=$id_user and transaksi_barang.id_barang = $barang_id and transaksi_pembelian.date_grafik between '$datep 00:00' and '$datep 23:59' ");
 
-                        while ($row2 = mysqli_fetch_array($query2)) {
+                        while ($row = mysqli_fetch_array($query2)) {
 
                             //jumlah berat barang 
                             $query3 = mysqli_query($conn, "select * from transaksi_barang where id_barang = $barang_id and pemasok_id=$id_user");
@@ -584,211 +375,198 @@ if ($status_login === true and !empty($email) and $level == '3') {
         <!-- ISI CONTENT -->
         <!-- ====================================== -->
         <div class="container">
-            <div class="dashboard-wrapper">
-                <!-- card grafik -->
-                <div class="cards">
-                    <div class="row2 card-grafik">
-                        <div class="heading-grafik">
-                            <h4>Grafik Terkini</h4>
-                        </div>
-                        <div class="content-grafik">
-                            <?php
+            <div class="row">
+                <div class="col box-shadow p-3 m-2" style="border-radius: 20px;">
+                    <div class="heading-grafik">
+                        <h4>Grafik Terkini</h4>
+                    </div>
+                    <div class="content-grafik">
+                        <?php
+                        //grafik periode
 
-                            //grafik periode
+                        //jika date tidak diinputkan
+                        if (isset($_GET['ke'])) {
+                            $dateprd = $_GET['ke'];
+                        } else {
+                            $dateprd = date('Y-m-d');
+                        }
 
-                            //jika date tidak diinputkan
-                            if (isset($_GET['ke'])) {
-                                $dateprd = $_GET['ke'];
-                            } else {
-                                $dateprd = date('Y-m-d');
-                            }
-
-                            echo "<form action='index.php' method='get'>
+                        echo "<form action='index.php' method='get'>
           		<label>Pilih Tanggal</label>
 				<input type='date' name='ke' value='" . $dateprd . "'>
 				<input type='submit' value='cari'>
             </form>";
 
-                            $date = $dateprd;
-                            $date1 = date_create($date);
-                            $date2 = date_format($date1, 'l');
-                            $tgl   = date_format($date1, 'd');
-                            $year  = date_format($date1, 'Y');
-                            $date3 = hariIndo($date2);
-                            $month = date_format($date1, 'm');
-                            $month2 = bulanIndo($month);
+                        $date = $dateprd;
+                        $date1 = date_create($date);
+                        $date2 = date_format($date1, 'l');
+                        $tgl   = date_format($date1, 'd');
+                        $year  = date_format($date1, 'Y');
+                        $date3 = hariIndo($date2);
+                        $month = date_format($date1, 'm');
+                        $month2 = bulanIndo($month);
 
-                            echo "<div style='margin-top:10px;color:green;font-size:0.9rem;'>" . $date3 . ", " . $tgl . " " . $month2 . " " . $year . "</div>";
-
-
-                            //echo "<div style='margin-top:10px;color:green;font-size:0.9rem;'>Tanggal ".date("d-m-Y",strtotime($dateprd))."</div>";
-
-                            $cekqueryjmlbrgprd = mysqli_query($conn, "select count(no_invoice) as jml from transaksi_pembelian where pemasok_id=$id_user and date_grafik between '$dateprd 00:00' and '$dateprd 23:59' ");
-
-                            $rowjmlprd = mysqli_fetch_assoc($cekqueryjmlbrgprd);
-
-                            if ($rowjmlprd['jml'] == 0) {
-
-                                echo "<div style='color:orangered; width: 400px; height: 200px;margin-top:20px;' > Belum ada transaksi barang </div>";
-                            } else {
-
-                                echo "<div id='piechart3' style='width: 400px; height: 200px;'></div>";
-                            }
+                        echo "<div style='margin-top:10px;color:green;font-size:0.9rem;'>" . $date3 . ", " . $tgl . " " . $month2 . " " . $year . "</div>";
 
 
-                            ?>
+                        //echo "<div style='margin-top:10px;color:green;font-size:0.9rem;'>Tanggal ".date("d-m-Y",strtotime($dateprd))."</div>";
 
-                        </div>
-                        <?php
+                        $cekqueryjmlbrgprd = mysqli_query($conn, "select count(no_invoice) as jml from transaksi_pembelian where pemasok_id=$id_user and date_grafik between '$dateprd 00:00' and '$dateprd 23:59' ");
 
-                        $query3 = mysqli_query($conn, "SELECT sum(`total_harga`)as total_harga FROM `transaksi_pembelian` WHERE pemasok_id=$id_user and date_grafik BETWEEN '$dateprd 00:00' and '$dateprd 23:59'");
+                        $rowjmlprd = mysqli_fetch_assoc($cekqueryjmlbrgprd);
 
-                        $data3 = mysqli_fetch_assoc($query3);
-                        $total = $data3['total_harga'];
-                        $total2 = number_format($total, 2, ",", ".");
+                        if ($rowjmlprd['jml'] == 0) {
+
+                            echo "<div style='color:orangered; width: auto; height: 200px;margin-top:20px;' > Belum ada transaksi barang </div>";
+                        } else {
+
+                            echo "<div id='piechart3' style='width: auto; height: 200px;'></div>";
+                        }
+
 
                         ?>
-                        <p style="margin-left:30px;padding-bottom: 10px;font-size: 0.85rem;">Total Penjualan : <span style="font-weight: 700;margin-left: 30px;">Rp <?php echo $total2; ?></span> </p>
+
                     </div>
+                    <?php
+
+                    $query3 = mysqli_query($conn, "SELECT sum(`total_harga`)as total_harga FROM `transaksi_pembelian` WHERE pemasok_id=$id_user and date_grafik BETWEEN '$dateprd 00:00' and '$dateprd 23:59'");
+
+                    $data3 = mysqli_fetch_assoc($query3);
+                    $total = $data3['total_harga'];
+                    $total2 = number_format($total, 2, ",", ".");
+
+                    ?>
+                    <p style="margin-left:30px;padding-bottom: 10px;font-size: 0.85rem;">Total Penjualan : <span style="font-weight: 700;margin-left: 30px;">Rp <?php echo $total2; ?></span> </p>
                 </div>
-                <!-- end card grafik -->
 
-                <div class="cards">
-                    <!-- Swiper -->
-                    <div class="row3 swiper mySwiper">
-                        <div class="swiper-wrapper">
+                <!-- Swiper -->
+                <div class="col swiper mySwiper">
+                    <div class="swiper-wrapper">
 
-                            <?php
-                            $query2 = mysqli_query($conn, "select * from blog");
-                            while ($row = mysqli_fetch_array($query2)) {
-                            ?>
+                        <?php
+                        $query2 = mysqli_query($conn, "select * from blog");
+                        while ($row = mysqli_fetch_array($query2)) {
+                        ?>
 
-                                <div class="swiper-slide">
-                                    <div class="segmen-artikel">
-                                        <div class="post-img">
-                                            <img class="img-artikel" src="../<?php echo $row['img']; ?>">
+                            <div class="swiper-slide">
+                                <div class="segmen-artikel">
+                                    <div class="post-img">
+                                        <img class="img-artikel" src="../<?php echo $row['img']; ?>">
+                                    </div>
+                                    <div class="segmen-content-blogs">
+                                        <img class="img-bg-content-blog" src="">
+                                        <div class="segmen-isi-blog">
+                                            <p class="judul-blog"><?php echo $row['judul']; ?></p>
+                                            <p class="isi-blog"><?php echo $row['isi']; ?></p>
                                         </div>
-                                        <div class="segmen-content-blogs">
-                                            <img class="img-bg-content-blog" src="">
-                                            <div class="segmen-isi-blog">
-                                                <p class="judul-blog"><?php echo $row['judul']; ?></p>
-                                                <p class="isi-blog"><?php echo $row['isi']; ?></p>
-                                            </div>
-                                            <div class="segmen-button-blog">
-                                                <a href='#' class='btn-blog'>selengkapnya</a>
-                                            </div>
+                                        <div class="segmen-button-blog">
+                                            <a href='#' class='btn-blog'>selengkapnya</a>
                                         </div>
                                     </div>
                                 </div>
+                            </div>
 
-                            <?php } ?>
+                        <?php } ?>
 
-                        </div>
-                        <div class="swiper-button-next"></div>
-                        <div class="swiper-button-prev"></div>
-                        <div class="swiper-pagination"></div>
                     </div>
-
+                    <div class="swiper-button-next"></div>
+                    <div class="swiper-button-prev"></div>
+                    <div class="swiper-pagination"></div>
                 </div>
 
             </div>
-
+        </div>
+        </div>
         </div>
 
         <div class="container">
-            <div class="dashboard-wrapper">
-
-                <div class="cards">
-                    <div class="row2 card-transaksi">
-                        <div class="heading-transaksi">
-                            <h4>Riwayat Transaksi</h4>
-                        </div>
-                        <div class="content-transaksi">
-                            <?php
-                            $query5 = mysqli_query($conn, "select * from transaksi_pembelian where pemasok_id=$id_user ORDER BY date_grafik DESC limit 6");
-
-                            //cek ketersediaan transaksi pembelian di pemasok
-                            $cekjmltr = mysqli_num_rows($query5);
-                            if ($cekjmltr == 0) {
-                                echo "<div style='color:red'>Belum ada transaksi pembelian</div>";
-                            } else {
-
-                            ?>
-
-                                <div class="ct tanggal">
-                                    <?php
-                                    while ($row5 = mysqli_fetch_array($query5)) {
-
-                                        $date = $row5['date_grafik'];
-                                        $date1 = date_create($date);
-                                        $date2 = date_format($date1, 'l');
-                                        $tgl   = date_format($date1, 'd');
-                                        $year  = date_format($date1, 'Y');
-                                        $date3 = hariIndo($date2);
-                                        $month = date_format($date1, 'm');
-                                        $month2 = bulanIndo($month);
-                                    ?>
-                                        <p><?php echo $date3 . ", " . $tgl . " " . $month2 . " " . $year; ?></p>
-                                    <?php } ?>
-                                </div>
-
-                                <div class="ct total">
-                                    <?php $query6 = mysqli_query($conn, "select * from transaksi_pembelian where pemasok_id=$id_user ORDER BY date_grafik DESC limit 6");
-
-                                    while ($row6 = mysqli_fetch_array($query6)) {
-                                    ?>
-                                        <p><?php
-                                            $harga = $row6['total_harga'];
-                                            $harga2 = number_format($harga, 2, ",", ".");
-                                            echo "Rp " . $harga2;
-                                            ?></p>
-                                    <?php } ?>
-                                </div>
-
-                            <?php } ?>
-
-                        </div>
-                        <div class="btn-transaksi">
-                            <a href='riwayat_transaksi.php' class='btn-selengkapnya'>selengkapnya</a>
-                        </div>
+            <div class="row">
+                <div class="col box-shadow p-3 m-2">
+                    <div class="heading-transaksi">
+                        <h4>Riwayat Transaksi</h4>
                     </div>
+                    <div class="content-transaksi">
+                        <?php
+                        $query5 = mysqli_query($conn, "select * from transaksi_pembelian where pemasok_id=$id_user ORDER BY date_grafik DESC limit 6");
 
-                </div>
-                <div class="cards">
-                    <div class="row4 card-harga">
-                        <div class="heading-harga">
-                            <h4>Daftar Harga</h4>
-                        </div>
-                        <div class="content-harga">
+                        //cek ketersediaan transaksi pembelian di pemasok
+                        $cekjmltr = mysqli_num_rows($query5);
+                        if ($cekjmltr == 0) {
+                            echo "<div style='color:red'>Belum ada transaksi pembelian</div>";
+                        } else {
 
-                            <div class="ct produk">
+                        ?>
+
+                            <div class="ct tanggal">
                                 <?php
-                                $query7 = mysqli_query($conn, "select * from barang limit 6");
-                                while ($row7 = mysqli_fetch_array($query7)) {
-                                ?>
-                                    <p><?php echo $row7['nama_barang']; ?></p>
-                                <?php } ?>
+                                while ($row5 = mysqli_fetch_array($query5)) {
 
+                                    $date = $row5['date_grafik'];
+                                    $date1 = date_create($date);
+                                    $date2 = date_format($date1, 'l');
+                                    $tgl   = date_format($date1, 'd');
+                                    $year  = date_format($date1, 'Y');
+                                    $date3 = hariIndo($date2);
+                                    $month = date_format($date1, 'm');
+                                    $month2 = bulanIndo($month);
+                                ?>
+                                    <p><?php echo $date3 . ", " . $tgl . " " . $month2 . " " . $year; ?></p>
+                                <?php } ?>
                             </div>
 
-                            <div class="ct harga">
-                                <?php
-                                $query8 = mysqli_query($conn, "select * from barang limit 6");
+                            <div class="ct total">
+                                <?php $query6 = mysqli_query($conn, "select * from transaksi_pembelian where pemasok_id=$id_user ORDER BY date_grafik DESC limit 6");
 
-                                while ($row8 = mysqli_fetch_array($query8)) {
+                                while ($row6 = mysqli_fetch_array($query6)) {
                                 ?>
                                     <p><?php
-                                        $harga = $row8['harga_barang'];
+                                        $harga = $row6['total_harga'];
                                         $harga2 = number_format($harga, 2, ",", ".");
                                         echo "Rp " . $harga2;
                                         ?></p>
                                 <?php } ?>
                             </div>
 
+                        <?php } ?>
+
+                    </div>
+                    <div class="btn-transaksi">
+                        <a href='riwayat_transaksi.php' class='btn-selengkapnya'>selengkapnya</a>
+                    </div>
+                </div>
+                <div class="col box-shadow p-3 m-2">
+                    <div class="heading-harga">
+                        <h4>Daftar Harga</h4>
+                    </div>
+                    <div class="content-harga">
+
+                        <div class="ct produk">
+                            <?php
+                            $query7 = mysqli_query($conn, "select * from barang limit 6");
+                            while ($row7 = mysqli_fetch_array($query7)) {
+                            ?>
+                                <p><?php echo $row7['nama_barang']; ?></p>
+                            <?php } ?>
+
                         </div>
-                        <div class="btn-harga">
-                            <a href='daftar_harga.php' class='btn-selengkapnya'>selengkapnya</a>
+
+                        <div class="ct harga">
+                            <?php
+                            $query8 = mysqli_query($conn, "select * from barang limit 6");
+
+                            while ($row8 = mysqli_fetch_array($query8)) {
+                            ?>
+                                <p><?php
+                                    $harga = $row8['harga_barang'];
+                                    $harga2 = number_format($harga, 2, ",", ".");
+                                    echo "Rp " . $harga2;
+                                    ?></p>
+                            <?php } ?>
                         </div>
+
+                    </div>
+                    <div class="btn-harga">
+                        <a href='daftar_harga.php' class='btn-selengkapnya'>selengkapnya</a>
                     </div>
                 </div>
 
@@ -878,10 +656,10 @@ if ($status_login === true and !empty($email) and $level == '3') {
                     "backgroundColor": "#4dc247",
                     "ctaText": "Chat Kamibox",
                     "borderRadius": "20",
-                    "marginLeft": "150",
-                    "marginBottom": "30",
-                    "marginRight": "0",
-                    "position": "left"
+                    "marginLeft": "0",
+                    "marginBottom": "90",
+                    "marginRight": "30",
+                    "position": "right"
                 },
                 "brandSetting": {
                     "brandName": "Kamibox",
